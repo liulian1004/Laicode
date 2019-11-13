@@ -1,0 +1,7 @@
+public class Solution {
+  public boolean areEqual(int x, int y) {
+    boolean b = (x==y);//complete the expression
+    return b;
+    // Write your solution here
+  }
+}
