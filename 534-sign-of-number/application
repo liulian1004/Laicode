@@ -1,0 +1,11 @@
+public int sign(int x) {
+   // Write your solution here
+   if(x<0){
+     return -1;
+   }
+   if(x==0){
+     return 0;
+   }
+   return 1;
+ }
+}

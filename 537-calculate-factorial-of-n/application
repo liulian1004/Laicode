@@ -1,0 +1,9 @@
+public int factorial(int n) {
+   // Write your solution here
+   int multiply =1;
+   for(int i =1 ;i<=n;i++){
+     multiply = multiply*i;
+   }
+   return multiply;
+ }
+}

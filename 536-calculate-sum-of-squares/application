@@ -1,0 +1,14 @@
+public class Solution {
+  public int sumOfSquares(int n) {
+    // Write your solution here
+    //extreme condition
+    if(n<=0){
+      return 0;
+    }
+    //开根号公式，
+   int i =(int) Math.sqrt(n);
+   //连续平方和相加公式
+   int res = i*(i+1)*(2*i+1)/6;
+   return res;
+  }
+}
