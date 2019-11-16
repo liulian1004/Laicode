@@ -1,0 +1,14 @@
+public class Solution {
+  public void reverse(int[] array) {
+    // Write your solution here
+    int i = 0;
+    int j = array.length-1;//注意长度需要剪1
+    while(i<j){
+      int temp = array[i];
+      array[i]=array[j];
+      array[j] = temp;
+      i++;
+      j--;
+    }
+  }
+}
