@@ -5,8 +5,8 @@ public class Solution {
       return 0;
     }
     int sum =0;
-    for(int i =0;i<array.length;i++){
-      sum += array[i];
+    for(int i: array){//遍历array里的每一个值,返回给int i
+      sum += i;
     }
     return sum;
   }
