@@ -1,0 +1,8 @@
+public class Solution {
+  public String helloWorld() {
+    // String string = new String("Hello world!");
+    // return string;
+    return "Hello world!";//可以直接返回int，char，String等值，不需要另外new
+    //int return 8 ; char： return 'a';
+  }
+}
