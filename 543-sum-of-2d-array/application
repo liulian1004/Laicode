@@ -3,9 +3,15 @@ public class Solution {
     // Write your solution here
     int sum = 0;
     for(int i = 0; i < array.length;i++){// 遍历row
-      for(int j = 0; j < array[0].length;j++){//遍历column
+      for(int j = 0; j < array[0].length;j++){//遍历column.一定要写array[0],可能这个2D array只有一行
         sum += array[i][j];
       }
+    }
+    //solution 2:
+    for(array[] row :array) {//遍历row
+       for(int x: row){//遍历row里面的每个element
+           s += x;
+       }
     }
     return sum;
   }
