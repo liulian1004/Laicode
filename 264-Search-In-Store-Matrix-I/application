@@ -1,0 +1,21 @@
+public class Solution {
+  public int[] search(int[][] matrix, int target) {
+    // Write your solution here
+    int m = matrix.length;
+    int n = matrix[0].length;
+    int left = 0;
+    int right = m*n -1;
+    while(left <= right) {
+      int mid = left + (right - left) / 2;
+      //array[mid] = matrix[mid/n][mid%n];
+      if(matrix[mid/n][mid%n] == target) {
+        return new int[] {mid/n, mid%n};
+      } else if (target < matrix[mid/n][mid%n]) {
+        right = mid -1;
+      } else {
+        left = mid + 1;
+      }
+    }
+    return new int[] {-1,-1};
+  }
+}
