@@ -1,0 +1,27 @@
+public class Solution {
+  public int lastOccur(int[] array, int target) {
+    // Write your solution here
+    if(array == null || array.length == 0) {
+      return -1;
+    }
+    int l = 0;
+    int r = array.length - 1;
+    while(l < r - 1) { //make sure in any coidition, left and right will be adjoining finally
+      int m = l + (r - l) / 2;
+      if(array[m] <= target) {
+        l = m;
+      } else {
+        r = m;
+      }
+      // left, right adjoined, m points to left, int m is local variable, can't be used in the following code
+    }
+    //  first right = target; then left = target; none = target
+    if(array[r] == target) {
+      return r;
+    }
+    if (array[l] == target) {
+    return l;
+    }
+    return -1;
+  }
+}
