@@ -1,0 +1,45 @@
+public class Solution {
+  public int[] mergeSort(int[] array) {
+    // Write your solution here
+    if (array == null || array.length <= 1) {
+      return array;
+    }
+    return helper(array, 0, array.length - 1);
+  }
+  private int[] helper(int[] array, int left, int right) {
+    if(left == right) {
+      return new int[]{array[left]};
+    }
+    int mid = left + (right -left) / 2;
+    int[] arrayLeft = helper(array, left, mid);
+    int[] arrayRight = helper(array, mid + 1, right);
+    return merge(arrayLeft, arrayRight);
+  }
+  private int[] merge (int[] arrayLeft, int[] arrayRight) {
+    int[] res = new int[arrayLeft.length + arrayRight.length];
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    while (i < arrayLeft.length && j < arrayRight.length) {
+      if(arrayLeft[i] <= arrayRight[j]) {
+        res[k] = arrayLeft[i];
+        i++;
+      } else {
+        res[k] = arrayRight[j];
+        j++;
+      }
+      k++;
+    }
+    while (i < arrayLeft.length) {
+      res[k] = arrayLeft[i];
+      i++;
+      k++;
+    }
+    while (j < arrayRight.length) {
+      res[k] = arrayRight[j];
+      j++;
+      k++;
+    }
+    return res;
+  }
+}
