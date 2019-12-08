@@ -10,8 +10,8 @@ import (
 
 /**
  * Use case:
- * $go build auto.go
- * $./auto 61-Rotate-List
+ * go build auto.go
+ * ./auto 61-Rotate-List
  * If dir 61-Rotate-List does not exist, it will be created.
  * And RotateList.[postfix] and *.md will be added if not available.
  */
