@@ -11,7 +11,7 @@ public class Solution {
       if(target <= array[m]) {
         r = m;
       } else {
-        l = m + 1;
+        l = m + 1;// l = m 也可
       }
     }
     // left, right adjoined, m points to right, int m is local variable, can't be used in the following code

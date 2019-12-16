@@ -14,7 +14,7 @@ public class Solution {
         right = mid;
       }
       else {
-        left = mid;
+        left = mid;//这里不适用于left = mid -1因为找最近target值，不是相等
       }
     }
     if(Math.abs(array[left] - target) <= Math.abs(array[right] - target)) {
