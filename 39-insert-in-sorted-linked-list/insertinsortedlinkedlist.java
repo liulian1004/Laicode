@@ -28,3 +28,22 @@ public class Solution {
 
   }
 }
+// solution 2
+public ListNode insert(ListNode head, int value) {
+    // insert before the head
+    ListNode target = new ListNode(value);
+    ListNode dummy = new ListNode(-1);
+    ListNode pre = dummy;
+    pre.next = head;
+    while (pre.next != null) {
+      if(pre.next.value >= value) {
+        target.next = pre.next;
+        pre.next = target;
+        return dummy.next;
+      }
+      pre = pre.next;
+    }
+    // pre.next == null;
+    pre.next = target;
+    return dummy.next;
+  }
