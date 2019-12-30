@@ -15,7 +15,7 @@ public class Solution {
     }
   }
   for ( int i = 0; i < k; i++) {
-  if(right >= array.length || left >= 0 && Math.abs(array[left] - target) <= Math.abs(array[right] - target)) {
+  if(right >= array.length || left >= 0 /*走到这里就说明right not out of bound*/ && Math.abs(array[left] - target) <= Math.abs(array[right] - target)) {
     result[i] = array[left];
     left--;
     }else {

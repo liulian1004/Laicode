@@ -11,18 +11,16 @@ public class Solution {
     }
         return findTarget(dict, target, left, right);
     }
-    private int findTarget(Dictionary dict, int target, int left, int right) {
-        while (left <= right) {
-            int midIndex = left + ( right - left) / 2;
-            if ( dict.get(midIndex) != null && dict.get(midIndex) == target) {
-                return midIndex;
-            } else if (dict.get(midIndex) == null || dict.get(midIndex) > target) {
-                right = midIndex - 1;
-            } else {
-                left = midIndex + 1;
-            }
-        }
-        return -1;
+    private int findTarget(Dictionary dict, int left, int right, int target) {
+  while(left <= right) {
+    int midIndex = left + (right - left) / 2;
+    if(dict.get(midIndex) == null || dict.get(midIndex) > target ) {// 先把null排除掉
+      right = midIndex - 1;
+    } else if(dict.get(midIndex) < target) {
+      left = midIndex + 1;
+    } else {
+      return midIndex;
+
     }
 
 }

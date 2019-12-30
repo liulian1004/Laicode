@@ -11,15 +11,12 @@
 public class Solution {
   public List<Integer> preOrder(TreeNode root) {
     // Write your solution here
-    if (root == null) {
-    return new ArrayList<>() ;
-  }
   List<Integer> result = new ArrayList<>();
   getValue(root, result);
   return result;
   }
   private void getValue(TreeNode root, List<Integer> result) {
-    if (root == null) {
+    if (root == null) {//corner case +base case
       return;
     }
     result.add(root.key);

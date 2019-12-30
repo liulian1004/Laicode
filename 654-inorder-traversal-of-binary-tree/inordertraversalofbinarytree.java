@@ -16,7 +16,7 @@ public class Solution {
     return result;
   }
   private void getValue(TreeNode root, List<Integer> result) {
-    if (root == null) {
+    if (root == null) {//corner case +base case
       return;
     }
     getValue(root.left, result);

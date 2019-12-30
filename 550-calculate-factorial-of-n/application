@@ -1,12 +1,14 @@
 public class Solution {
   public long factorial(int n) {
     // Write your solution here
+    //solution 1:recurssion
     //O(n), O(n)
     // if(n == 1) {
     //   return 1;
     // }
     // long res = factorial(n - 1) * n;
     // return res;
+    //solution 2: iteration
     //O(n),O(1)
     long res = 1;
     for ( int i = 1; i <= n ; i++) {
