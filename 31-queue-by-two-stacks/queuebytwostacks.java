@@ -1,45 +1,38 @@
 public class Solution {
+  //Space： O(1) Time: o(1), worst case o(n) Amoritzie = (O(n) +O(n)+O(1) + O(1) * O（n-1)) / n
+  Deque<Integer> input;
+	Deque<Integer> buffer;
   public Solution() {
-    // Write your solution here.
+    input = new ArrayDeque<>();
+	  buffer = new ArrayDeque<>();
   }
-  private Deque<Integer> stack1 = new LinkedList<>();
-  private Deque<Integer> stack2 = new LinkedList<>();
-
   public Integer poll() {
-    if (stack1.isEmpty()) {
-      return null;
-    }
-    reshuffle(stack1, stack2);
-    int result = stack2.pop();
-    reshuffle(stack2, stack1);
-    return result;
-    }
+    move();
+    return buffer.isEmpty()? null : buffer.pollFirst();
+
+  }
 
   public void offer(int element) {
-    stack1.push(element);
+    input.offerFirst(element);
   }
 
   public Integer peek() {
-    if (stack1.isEmpty()) {
-      return null;
-    }
-    reshuffle(stack1, stack2);
-    int result = stack2.peek();
-    reshuffle(stack2, stack1);
-    return result;
+    move();
+    return buffer.isEmpty()? null : buffer.peekFirst();
   }
 
   public int size() {
-    return stack1.size() + stack2.size();
+    return input.size() + buffer.size();
   }
 
   public boolean isEmpty() {
-    return stack1.isEmpty() && stack2.isEmpty();
+    return input.isEmpty() && buffer.isEmpty();
   }
-  public static void reshuffle(Deque<Integer> stack1, Deque<Integer> stack2) {
-    while (!stack1.isEmpty()) {
-        stack2.push(stack1.pop());
+  private void move() {
+    if(buffer.isEmpty()) {
+      while(!input.isEmpty()) {
+      buffer.offerFirst(input.pollFirst());
       }
+    }
   }
-
 }

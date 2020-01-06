@@ -1,45 +1,40 @@
 public class Solution {
   public int[] mergeSort(int[] array) {
-    // Write your solution here
-    if (array == null || array.length <= 1) {
+    // Time: O(nlogn);Space: O(n) = O(n) + O(logn) * O(1)
+    //Space O(n)
+    if(array == null) {
       return array;
     }
-    return helper(array, 0, array.length - 1);
+    int[] helper = new int[array.length];
+    mergeSortHelper(array, helper, 0, array.length - 1);
+    return array;
   }
-  private int[] helper(int[] array, int left, int right) {
-    if(left == right) {
-      return new int[]{array[left]};
+  //Space O(logn)
+  private void mergeSortHelper(int[] array, int[] helper, int left, int right) {
+  //包含了 array.length <= 1
+    if(left >= right) {
+      return;
     }
-    int mid = left + (right -left) / 2;
-    int[] arrayLeft = helper(array, left, mid);
-    int[] arrayRight = helper(array, mid + 1, right);
-    return merge(arrayLeft, arrayRight);
+    int mid = left + (right - left) / 2;
+    mergeSortHelper(array, helper, left, mid);
+    mergeSortHelper(array, helper, mid + 1, right);
+    merge(array, helper, left, mid, right);
   }
-  private int[] merge (int[] arrayLeft, int[] arrayRight) {
-    int[] res = new int[arrayLeft.length + arrayRight.length];
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    while (i < arrayLeft.length && j < arrayRight.length) {
-      if(arrayLeft[i] <= arrayRight[j]) {
-        res[k] = arrayLeft[i];
-        i++;
+  private void merge(int[] array, int[] helper, int left, int mid, int right) {
+    for(int i = left; i <= right; i++) {
+      helper[i] = array[i];
+    }
+    int leftIndex = left;
+    int rightIndex = mid + 1;
+    while(leftIndex <= mid && rightIndex <= right) {
+      if(helper[leftIndex] <= helper [rightIndex]) {
+        array[left++] = helper[leftIndex++];
       } else {
-        res[k] = arrayRight[j];
-        j++;
+        array[left++] = helper[rightIndex++];
       }
-      k++;
     }
-    while (i < arrayLeft.length) {
-      res[k] = arrayLeft[i];
-      i++;
-      k++;
+    while(leftIndex <= mid) {
+      array[left++] = helper[leftIndex++];
     }
-    while (j < arrayRight.length) {
-      res[k] = arrayRight[j];
-      j++;
-      k++;
-    }
-    return res;
   }
 }
