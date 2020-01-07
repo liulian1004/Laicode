@@ -10,7 +10,9 @@
  */
 public class Solution {
   public boolean isBalanced(TreeNode root) {
-    // Write your solution here
+    // 一串是best cast；balanced tree is wrost cast
+    //best cast: T: O(n); space O(n)
+    //Wrost cast: T O(n)(每一层) * logn space： logn
     return getHeightOrUnbalanced(root) >= 0;
   }
   private int getHeightOrUnbalanced(TreeNode root) {
