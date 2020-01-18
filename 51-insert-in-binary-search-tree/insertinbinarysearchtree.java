@@ -33,17 +33,21 @@ public class Solution {
     return root;
   }
   //  recursion
-  // if(root == null) {
-  //   return new TreeNode(key);
-  // }
-  // if(key < root.key) {
-  //   //把new node挂到root的left
-  //   root.left = insert(root.left, key);
-  // }else if(key > root.key) {
-  //   root.right = insert(root.right, key);
-  // }
-  // // case 1: root.key == key, 不用插入key 直接返回
-  // // case 2: key已经插入，返回挂上key 的root
-  // return root;
-  // }
+  //为了维护BST的特殊属性， insert的元素一定是挂在null那一层
+  //如果有重复元素在里面，直接返回
+    if(root == null) {
+      return new TreeNode(key);
+    } else if(root.key == key) {
+      return root;
+    }
+    if(key < root.key) {
+      //把new node挂到root的left
+      root.left = insert(root.left, key);
+    }else if(key > root.key) {
+      root.right = insert(root.right, key);
+    }
+    // case 1: root.key == key, 不用插入key 直接返回
+    // case 2: key已经插入，返回挂上key 的root
+    return root;
+    }
 }

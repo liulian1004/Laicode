@@ -30,7 +30,7 @@ public class Solution {
     while(!queue. isEmpty()) {
       GraphNode cur = queue.poll();
       int curGroup = visited.get(cur);
-      int neiGroup = curGroup == 0 ? 1: 0;
+      int neiGroup = 1- curGroup;
       //一个节点可以能有多个邻居
       for(GraphNode nei : cur. neighbors) {
       if(!visited.containsKey(nei)) {

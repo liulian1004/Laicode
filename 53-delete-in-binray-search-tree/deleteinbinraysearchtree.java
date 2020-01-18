@@ -23,8 +23,10 @@ public class Solution {
       } else if(root.right.left == null) {
         root.right.left = root.left;
         return root.right;
-        //最后两个情况不分开写，cur.left会出现NPE
+        //最后两个情况不分开写，如果合并在一起
+        //在findS函数中会出现N，语句 cur = cur.left会出现PE
       } else {
+        //这里注意是找右子树的最小值，传入值是root.right
         TreeNode smallest = findSmallest(root.right);
         smallest.left = root.left;
         smallest.right = root.right;

@@ -13,7 +13,7 @@ public class Solution {
 
   public int kthSmallest(int[][] matrix, int k) {
     // T：k * log k（K = heap的size）
-    //S： n^2 ( boolean[][]), hashset 的解法： O(k)
+    //S： row * column ( boolean[][]), hashset 的解法： O(k)
     if(matrix == null) {
       return -1;
     }
