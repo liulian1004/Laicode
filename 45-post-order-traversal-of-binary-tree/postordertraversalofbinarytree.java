@@ -33,6 +33,8 @@ public class Solution {
         stack.pollFirst();
         res.add(cur.key);
       } else {
+        //cur = cur.right; 这里cur指向不能变，因为下面cur要和pre互换
+        //cur的指向不能变
         stack.offerFirst(cur.right);
       }
       pre = cur;

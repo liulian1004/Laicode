@@ -21,7 +21,8 @@ public class Solution {
         if(cur != null) {
           stack.offerFirst(cur);
           cur = cur.left;
-        } else if(!stack.isEmpty()) {
+        } else {
+          //cur == null
           cur = stack.pollFirst();
           res.add(cur.key);
           cur = cur.right;

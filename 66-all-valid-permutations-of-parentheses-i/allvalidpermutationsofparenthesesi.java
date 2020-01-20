@@ -1,6 +1,6 @@
 public class Solution {
   public List<String> validParentheses(int n) {
-    // T：1*2^2n + n* 2^2n = 2n* 2^2n = n * 2 ^2n
+    // T：1*2^2n + n* 2^2n = 2n* 2^2n = n * 2 ^2n  = n * 2^ n
     // S：O(2n) = O(n)
     // 2*n 层，2个分支，加“（” 和“加”）“
     List<String> res = new ArrayList<>();

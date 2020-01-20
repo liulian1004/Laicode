@@ -2,7 +2,7 @@ public class Solution {
   public int[] kSmallest(int[] array, int k) {
     // max heap
     // S: O(k)
-    //Time: O(k.logk +(n-k)logk+ klogK) -> O(k.logk + nlogK)
+    //Time: O(k.logk +(n-k)logk+ klogK) -> O((n+k)log k)
     if(array == null || array.length == 0 || k == 0) {
       return new int[0];
     }
