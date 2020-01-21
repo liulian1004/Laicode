@@ -1,6 +1,7 @@
 public class Solution {
   public String rightShift(String input, int n) {
-    // Write your solution here
+    // 整体reverse
+    // 在swithindex的地方两边分别局部reverse
     if(input == null || input.length() <= 1 || n == 0) {
       return input;
     }

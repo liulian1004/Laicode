@@ -2,6 +2,8 @@ public class Solution {
   public String deDup(String input) {
     // T: O(n); S:O(n)
     //virtual stack
+    //初始状态 end = 0, stack已经装有一个element， i从1开始和stack内的元素比较
+    //每次poll/pop都先需要移动end状态
     if(input == null || input.length() <= 1) {
       return input;
     }

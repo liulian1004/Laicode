@@ -13,7 +13,7 @@ public class Solution {
         slow++;
     }
     //maybe there will be empty spaces on the trailing,doulbe check the suitaiton
-    // check outofbound first
+    //check outofbound first
     if(slow > 0 && array[slow - 1] == ' ') {
       slow--;;
     }

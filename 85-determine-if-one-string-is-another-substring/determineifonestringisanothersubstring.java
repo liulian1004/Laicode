@@ -8,7 +8,7 @@ public class Solution {
     if(small.length() == 0) {
       return 0;
     }
-    //最多移几次比较
+    //最多移几次比较,多包括一位
     for(int i = 0; i <= large.length() - small.length(); i++) {
       if(equals(large,small, i)) {
         return i;
