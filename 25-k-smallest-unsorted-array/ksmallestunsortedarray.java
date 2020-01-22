@@ -6,15 +6,7 @@ public class Solution {
     if(array == null || array.length == 0 || k == 0) {
       return new int[0];
     }
-    PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer> (k, new Comparator<Integer>() {
-      @Override
-      public int compare(Integer c1, Integer c2) {
-        if(c1.equals(c2)) {
-          return 0;
-        }
-        return c1 > c2 ? -1 : 1;
-      }
-    });
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<> (k, new ReverseComparator());
     for(int i = 0; i < array.length; i++) {
       if(i < k) {
         // T: klogk
@@ -32,5 +24,14 @@ public class Solution {
         res[i] = maxHeap.poll();
     }
     return res;
+  }
+  private static class ReverseComparator implements Comparator<Integer> {
+     @Override
+     public int compare(Integer a, Integer b) {
+       if(a.equals(b)) {
+   return 0;
+   }
+   return a > b? -1 : 1;
+   }
   }
 }

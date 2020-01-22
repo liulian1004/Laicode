@@ -21,15 +21,18 @@ public class Solution {
    return true;
   }
   private boolean BFS(GraphNode node, HashMap<GraphNode, Integer> visited) {
+    //if this node has been traversed, no need to do BFS again
     if(visited.containsKey(node)) {
       return true;
     }
     Queue<GraphNode> queue = new ArrayDeque<>();
     queue.offer(node);
+    //for visisted node, mark 0
     visited.put(node, 0);
     while(!queue. isEmpty()) {
       GraphNode cur = queue.poll();
       int curGroup = visited.get(cur);
+      // for the node of his neighors, make the oposite number
       int neiGroup = 1- curGroup;
       //一个节点可以能有多个邻居
       for(GraphNode nei : cur. neighbors) {

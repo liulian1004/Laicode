@@ -19,16 +19,7 @@ public class Solution {
     }
     int row = matrix.length;
     int column = matrix[0].length;
-    PriorityQueue<Cell> minHeap = new PriorityQueue(k, new Comparator<Cell>()  {
-      @Override
-      public int compare(Cell c1, Cell c2) {
-
-        if(c1.value == c2.value) {
-          return 0;
-        }
-        return c1.value < c2.value ? -1: 1;
-      }
-    });
+    PriorityQueue<Cell> minHeap = new PriorityQueue<>(k, new EqualComparator());
     boolean[][] visited = new boolean[row][column];
     visited[0][0] = true;
     minHeap.offer(new Cell(0,0, matrix[0][0]));
@@ -47,5 +38,15 @@ public class Solution {
     }
     //已经把前k-1个小的元素给pop出去了，所以minHeap的最小元素是kth大元素
     return minHeap.peek().value;
+
+  }
+  private static class EqualComparator implements Comparator<Cell> {
+	@Override
+	public int compare(Cell c1, Cell c2) {
+    if(c1.value == c2.value) {
+      return 0;
+    }
+    return c1.value < c2.value ? -1 :1;
+  }
 }
 }
