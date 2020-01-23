@@ -1,5 +1,6 @@
 public class Solution {
   public int binarySearch(int[] array, int target) {
+  // T: logn S: O(1)
     // Write your solution here
     //corner case
     if(array == null || array.length == 0){

@@ -1,6 +1,6 @@
 public class Solution {
   public int[] quickSort(int[] array) {
-    // Write your solution here
+    // T: O(nlogn) -worst O(n^2); S: O(logn) - worst O(n)
     if (array == null || array.length <= 1) {
       return array;
     }

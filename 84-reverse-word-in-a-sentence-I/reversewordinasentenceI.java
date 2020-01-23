@@ -38,3 +38,19 @@ public class Solution {
     array[j] = temp;
   }
 }
+
+//mysolution
+
+char[] array = input.toCharArray();
+    int left = 0;
+    int right = array.length - 1;
+    reverse(array, left, right);
+    for(int i = 0; i < array.length; i++) {
+      if(array[i] == ' ') {
+      reverse(array, left, i - 1);
+      left = i + 1;
+      }
+    }
+    if(left < right) {
+    reverse (array, left, right);
+    }
