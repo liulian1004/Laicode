@@ -19,6 +19,7 @@ public class Solution {
     reverse(array, lm, m - 1);
     reverse(array, m, rm - 1);
     reverse(array, lm, rm - 1);
+    //make sure the swap group matches => a | bc | 1 | 23 => a1 | bc23
     helper(array, left, left + (lm- left) * 2 - 1);
     helper(array, left + (lm- left) * 2, right);
   }
