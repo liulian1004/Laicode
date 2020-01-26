@@ -1,6 +1,6 @@
 public class Solution {
   public boolean isBST(TreeNode root) {
-    //Time: O(n) ->m: #of node Space O(height)
+    //Time: O(n) ->n: #of node Space O(height)
     if (root == null) {
         return true;
       }

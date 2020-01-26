@@ -11,17 +11,17 @@ public class Solution {
            j++;
           distance = Math.max(distance, j - i);
       //sliding window continue expanding even i == 0, because the swap times
-      }else if (nums[j] == 0 && count < k) {
-        j++;
-        count++;
-        distance = Math.max(distance, j - i);
-      // no swap left, i-- in any condition, count-- when nums[i] = 0
-      } else {
-        if(nums[i] == 0) {
+        }else if (nums[j] == 0 && count < k) {
+          j++;
+          count++;
+          distance = Math.max(distance, j - i);
+        // no swap left, i-- in any condition, count-- when nums[i] = 0
+        } else if (nums[i] == 0) {
           count--;
-        }
-        i++;
-      }
+          i++;
+       } else {
+          i++;
+       }
 
     }
     return distance;

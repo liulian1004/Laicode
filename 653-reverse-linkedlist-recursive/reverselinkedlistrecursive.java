@@ -11,6 +11,8 @@
 public class Solution {
   public ListNode reverse(ListNode head) {
     // Write your solution here
+    // head == null is conrner case,
+    // head.next == null is base case
     if (head == null || head.next == null) {
       return head;
     }

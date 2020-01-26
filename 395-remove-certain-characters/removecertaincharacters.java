@@ -4,14 +4,13 @@ public class Solution {
     //不等于target，slow copy fast， slow++，return [0,s)
     char[] chart = input.toCharArray();
     Set<Character> set = buildSet(t);
-    int slow = 0;
-    for(int fast = 0; fast < chart.length; fast++) {
-      if(!set.contains(chart[fast])) {
-        chart[slow] = chart[fast];
-        slow++;
-      }
+    int i = 0;
+    for(char j: array) {
+        if(!set.contains(j)) {
+          array[i] = j;
+          i++;
     }
-    return new String(chart, 0, slow);
+    return new String(chart, 0, i);
   }
   private Set<Character> buildSet(String t) {
     Set<Character> set = new HashSet<>();

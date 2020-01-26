@@ -10,7 +10,8 @@
  */
  public class Solution {
    public ListNode reverse(ListNode head) {
-     // Write your solution here
+     // T: O(n), S: O(1)
+     //corner case don't need to write,it cover in the below i
      if(head == null || head.next == null) {
      return head;}
      ListNode pre = null;
