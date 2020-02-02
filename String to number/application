@@ -1,0 +1,43 @@
+public class MyString {
+
+    public static void main(String[] args) {
+        String s = " -9.8000 ";
+        MyString test = new MyString();
+        System.out.println(test.stringToNumeric(s));
+
+    }
+
+    private boolean stringToNumeric(String s) {
+        //corner case
+        if(s == null) {
+            return false;
+        }
+        s = s.trim();
+        if(s.length() == 0) {
+            return true;
+        }
+        int i = 0;
+        int size = s.length();
+        boolean doc = false;
+        if(s.charAt(i) == '-' ||s.charAt(i) == '+') {
+            i++;
+        }
+//check only one doc, number are allowed
+        while(i < size) {
+            if(s.charAt(i) == '.' &&  doc) {
+                return false;
+            }else if(s.charAt(i) == '.' && !doc) {
+                doc = true;
+                i++;
+                continue;
+            }
+            if(s.charAt(i) < '0' || s.charAt(i) > '9') {
+                return false;
+            }
+            i++;
+        }
+        return true;
+
+    }
+
+}
