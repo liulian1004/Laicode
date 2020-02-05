@@ -32,5 +32,34 @@ public class Solution {
     }
     return helper(input, pattern, il + count, pl);
   }
+  // my Solution
+  if(input == null | pattern == null) {
+    return false;
+  }
+  int i = 0;
+  int j = 0;
+  return helper(input, pattern, 0, 0);
+  }
+
+private boolean helper(String input, String pattern, int i, int j) {
+	if(i == pattern.length() && j == input.length()) {
+	return true;
+  } else if(i >= pattern.length() || j >= input.length()) {
+  return false;
+  }
+  if(pattern.charAt(i) >='0' && pattern.charAt(i) <= '9') {
+    int count = 0;
+    while(i < pattern.length() && pattern.charAt(i) >='0' && pattern.charAt(i) <= '9') {
+      count = count * 10 + (pattern.charAt(i) - '0');
+        i++;
+    }
+    return helper(input, pattern, i, j + count);
+  }
+  if(pattern.charAt(i) == input.charAt(j)) {
+      return helper(input, pattern, i+1, j+1);
+  } else {
+    return false;
+  }
+}
 
 }

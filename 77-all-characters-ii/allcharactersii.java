@@ -13,4 +13,16 @@ public class Solution {
     }
     return true;
   }
+  // my Solution
+  boolean[] flag = new boolean[256];
+    for(char c: word.toCharArray()) {
+      // char change to Ascii
+      int index = (int)c;
+      if(flag[index]) {
+        return false;
+      }
+      flag[index] = true;
+    }
+    return true;
+  }
 }
