@@ -13,6 +13,9 @@ public class Solution {
       if(array[i] + i >= array.length - 1) {
         jump[i] = true;
         //能跳到下一个为true的index
+        //必须要一个个跳，因为后面有几位有可能位false
+        //并且要从能达到的最后一位往前跳
+        //这里只要看第一位是不是true即可
       } else {
         for(int j = array[i]; j >= 0; j--) {
           if(jump[j + i]) {
