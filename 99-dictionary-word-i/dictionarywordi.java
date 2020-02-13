@@ -1,6 +1,7 @@
 public class Solution {
   public boolean canBreak(String input, String[] dict) {
-    //T: n * n * (n + n) = n ^ 3  S: O(n)
+    // n = input.length, m = dict.length()
+    //T: n * n * (n + n) + O(m) = n ^ 3  + m  S: O(n)  
     // M[i] present wether can cut into the verb till the end of i
     //base case M[0] = true;
     Set<String> set = builder(dict);
