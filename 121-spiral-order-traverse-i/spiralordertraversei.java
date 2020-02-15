@@ -17,6 +17,8 @@ public class Solution {
         res.add(matrix[offset][offset]);
         return;
       }
+      //四条边travserl,有规律
+        //之前的j是后面的i，最后一一个j是第一个的i
       for(int i = 0; i < size -1; i++) {
         res.add(matrix[offset][offset + i]);
       }

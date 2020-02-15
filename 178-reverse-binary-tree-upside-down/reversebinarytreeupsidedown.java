@@ -16,9 +16,11 @@ public class Solution {
     if(root == null || root.left == null) {
       return root;
     }
+    //newRoot一旦赋值不能变，就像reverseLinkedList
     TreeNode newRoot = reverse(root.left);
     root.left.right = root.right;
     root.left.left = root;
+    //断开链接
     root.left = null;
     root.right = null;
     return newRoot;
