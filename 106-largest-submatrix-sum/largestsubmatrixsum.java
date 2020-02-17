@@ -11,6 +11,7 @@ public class Solution {
             return 0;
         }
 //m[i+1][j+1] represents 2d prefix sum from [(0,0), (i,j)]
+// travaserl the m
         int max = Integer.MIN_VALUE;
         int[][] m = new int[ROW+1][COL+1];// right!
         for(int i = 1; i <= ROW; i++) {
@@ -18,7 +19,7 @@ public class Solution {
                 m[i][j] = m[i-1][j] + m[i][j-1] - m[i-1][j-1] + matrix[i-1][j-1];
             }
         }
-        //4个for loop确认一个长方形
+        //4个for loop确认一个2D subArray in the m
         for(int i = 1; i <=ROW; i++) {
             for(int j = 1; j <= COL; j++) {
                 for(int k = i; k <= ROW ; k++) {

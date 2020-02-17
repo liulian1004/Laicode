@@ -11,6 +11,8 @@ public class Solution {
     //S: O(n) = O(1)*O(h)
     //cur并不是在recursion里面new出来的，在recursion这一段不需要考虑
     private void helper(List<List<Integer>> res, List<Integer> cur, int n) {
+      //这里的recursion rule不能动n
+      // 因为每一次n
       if(cur.size() == n) {
         res.add(new ArrayList<>(cur)); // S: O(n)
         return;
@@ -24,10 +26,14 @@ public class Solution {
       }
     }
 
-    private boolean isValid(int i, List<Integer> cur){
+    private boolean isValid(int index, List<Integer> cur){
       int size = cur.size();
-      for(int j  = 0; j < size; j++) {
-        if((cur.get(j) == i) || Math.abs(size - j) == Math.abs(i - cur.get(j))) {
+      //遍历这个cur
+      for(int i  = 0; i < size; i++) {
+        // cur.get(j)查是否在竖线上重合
+        // i是在这一层准备要插入的位置
+        //两个坐标（cur.get(i), i) (index, size)
+        if((cur.get(i) == index) || size - i == Math.abs(index - cur.get(i))) {
           return false;
         }
     }

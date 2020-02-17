@@ -3,6 +3,7 @@ public class Solution {
     // 3层 3个叉，2个叉，1个叉（remaining unused letters)
     //T:n!*n(n个字母排列是n！可能性，每个可能性遍历打印)
     //S：O(n)
+    //如果input 是 空，res 是 n{" "}, 不是null
     List<String> res = new ArrayList<>();
     if(input == null) {
       return res;
@@ -16,6 +17,7 @@ public class Solution {
       res.add(new String(array));
       return;
     }
+    //for loop用于多重分支，这里也起到来代替helper，吐了之后进入下一层recursion的作用
     for(int i = index; i< array.length; i++) {
       swap(array, index, i);
       helper(array, index + 1, res);
