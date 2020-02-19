@@ -21,6 +21,9 @@ public class Solution {
     // = 100% * （1 -3(k)/4 * 1/3(k)) = 3/4;
     // p: k/count
     if(count > k) {
+      //如果count > k
+      //计算原元素被替换掉的概率，如果概率在【0，k)之间，替换
+      //如果没有，不替换
         int ran = (int)(Math.random() * count);
         if(ran < k) {
           //list数值替换

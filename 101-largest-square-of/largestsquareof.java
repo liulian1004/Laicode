@@ -1,8 +1,29 @@
 public class Solution {
   public int largest(int[][] matrix) {
     // Write your solution here
-    //m[n][n] represent the  largest square of 1s with the right bottom
-    // int res is the largest number in the m[n][n]
+    //m[i+1][j+1] represent the size of 1s square  with  i, j as the the  bottom right corner
+    // T: n^2 , S n^2
+    //my soultion
+    
+    if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return 0;
+    }
+      int n = matrix.length;
+      int[][] sum = new int[n+1][n+1];
+      int largest = 0;
+      for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+          if(matrix[i][j] == 1) {
+          sum[i+1][j+1] = Math.min(sum[i+1][j] + 1 , sum[i][j+1] +1);
+          sum[i+1][j+1] = Math.min(sum[i+1][j+1], sum[i][j] + 1);
+          largest = Math.max(sum[i+1][j+1], largest);
+        }
+      }
+    }
+    return largest;
+
+  }
+    // standard Solution
     if(matrix.length == 0) {
       return 0;
     }

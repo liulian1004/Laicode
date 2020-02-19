@@ -2,7 +2,6 @@ public class Solution {
   public boolean match(String input, String pattern) {
     // T: pattern.length
     //S: pattern.length
-
     return helper(input, pattern, 0, 0);
   }
   private boolean helper(String input, String pattern, int il, int pl) {
