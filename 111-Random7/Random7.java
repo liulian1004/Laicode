@@ -5,10 +5,13 @@ public class Solution {
     // 0 - 4 with equal probability.
     int random;
     do {
-      //5进制，random * 5 + 5
+      //random25 = r * 5 + r
+    //5进制(quinary)， random 5(十位数) ｜ random 5（个位数） 
+    // 十位数 *5 ，个位数 * 1 分别能产生【0，20】和【0，4】的随机数
     random = (int)(RandomFive.random5() * 5 + RandomFive.random5());
     }
     //如果结果大于等于21，继续循环，因为[0-20]能等概率% 7
+    //注意这里while结束要加；
     while(random >= 21);
     return random % 7;
   }

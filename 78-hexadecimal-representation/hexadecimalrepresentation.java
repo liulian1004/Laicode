@@ -13,6 +13,8 @@ public class Solution {
       //(number >> i) & 0xF 这样就能把单独4位拿出来
       //不能number >>i, 只有在最后一组数字才有效，其他情况不能处理之前的几组4位数字
         char cur = base[(number >> i) &0xF];
+        //这种写法也可
+        //char cur = base[(number >> i) &0b11];
       if( cur != '0' || !leadingZero) {
        sb.append(cur);
        leadingZero = false;

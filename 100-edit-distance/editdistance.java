@@ -17,8 +17,8 @@ public int editDistance(String one, String two) {
           m[i][j] = m[i-1][j-1];
         } else {
           // replace: m[i][j] = m[i-1][j-1] + 1;
-          //detelet: m[i][j] = m[i-1][j];
-          // insert: m[i][j] = m[i][j-1]
+          //detelet: m[i][j] = m[i-1][j] + 1;
+          // insert: m[i][j] = m[i][j-1]+1;
           // delete, replace and insert
           // Math.min only can have two input
           // compare replace, delete and insert
