@@ -9,7 +9,8 @@ public class Solution {
 
   public Solution() {
     min = new PriorityQueue<>();
-    max = new PriorityQueue<>(new MyComparator());
+    //max = new PriorityQueue<>(new MyComparator());
+    max = new PriorityQueue<>(Collections.reverseOrder());
     count = 0;
   }
   private static class MyComparator implements Comparator<Integer>{

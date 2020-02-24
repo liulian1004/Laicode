@@ -12,6 +12,8 @@ public class Solution {
             if (array[midIndex] <= target) {
                 left = midIndex;
             } else {
+              //这里不能right = midIndex - 1
+              //因为midIndex可能是最小的大于target的数，所以不能排除
                 right = midIndex;
             }
         }

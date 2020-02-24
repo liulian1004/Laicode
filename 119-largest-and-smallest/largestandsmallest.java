@@ -16,8 +16,9 @@ public class Solution {
     }
     // (n-1) / 2 != n/2 -1
     //这里要用（n-2）/2
+    //smallest和largest要头尾重复，确保不会有值漏判
     int l = findL(array, 0 , (n-1) / 2);
-    int s = findS(array, n/2, n-1);
+    int s = findS(array, (n-1) / 2, n-1);
     return new int[]{l,s};
   }
   private int findL(int[] array, int left, int right) {
