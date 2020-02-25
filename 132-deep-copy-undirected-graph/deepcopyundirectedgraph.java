@@ -10,8 +10,8 @@
 */
 public class Solution {
   public List<GraphNode> copy(List<GraphNode> graph) {
-    // T: O(n (node) * 1/2 * (n-1)(bian)) = O(n^2)
-    // S: O(n)
+    // T: O(v+e)
+     // S: O(v)
     if(graph == null) {
       return null;
     }

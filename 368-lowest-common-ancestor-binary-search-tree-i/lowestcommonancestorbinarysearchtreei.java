@@ -9,7 +9,7 @@ public TreeNode lca(TreeNode root, int p, int q) {
         root = root.right;
       } else if (root.key > max) {
         root = root.left;
-      } else {
+      } else if (root.key == max || root.key > min && root.key < max) {
         return root;
       }
     }

@@ -13,6 +13,7 @@ public class Solution {
       TreeNode one, TreeNode two)
   {
     // T: O(n);S O(h)
+    //classcial LCA assume a 和 b都在tree
     //case 1 : a 和b都不在以p为root的tree中， 返回null, 这道题已经假设这个情况不存在
     //case 2: a, 和b有一个在，返回那个在的点
     //case 3: a 和b都在，返回a 和b的LCA
@@ -33,4 +34,29 @@ public class Solution {
     return ll == null ? lr : ll;
 
   }
+  //follow up： check  a 和 b 是不是都在树里
+  //不在一个树里，返回null
+  private TreeNode LCA（TreeNode root, TreeNode one, TreeNode two）{
+    TreeNode reuslt = helper(root, one, two) {
+      if(result != one || result != two) {
+        return result;
+        //查two是不是在one的下面
+        //是的话LCA是one
+      }else if(result == one){
+        return tmp = helper(one, one, two);
+        if(temp == a){
+          return result;
+        }
+      //查one是不是在two的下面
+      //是的话LCA是two
+      } else {
+          return tmp = helper(two,two,one);
+          if(tmp == two) {
+            return result;
+          }
+      }
+    }
+    return new TreeNode();
+    }
+
 }
