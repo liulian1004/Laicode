@@ -1,9 +1,6 @@
 public int[] dedup(int[] array) {
     // T: O(n) S: O(1)
-    if(array == null) {
-      return array;
-    }
-    if(array.length <= 1) {
+    if(array == null || array.length <= 1) {
       return array;
     }
     int slow = 1;
@@ -13,6 +10,6 @@ public int[] dedup(int[] array) {
           slow++;
         }
   }
-  return Arrays.copyOf(array,slow);
+  return Arrays.copyOf(array,slow); // T: O(n)
 }
 }

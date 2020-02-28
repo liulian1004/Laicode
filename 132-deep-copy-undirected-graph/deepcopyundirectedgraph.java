@@ -28,18 +28,20 @@ public class Solution {
   // input一个node，map会把所有input能访问到的节点加如map
   //返回node的copy node
   private void helper(GraphNode node,Map<GraphNode, GraphNode> map) {
+    //base case: traverse until the node with no nei
     // create 一个 node的copy值
+    //为了建立边
      GraphNode copy = map.get(node);
      for(GraphNode nei: node.neighbors) {
        //遍历整个node的邻居，并把他们放进map中
        if(!map.containsKey(nei)) {
          map.put(nei, new GraphNode(nei.key));
          //recursion rule，遍历邻居的邻居，并把他们放入map中
-         helper(node, map);
+         helper(nei, map);
        }
        //copy的原graph的边
        //这里需要，因为graphnode里neighbors区域
-       //这里的操作是是为了
+       //这里的操作是是为了建立边
         copy.neighbors.add(map.get(nei));
       }
 

@@ -9,7 +9,7 @@ public class Solution {
     if(array == null) {
       return list;
     }
-    //s: (s(key) + s(value)) * number of enerty
+    //s: (s(key) + s(value)) * number of entry
     // s = (1+array.length)*array.length = n^2
     Map<Integer, List<Integer>> map = new HashMap<>();
     for(int i = 0; i < array.length; i++) {
@@ -22,7 +22,7 @@ public class Solution {
           list.add(Arrays.asList(j, i)); // T: O(1)
         }
       }
-      //把现在在扫的数据放入map中
+      //无论何种结果，把array[i]放入map中
       //如果之前没有，在map中创建一个List<Integer>
       if(!map.containsKey(array[i])) {
         map.put(array[i], new ArrayList<>());

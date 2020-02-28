@@ -7,27 +7,29 @@ public class Solution {
     if(input == null || input.length() <= 1) {
       return input;
     }
-    char[] array = input.toCharArray();
-    int slow = 0;
+    char[] array = input.toCharArray(); // O(n)
+    int slow = 1;
     //start from the second element
-    for(int fast = 1; fast <array.length; fast++) {
+    while(j < array.length) {
       //when stack is empty or the peek  of stack != fast
-      if(slow == -1 || array[slow] != array[fast]) {
-        slow++;
+      if(slow == 0 || array[slow-1] != array[fast]) {
         array[slow] = array[fast];
+        slow++;
         // the peek of stack == fast
-      } else {
+      } else if(array[fast] == array[slow-1]) {
         // pop the peek
         slow--;
         // move the fast to the last duplucated char,
         // consider the out of bound first
-        //the for loop will move fast to the first non duplicated element
+        //the for loop will move fast pointer which is  the last duplicated elements
         while(fast + 1 < array.length && array[fast] == array[fast+1] ) {
           fast++;
         }
+        fast++;
       }
     }
       // return [0,slow]
+      //return(array, i, j) ==> array[i,j-1]
       return new String(array, 0 , slow+1);
   }
 }

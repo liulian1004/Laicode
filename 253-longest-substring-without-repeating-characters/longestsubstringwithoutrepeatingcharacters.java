@@ -2,7 +2,7 @@ public int longest(String input) {
   // T: O(n) S: O(n)
   // i = slow, j = fast
   // assume there is not space between the charachter
-  //
+  //把input转换成char【】时间复杂度并不增加
   if(input == null || input.length() == 0) {
     return 0;
   }

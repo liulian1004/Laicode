@@ -20,7 +20,7 @@ public class Solution {
     //和上一个逻辑相比，不是同一个node
     Map<RandomListNode, RandomListNode> map = new HashMap<>();
     RandomListNode newHead = new RandomListNode(head.value);
-    //把head 放入map
+    //初始化map 和new ListNode
     map.put(head, newHead);
     RandomListNode cur = newHead;
     while(head != null) {

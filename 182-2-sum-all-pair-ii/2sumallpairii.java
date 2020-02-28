@@ -1,6 +1,6 @@
 public class Solution {
   public List<List<Integer>> allPairs(int[] array, int target) {
-    // T:O(n +logn) S: O(1)
+    // T:O(n +logn*n) S: O(1)
     // sort + i, j scanning
     //i++,if array[i] = array[i-1]
     List<List<Integer>> list = new ArrayList<>();
@@ -11,15 +11,16 @@ public class Solution {
     int i = 0;
     int j = array.length -1;
     while(i < j) {
-      //去重
-      //如果i这边有碰到重复的数，往下走
-      //j这边就需要了，i，j两边走一边就行
-      if(i > 0 && array[i] == array[i-1]) {
-        i++;
-      } else if(array[i] + array[j] == target) {
-        list.add(Arrays.asList(array[i],array[j]));
+     if(array[i] + array[j] == target) {
+        list.add(Arrays.asList(array[i],array[j])); //T: O(1)
         i++;
         j--;
+        //去重
+        //如果i这边有碰到重复的数，往下走
+        //j这边就需要了，i，j两边走一边就行
+        while(i<j && array[i] == array[i-1]) {
+        i++;
+      }
       } else if(array[i] + array[j] < target) {
         i++;
       } else {
@@ -40,10 +41,10 @@ public class Solution {
       //没有和之前的重复，可以加
       //case2: num1 + num2 = target
 
+      //num 已经在map中出现过一次
       if(num * 2 == target && count != null && count == 1) {
           list.add(Arrays.asList(num, num));
-      // num1已经在map中出现过，且num2没有在map中出现过
-      //没有和之前的重复，可以加
+      //target - num 已经在map中出现过，且num没有在map中出现过(count == null)
       } else if (map.containsKey(target - num) && count == null) {
         list.add(Arrays.asList(target-num, num));
       }

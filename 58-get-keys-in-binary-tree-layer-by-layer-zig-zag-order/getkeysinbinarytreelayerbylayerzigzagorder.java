@@ -21,6 +21,7 @@ public class Solution {
     deque.offerFirst(root);
     //lay = 1 是奇数， layer 0 是偶数
     //从roof层开始，是0层，偶数
+    //刚开始进外层while loop是从level 0层开始
     int layer = 0;
     while(!deque.isEmpty()) {
       int size = deque.size();

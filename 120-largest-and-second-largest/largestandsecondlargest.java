@@ -18,7 +18,8 @@ public class Solution {
     }
     int n = array.length;
     Element[] newArray = convert(array);
-    //折半前行，后面比过的一半再下一轮就不需要比较了
+    //每次比较的长度
+    //长度最少为2
     for(int i = n ; i > 1; i = (i+1)/2) {
       compare(newArray, i);
     }
@@ -43,6 +44,7 @@ public class Solution {
         //连着value和list一起swap
         swap(newArray, i, length-1-i);
       }
+      //无论是否swap,都需要把loser放入list中
       newArray[i].list.add(newArray[length-1-i].value);
     }
   }
@@ -55,10 +57,10 @@ public class Solution {
 
   //找到list里最大的元素，即第二大元素
   private int largest(List<Integer> list) {
-    int max = list.get(0);
-    for(int i = 1; i < list.size();i++) {
-      max = Math.max(max, list.get(i));
+    int second = Integer.MIN_VALUE;
+  	for(int i: newArray[0].list) {
+  		second = Math.max(second, i);
     }
-    return max;
+    return sceond;
   }
 }

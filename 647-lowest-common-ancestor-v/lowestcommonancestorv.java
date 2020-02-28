@@ -10,7 +10,7 @@
  */
  public class Solution {
    public KnaryTreeNode lowestCommonAncestor(KnaryTreeNode root, KnaryTreeNode a, KnaryTreeNode b) {
-     // Write your solution here/
+     // T: n! S: O(h)
      if(root == null || root == a || root == b) {
        return root;
      }
@@ -33,7 +33,7 @@
            return root;
          }
      }
-     //返回这一层的结果
+     //返回这一层的结果: null或者a或者b
      return found;
    }
 }

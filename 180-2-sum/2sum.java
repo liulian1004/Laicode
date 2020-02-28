@@ -26,13 +26,14 @@ public class Solution {
   }
 
   //solution 2:
-  //T: O(n) + nlogn; S: O(n)
+  //T: O(n) + nlogn; S: O(1)
   // sorted array first
   // a[i..j] is the range of possiblity that i + j = taget
   // i + j > target -> j--
   // i + j < target  -> i++
 
-  Arrays.sort(array);
+  //只有sorted过的array才能在后续判断i，j指针怎么移动
+  Arrays.sort(array); // T： nlogn
   int i = 0;
   int j = array.length - 1;
   while(i < j) {

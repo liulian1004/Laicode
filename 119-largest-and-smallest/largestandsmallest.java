@@ -9,16 +9,19 @@ public class Solution {
     if(array.length <= 1) {
       return new int[]{array[0], array[0]};
     }
-    for(int i = 0; i < n/2; i++) {
-      if(array[i] < array[n-1-i]) {
-        swap(array, i, n-1-i);
+    int i = 0;
+    int j = array.length - 1;
+    while( i < j) {
+      if(array[i] < array[j]) {
+      	swap(array, i ,j);
+      	}
+      i++;
+      j--;
       }
     }
-    // (n-1) / 2 != n/2 -1
-    //这里要用（n-2）/2
     //smallest和largest要头尾重复，确保不会有值漏判
-    int l = findL(array, 0 , (n-1) / 2);
-    int s = findS(array, (n-1) / 2, n-1);
+    int l = findL(array, i);
+    int s = findS(array, j);
     return new int[]{l,s};
   }
   private int findL(int[] array, int left, int right) {
