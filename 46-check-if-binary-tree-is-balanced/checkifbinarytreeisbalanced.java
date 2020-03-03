@@ -10,23 +10,26 @@
  */
 public class Solution {
   public boolean isBalanced(TreeNode root) {
-    // 一串是best cast；balanced tree is wrost cast
-    //best cast: T: O(n); space O(n)
-    //Wrost cast: T O(n)(每一层) * logn space： logn
-    return getHeightOrUnbalanced(root) >= 0;
+    // 1. expect from left/right child : the height or the  -1 if not balanced
+    // 2. current layer, return -1 if either side is - 1 or the height different is bigger than -1
+    //3. return to parent max(leftH, rightH) + 1 or -1 if not balance
+   //T: O(n) S: O(h)
+    int height = helper(root);
+    if(height == -1) {
+      return false;
+    }
+    return true;
   }
-  private int getHeightOrUnbalanced(TreeNode root) {
-    if (root == null) {
-      return 0;
-    }
-    int left = getHeightOrUnbalanced(root.left);
-    int right = getHeightOrUnbalanced(root.right);
-    if (left < 0 || right < 0) {
-      return -1;
-    }
-    if (Math.abs(left - right) > 1) {
-      return -1;
-    }
-    return Math.max (left, right) + 1;
+  private int helper(TreeNode root) {
+      if(root == null) {
+        return 0;
+      }
+      int leftH = helper(root.left);
+      int rightH = helper(root.right);
+      if(leftH == -1 || rightH == -1 || Math.abs(leftH-rightH) > 1) {
+        //step 3 return -1 if not balanced
+        return -1;
+      }
+      return Math.max(leftH, rightH) + 1;
   }
 }
