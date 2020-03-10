@@ -2,10 +2,11 @@ public class Solution {
   public List<List<Integer>> combinations(int target, int[] coins) {
     // T: coin.length ^ (最多分支数) ex： target 99， coins = 【25，10，5，1】
     //在每一层中， 每一个node最大分支为target，一共又N层（N种不同的coin）
-    //T： target^n
     //cent从大到小排序，方便以后的减支/分叉数越来越小
     //4层 动态分支
-    //T= 99^4
+    //
+    //T= 99^4 --> [taget/min(coins)] ^n
+    //S: O(n)
     List<List<Integer>> res = new ArrayList<>();
     List<Integer> cur = new ArrayList<>();
     helper(target, coins, 0, cur, res);

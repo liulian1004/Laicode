@@ -2,7 +2,7 @@ public class Solution {
   //全局变量，整个class可以调用
   private static char[] parenthese = new char[]{'(',')','<','>','{','}'};
   public List<String> validParentheses(int l, int m, int n) {
-    // T: O(n^2*n) S: O(n)
+    // T: O(n^2*n)? S: O(n+m+l)
      List<String> list = new ArrayList<>();
      if(l == 0 && n == 0 && m ==0) {
        list.add("");

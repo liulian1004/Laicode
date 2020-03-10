@@ -28,7 +28,9 @@ public class Solution {
     //先把root放进去sum里
     //primitive type 不需要吃吐，因为每一层的sum都不会跟新
     //如果返回到上一层，sum还是那个上一层的sum
-
+  if(root == null) {
+    return false;
+  }
    sum += root.key;
     //判断target是否在里面
    if(prefixSums.contains(sum - target)) { // T: O(1);

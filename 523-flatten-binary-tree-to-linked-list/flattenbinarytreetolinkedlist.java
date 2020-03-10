@@ -12,7 +12,7 @@ public class Solution {
   public TreeNode flatten(TreeNode root) {
     //T: O(n), S:O(h)
 
-    //new一个新的节点，用于最后一个节点的初始化
+    //from down to up
     TreeNode[] preRoot = new TreeNode[1];
     helper(root, preRoot);
     //直接返回root

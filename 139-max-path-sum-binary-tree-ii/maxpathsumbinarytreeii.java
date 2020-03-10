@@ -39,3 +39,18 @@ public class Solution {
 
   }
 }
+
+//my Solution
+    int leftSum = helper(root.left, max);
+    int rightSum = helper(root.right, max);
+    if(leftSum < 0 && rightSum < 0) {
+      	max[0]= Math.max(max[0], root.key);
+      } else if(leftSum > 0 && rightSum > 0) {
+      	max[0] = Math.max(max[0], root.key + leftSum + rightSum);
+      } else {
+      	max[0] = Math.max(max[0], root.key + Math.max(rightSum, leftSum));
+      }
+      if(leftSum < 0 && rightSum < 0) {
+      	return root.key;
+      }
+    return Math.max(leftSum, rightSum) + root.key;

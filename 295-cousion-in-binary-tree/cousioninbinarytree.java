@@ -36,14 +36,10 @@ public class Solution {
       if(map.containsKey(a) && map.containsKey(b)) {
          int v1 = map.get(a);
          int v2 = map.get(b);
-         if(v1 == v2) {
-             return false;
-             } else {
+         if(v1 != v2) {
               return true;
           }
-      } else if (map.containsKey(a) || map.containsKey(b)) {
-           return false;
-           }
+      }
     }
     return false;
   }

@@ -31,6 +31,7 @@ public class Solution {
     }
     int leftS = helper(root.left, max);
     int rightS = helper(root.right, max);
+    //这个方法保证有效删选出最大的leftchild 和 rightchild
     int sumPath = Math.max(Math.max(leftS, rightS), 0) + root.key;
     max[0] = Math.max(max[0], sumPath);
     return sumPath;
