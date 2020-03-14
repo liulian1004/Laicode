@@ -1,6 +1,7 @@
 public class Solution {
   public List<List<Integer>> combinations(int target) {
-    //最小的fator是2，所以最多有log_2(n)分支
+    //最多有多少分支 * 层数
+    //最小的fator是2，所以最多有log_2(n)分支/logn
     //最多有number of factor层数
     //T: log_2(n) ^ factor
     List<List<Integer>> list = new ArrayList<>();
@@ -35,6 +36,8 @@ public class Solution {
     while(target % number == 0) {
       cur.add(number);
       count++;
+      //因为每一次循环target的值必须都要变
+      //所以在helper外面先变好，之后再传入
       target /= number;
       //加必须在while loop里面
       helper(list, cur, factor, target, index+1);

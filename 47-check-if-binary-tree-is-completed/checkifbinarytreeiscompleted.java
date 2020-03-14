@@ -16,27 +16,25 @@ public class Solution {
       return true;
     }
     boolean res = false;
-    Deque<TreeNode> queue = new ArrayDeque<>();
+    Queue<TreeNode> queue = new ArrayDeque<>();
     queue.offer(root);
     while(!queue.isEmpty()) {
       TreeNode cur = queue.poll();
       if(cur.left == null) {
-        res = true;
-        //之前已经有null出现了，后面又出现node
-      }else if(cur.left != null && res == true) {
-        return false;
+      flag = true;
+      } else if(flag == false && cur.left != null) {
+        queue.offer(cur.left);
       } else {
-       queue.offer(cur.left);
+        return false;
       }
-      if(cur.right == null) {
-        res = true;
-        //以下这种写法也可以
-      } else if(res == true) {
-        return false;
-      } else {
+      if(cur.right == null ) {
+        flag = true;
+      } else if(flag == false && cur.right != null) {
         queue.offer(cur.right);
+      } else  {
+        return false;
       }
-    }
+  }
     return res;
   }
 }
