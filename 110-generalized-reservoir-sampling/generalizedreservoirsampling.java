@@ -11,7 +11,7 @@ public class Solution {
   }
 
   public void read(int value) {
-    // Write your implementation here.
+    // 先要count++, 再看count的总值
     count++;
     //随机等概率的踢掉一个element,把新的element加入
     //condition probality: P(B) = P(A) * P(B|A)

@@ -22,6 +22,8 @@ public class Solution {
           list.add(Arrays.asList(j, i)); // T: O(1)
         }
       }
+      //这里不能和上面的情况一起写if..else..。因为查看的key value不一样
+      //上面是查target- array[i], 下面是写 array[i]
       //无论何种结果，把array[i]放入map中
       //如果之前没有，在map中创建一个List<Integer>
       if(!map.containsKey(array[i])) {

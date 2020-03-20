@@ -40,17 +40,12 @@ public class Solution {
    //吃
    boolean needRemove = prefixSums.add(sum);
    //先判断是不是为空，然后走下一层
-   if(root.left != null && helper(root.left, target, sum, prefixSums)) {
-     return true;
-   }
-   if(root.right != null && helper(root.right, target, sum, prefixSums)) {
-     return true;
-   }
+   boolean leftTree = helper(root.left, target, sum, prefixSums);
+   boolean rightTree = helper(root.right, target, sum, prefixSums);
    //吐
    if(needRemove) {
      prefixSums.remove(sum);
    }
-    //最后什么也没有
-    return false;
+    return leftTree == true? leftTree : rightTree;;
   }
 }

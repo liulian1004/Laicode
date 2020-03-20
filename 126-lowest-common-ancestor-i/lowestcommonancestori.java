@@ -44,7 +44,7 @@ public class Solution {
         //是的话LCA是one
       }else if(result == one){
         return tmp = helper(one, one, two);
-        if(temp == a){
+        if(tmp == one){
           return result;
         }
       //查one是不是在two的下面

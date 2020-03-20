@@ -34,21 +34,18 @@ public class Solution {
     // Map<array[i], count>
     // count用于几率重复了多少次，用于去重用
     Map<Integer, Integer> map = new HashMap<>();
-    for(int num: array) {
-      Integer count = map.get(num);
-      // 去重
-      //case1 :num * 2 == target, map中之前已经出现且只出现过一次
-      //没有和之前的重复，可以加
-      //case2: num1 + num2 = target
-
-      //num 已经在map中出现过一次
-      if(num * 2 == target && count != null && count == 1) {
-          list.add(Arrays.asList(num, num));
-      //target - num 已经在map中出现过，且num没有在map中出现过(count == null)
-      } else if (map.containsKey(target - num) && count == null) {
-        list.add(Arrays.asList(target-num, num));
+    for(int i = 0; i < array.length; i++) {
+      int tmp = target - array[i];
+    	//去重
+    	Integer counter = map.get(tmp);
+      //两个数相同，且只添加了一次
+      if(tmp * 2 == target && counter != null && counter == 1) {
+        list.add(Arrays.asList(tmp,tmp));
+      //counter ！= null 且 新的array[i]没有在map中出现，所以可以配对
+      } else if(!map.containsKey(array[i])&& counter != null) {
+        list.add(Arrays.asList(tmp, array[i]));
       }
-      //把这一组pair加入map中
+      //第二步判断如何把array[i]加入map中
       if(count == null) {
         map.put(num, 1);
       } else {

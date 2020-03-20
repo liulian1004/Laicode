@@ -5,12 +5,15 @@ public class Solution {
     // i - 1: 右边界
     //double = 0.9, (int) double = 0;
     //Date Structure: nu-shuffle || shuffled
+
     if(array == null || array.length == 0) {
   	return;
       }
     int n = array.length;
+      // i不能为0, 因为要random的数 * i, ==0结果就是0
     for(int i = n; i > 0; i--) {
       int ran = (int)(Math.random() *i);
+      //把已经随机产生过的数换到最右边
       swap(array, ran, i-1);
     }
   }
