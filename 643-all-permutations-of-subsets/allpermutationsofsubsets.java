@@ -16,6 +16,7 @@ public class Solution {
   private void helper(char[] array, int index, List<String> list) {
     //base case 是整个for loop走完
     //一进入helper就打印上一层的node
+    //最后一遍是加入permuation
     list.add(new String(array,0, index));
     if(level == array.length) {
       return;

@@ -50,6 +50,7 @@ public class Solution {
         cur = cur.left;
       }
       // cur 为最小值，pre要与cur的right child 挂钩
+      //这里如果cur.right为null,也没有关系
       prev.left = cur.right;
       return cur;
   }

@@ -10,7 +10,8 @@
  */
 public class Solution {
   public ListNode reverse(ListNode head) {
-    // Write your solution here
+    // n : # of node
+    //T: O(n); S: O(n)
     // head == null is conrner case,
     // head.next == null is base case
     if (head == null || head.next == null) {

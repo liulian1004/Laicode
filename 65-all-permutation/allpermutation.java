@@ -21,6 +21,7 @@ public class Solution {
     // i is the element need to be check and swap
     for(int i = index; i < array.length; i++) {
       // if it is the repeated element, no need to swap ,just ignore
+      //重复的元素即使是在这个一层看上去没有重复，往后走也会重复的
       if(used.contains(array[i])) {
           continue;
       }
