@@ -6,6 +6,7 @@ public class Solution {
     //base case M[0] = true;
     Set<String> set = builder(dict);
     boolean[] m = new boolean[input.length() + 1];
+    //空集也是dict一个子集
     m[0]= true;
       // j代表判断的字符串
       //subString[i,j) T: O(n)
@@ -18,6 +19,7 @@ public class Solution {
             //这两个API不是同一时间操作，所有时间复杂度是n+n
             if(set.contains(input.substring(j, i)) && m[j]) {
               m[i] = true;
+              //如果已经确认里一个string里能分割成在字典里面的单词，就不需要在往下判断了
               break;
             }
           }

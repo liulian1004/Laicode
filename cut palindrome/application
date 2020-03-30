@@ -1,0 +1,34 @@
+//S: O(n) T: O(n^3)
+private int cut(String s) {
+ 	if(s == null || s.length() == 0) {
+	return 0;
+}
+	int[] m = new int[s.length() + 1];
+	m[1] = 0;
+	for(int i = 2; i < m.length; i++) {
+	if(isValid(s, 0, i)) {
+	m[i] = 1;
+	continue;
+}
+//如果[0,i]不是palindrome, update the m[i] to the max Integer
+m[i] = Integer.MAX_VALUE;
+//j要走到和i重叠，因为single character 也是parlindrome，需要查看
+for(int j = 1; j <= i; j++) {
+	if(isValid(s, j, i)) {
+	m[i]= Math.min(m[i], m[j-1] + 1);
+}
+}
+}
+return m[s.length()-1];
+}
+private boolean isValid(String s, int i, int j) {
+	char[] array = s.toCharArray();() // O(n)
+	while(i <= j) {
+		if(array[i] != array[j]) {
+	return false;
+}
+i++;
+j--;
+}
+return true;
+}

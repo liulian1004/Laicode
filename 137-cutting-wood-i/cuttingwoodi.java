@@ -1,14 +1,23 @@
 public class Solution {
   public int minCost(int[] cuts, int length) {
     // 1D 要用 2d 做的题目
-    //考虑第一刀切在哪里
-    //左大段 右大段
+    // the weight is not the same
+    //考虑第一刀切在哪里，不
+    //左大段 右大段, 从中心开花(expand the search scope from the k)
     // 用切口做m的index base case m[i][i+1] == 0
     //induction rule M[i][j] = cuts[j] - cuts[i] + min(A[i+1], A[i+2],A[i+3]...A[j-1])
     //A[i+1] = m[i][i+1] + m[i+1][j]; A[i+1] = m[i][i+2] + m[i+2][j];....
     //A[j]-A[i] + min_k(m[i][k] + m[k][j]) ; i < k < j
     // 要先算M[i][j]的左边和下面
     //所以要算从下到上，从左到右的算
+  //  case 2:
+// m[1][3] =  array[3] - array[1] +  m[1][2] + m[2][3]
+// m[i][j] = array[j]- array[i] + m[i][k] + m[k][j] ⇒ min
+// must know m[2][3] and m[1][3] for m[1][3], go from left to right(j) / bottom to up (i)
+// for(j = 0; ….) {
+// 	i = i -1;....
+// }
+
     //T：O(n^3) S: O(n)
     int len = cuts.length;
     // create a role with the cut of index, include index 0 + index role of length;

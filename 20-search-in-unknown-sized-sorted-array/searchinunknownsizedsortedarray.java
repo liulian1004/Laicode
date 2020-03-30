@@ -5,6 +5,7 @@ public class Solution {
     }
     int left = 0;
     int right = 1;
+    // 2^k = n ==> k = logn
     while(dict.get(right) != null && dict.get(right) < target) {
       left = right;
       right = 2*right;

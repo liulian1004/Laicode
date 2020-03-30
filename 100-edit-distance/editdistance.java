@@ -7,6 +7,8 @@ public int editDistance(String one, String two) {
     int[][] m = new int[one.length() + 1][two.length() + 1];
     for(int i = 0; i <= one.length(); i++) {
       for(int j = 0; j <= two.length(); j++) {
+        //这里是3个case是，
+        //最后一个case是3个不同option
         // base case
         if (i == 0) {
           m[i][j] = j;
@@ -18,6 +20,8 @@ public int editDistance(String one, String two) {
         } else {
           // replace: m[i][j] = m[i-1][j-1] + 1;
           //detelet: m[i][j] = m[i-1][j] + 1;
+          //在第i个字母后面insert 第j个字母
+          // i.e xxxsig --> xxxabg ==> xxxsaig --> xxxabg
           // insert: m[i][j] = m[i][j-1]+1;
           // delete, replace and insert
           // Math.min only can have two input

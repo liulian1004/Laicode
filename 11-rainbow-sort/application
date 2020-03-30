@@ -17,7 +17,7 @@ public class Solution {
       } else if (array[j] == 0) {
         j++;
       } else {
-        swap11(array, j, k);
+        swap(array, j, k);
         k--;
       }
     }
@@ -30,3 +30,6 @@ public class Solution {
     array[b] = temp;
   }
 }
+//Follow up
+how about sort k color--> see 400
+in the interview, will only ask for the time and space complexity
