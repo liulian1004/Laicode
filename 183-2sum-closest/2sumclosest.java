@@ -41,3 +41,7 @@ public class Solution {
 }
 //follow up
 // give you two sorted array and target, find the closest target sum from two array sperately
+// solution
+// must be two sorted arrays
+// start from a[l], b[r] , l = 0. r = b.length -1;
+// while(l < a.length && r >= 0)

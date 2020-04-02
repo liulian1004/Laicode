@@ -11,6 +11,7 @@ public class Solution {
   //Space O(logn)
   private void mergeSortHelper(int[] array, int[] helper, int left, int right) {
   //包含了 array.length <= 1
+  //当上一层只一个element的时候，到这里会 left > right
     if(left >= right) {
       return;
     }
