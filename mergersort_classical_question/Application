@@ -1,0 +1,32 @@
+A1B2C3D4 --> ABCD1234
+T: O(nlogn) S: O(n) + O(log2_ n)
+private char[] reorder(char[] array) {
+        if(array == null || array.length == 0) {
+            return array;
+        }
+        char[] cur = new char[array.length];
+        helper(array, 0, array.length - 1, cur);
+        return array;
+    }
+    private void helper(char[] array, int left, int right, char[] cur) {
+        if(left >= right) {
+            return;
+        }
+        int mid = left + (right - left) / 2;
+        helper(array, left, mid, cur);
+        helper(array, mid + 1, right, cur);
+        merge(array, left, right, mid, cur);
+    }
+    private void merge(char[] array, int left, int right, int mid, char[] cur) {
+        for(int i = left; i <= right; i++) {
+            cur[i] = array[i];
+        }
+        int i = left;
+        int j = mid + 1;
+        while(i <= mid && j <= right) {
+            array[left++] = cur[i++];
+            array[left++] = cur[j++];
+        }
+    }
+
+ABCD1234 --> A1B2C3D4

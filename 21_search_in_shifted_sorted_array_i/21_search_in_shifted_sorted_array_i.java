@@ -2,6 +2,7 @@ public class Solution {
   public int search(int[] array, int target) {
     // T: O(logn); S: O(1)
     //at least three elements when entering into this condition
+    // two element can't match this assumption
     if(array == null || array.length == 0) {
       return -1;
     }
@@ -14,6 +15,7 @@ public class Solution {
         // left ascending and target in the[left, mid) ex(target 3, array[2,3,4,5,1])
         // right ascending and target not int the (mid,right](ex: target 4, array[4,5,1,2,3])
         //turn to left
+        // two element can't match this assumption
       }else if ((array[left] < array[mid] && within(array[left], target, array[mid])) || (array[mid] < array[right] && !within(array[mid], target, array[right]))) {
         right = mid - 1;
       }else {
