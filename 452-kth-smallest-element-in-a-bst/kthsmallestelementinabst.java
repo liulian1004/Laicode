@@ -13,6 +13,7 @@ public class Solution {
     // T: O(k)
     //S: O(1)
     // Assumptuion :  1<= k <= nodes
+    //stack 存parent的值
     if(root == null) {
       return -1;
     }
