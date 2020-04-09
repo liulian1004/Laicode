@@ -7,32 +7,34 @@ private int find(int[] array, int target) {
             return -1;
         }
         int peek = getPeek(array);
-        System.out.println("Peek " + peek);
         int res = getTarget(array, 0, peek, target);
         if(res != -1) {
             return res;
         }
-        res = getTarget(array, peek+1, array.length - 1, target);
-        if( res != -1) {
-            return res;
-        }
-        return -1;
+        //不需要在判断，不符合会返回-1
+        return getTarget(array, peek+1, array.length - 1, target);
     }
     private int getPeek(int[] array) {
+
         int i= 0;
         int j = array.length - 1;
-        while(i < j -2){
+        //at least three
+        while(i < j -1){
             int m = i + (j - i)/ 2;
-            System.out.println("m " + m);
-            if(array[m] > array[m-1] && array[m] > array[m+1]) {
+            //只要之前的数字和现在的数字的大小，就能判断是ascending or descending
+            //移动i,j的时候要include mid，因为只查了前两个数
+            if(array[m] > array[m-1] ) {
                 return m;
-            }else if(array[m-1]< array[m] && array[m]< array[m+1]) {
-                i = m + 1;
+            }else if(array[m-1]< array[m]) {
+                i = m;
             }else{
-                j = m - 1;
+                j = m;
             }
         }
-        return i+1;
+        if(array[i] > array[j]) {
+          return i;
+        }
+        return j;
     }
     private int getTarget(int[] array, int i, int j, int target) {
         while( i <= j) {

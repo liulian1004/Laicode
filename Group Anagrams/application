@@ -1,0 +1,39 @@
+//Hashcode
+class Solution {
+    //T: O(n) --> total number of letters; S: O(m) --> the length of map
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> res = new ArrayList<>();
+        if(strs == null || strs.length == 0) {
+            return res;
+        }
+        Map<Integer, List<String>> map = new HashMap<>();
+        for(String s: strs){
+            int code = getHashCode(s);
+            List<String> list = map.get(code);
+            if(list == null) {
+                map.put(code, new ArrayList<String>());
+            }
+           map.get(code).add(s);
+        }
+        for(List<String> s : map.values()) {
+            res.add(s);
+        }
+        return res;
+    }
+    private int getHashCode(String str) {
+        str.toLowerCase();
+        str.trim();
+        int[] count = new int[26];
+        for(int i = 0; i < str.length(); i++) {
+            count[str.charAt(i) - 'a']++;
+        }
+        int res = 0;
+        int a = 378551;
+        int b = 68689;
+        for(int num: count){
+            res = res*a + num;
+            a = a*b;
+        }
+        return res;
+    }
+}

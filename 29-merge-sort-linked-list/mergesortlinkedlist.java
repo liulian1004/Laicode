@@ -1,6 +1,8 @@
 public class Solution {
     public ListNode mergeSort(ListNode head) {
-  // Time: nlogn Space logn
+  // Time: nlogn Space O(logn)
+  //每一层没有new额外的空间，只是不断的split
+  // merge后的空间会返回，已sort
     if ( head == null || head.next == null) {
             return head; }
             ListNode mid =  findMid(head);
