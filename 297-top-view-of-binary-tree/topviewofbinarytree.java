@@ -10,7 +10,9 @@
  */
 public class Solution {
   public List<Integer> topView(TreeNode root) {
-    //T: O(n) ;S O(map.size + stack.size)
+    //T: O(n) ;S O(map.size + stack.size) == O(n) --> complete tree
+  //stack.upper bound the last level of complete tree ~~O(n)
+  //size of map : O(n)
     // create a pair class to keep col and treenode
     // map<col, treenode>
     // max col , min col to traversal the map and put the first element of the list into the result

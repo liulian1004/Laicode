@@ -13,44 +13,44 @@ public class Solution {
     // T: O(n + list.length) S: O(list.length)
     // A: no duplicated elements
     // bst + map(node, root)
-
     if(root == null) {
-      return false;
-    }
-    Deque<TreeNode> queue = new ArrayDeque<>();
-    queue.add(root);
-    while(!queue.isEmpty()) {
-      TreeNode pa = null;
-      TreeNode pb = null;
-      int size = queue.size();
-      for(int i = size; i > 0; i--) {
-        TreeNode cur = queue.poll();
-        if(cur.left != null) {
-          if(cur.left == a) {
-              pa = cur;
-          }else if(cur.left == b)  {
-            pb = cur;
-          }
-          queue.offer(cur.left);
-        }
-        if(cur.right != null) {
-          if(cur.right == a) {
-              pa = cur;
-          }else if(cur.right == b)  {
-            pb = cur;
-          }
-          queue.offer(cur.right);
-        }
-      }
-      if(pa != null && pb != null) {
-        return pa  != pb;
-      } else if(pa != null || pb!= null) {
-        return false;
-      }
+         return false;
+       }
+       Queue<TreeNode> queue = new ArrayDeque<>();
+       queue.offer(root);
+       while(!queue.isEmpty()) {
+         TreeNode pa = null;
+         TreeNode pb = null;
+         int size = queue.size();
+         for(int i = 0; i < size; i++) {
+             TreeNode cur = queue.poll();
+             if(cur.left != null) {
+               queue.offer(cur.left);
+               if(cur.left.key == a) {
+                 pa = cur;
+               } else if(cur.left.key == b) {
+                 pb = cur;
+               }
+             }
+             if(cur.right != null) {
+               queue.offer(cur.right);
+               if(cur.right.key == a) {
+                 pa = cur;
+               }else if(cur.right.key == b) {
+                 pb = cur;
+               }
+             }
+         }
+           if(pa != null && pb != null) {
+           return pa.key != pb.key;
+           }
+           if(pa != null || pb != null) {
+           return false;
+           }
+       }
+       return false;
+     } 
 
-    }
-    return false;
-  }
 }
 //another solution DFS
 private boolean isCousin(TreeNode root, int a, int b) {
