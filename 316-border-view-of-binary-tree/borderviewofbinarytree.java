@@ -9,33 +9,32 @@
  * }
  */
 public class Solution {
+  //T: O(n); S: O(height)
   public List<Integer> borderView(TreeNode root) {
-    // T: O(n); S: O(height)
-    List<Integer> res = new ArrayList<>();
-    if (root == null) {
-      return res;
-    }
-    res.add(root.key);
-    helper(root.left, true, false, res);
-    helper(root.right, false, true, res);
-    return res;
-  }
-
-  private void helper(TreeNode node, boolean leftbd, boolean rightbd, List<Integer> res) {
-    if (node == null) {
-      return;
-    }
-    if (node.left == null && node.right == null) {
-      res.add(node.key);
-      return;
-    }
-    if (leftbd) {
-      res.add(node.key);
-    }
-    helper(node.left, leftbd && (node.left!=null), rightbd && (node.right==null), res);
-    helper(node.right, leftbd && (node.left==null), rightbd && (node.right!=null), res);
-    if (rightbd) {
-      res.add(node.key);
-    }
-  }// end of helper
+    List<Integer> result = new ArrayList<>();
+	if(root == null){
+		return result;
+	}
+	result.add(root.key);
+	dfsTraverse(root.left, true, false, result); //走了左半边树
+	dfsTraverse(root.right, false, true, result); // 走了右半边树
+	return result;
+}
+private void dfsTraverse(TreeNode root, boolean leftMost, boolean rightMost, List<Integer> result){
+	if(root == null){
+		return;
+	}
+  //left + leaves
+  //上一个node的左，右子树状态
+	if(leftMost || root.left == null && root.right == null){
+		result.add(root.key);
+	}
+	dfsTraverse(root.left, leftMost, (root.right == null? rightMost:false), result);
+	dfsTraverse(root.right, (root.left == null ? leftMost : false), rightMost, result);
+  //right, not leftMost, and not leaves
+  //这个条件需要上面的条件绝对相反
+	if(rightMost && !leftMost && (root.left != null || root.right != null)){
+		result.add(root.key);
+	}
+}
 }

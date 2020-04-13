@@ -10,29 +10,29 @@
  */
 public class Solution {
   public List<Integer> rightView(TreeNode root) {
-    // T: O(n) S: O(m) → m: the length longest level of tree
-    //deque --> popFirst; push (right, left) to the last
+    // T: O(n) S: O(n) → the last level of tree -> upper bound is n
+    //scan right child, then scan left child
     List<Integer> list = new ArrayList<>();
     if(root == null) {
       return list;
     }
-    Deque<TreeNode> buffer = new ArrayDeque<>();
-    buffer.offerFirst(root);
-    while(!buffer.isEmpty()) {
-      TreeNode first = buffer.peekFirst();
+    Queue<TreeNode> queue = new ArrayDeque<>();
+    queue.offer(root);
+    while(!queue.isEmpty()) {
+      TreeNode first = queue.peek();
       list.add(first.key);
-      int size = buffer.size();
-      while(size > 0) {
-        TreeNode cur = buffer.pollFirst();
+      int size = queue.size();
+      for(int i = 0; i < size; i++) {
+        TreeNode cur = queue.poll();
         if(cur.right != null) {
-              buffer.offerLast(cur.right);
+              queue.offer(cur.right);
         }
         if(cur.left != null) {
-          buffer.offerLast(cur.left);
+          queue.offer(cur.left);
         }
-        size--;
       }
     }
     return list;
   }
+  //left view只要先traversal左边即可
 }
