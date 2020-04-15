@@ -1,0 +1,5 @@
+Design and implement a new data structure that support 4 APIs with time complexity O(1) time
+add(x): add a new element if it's not exist
+remove(x): remove an element if it exist, doing nothing if not in it
+find (x) find if x is int it, if not, return null
+getRandomElement(): return a random element from it with equal probability

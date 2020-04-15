@@ -1,0 +1,55 @@
+//no duplicated element will be added
+    List<Integer> list = new ArrayList<>();
+    //Map<Element, the index of element>
+    Map<Integer, Integer> map = new HashMap<>();
+    //用于产生随机数
+    int i = 0;
+    public void add(int e){
+        if(map.containsKey(e)) {
+            return;
+        }
+        list.add(e);
+        map.put(e, list.size()-1);
+    }
+
+    public void remove(int e){
+        if(!map.containsKey(e)) {
+            return;
+        }
+        int index = map.get(e);
+        //list.remove(index-1); // T: O(n) --> can't use this api here
+        int end = swap(list, index); //T: O(1)
+        list.remove(list.size()-1); // T: O(1)
+        //update map
+        //remove the e
+        // update the index of the removed element
+        map.remove(e);
+        map.put(end, index);
+    }
+    public boolean find(int e) {
+        return map.containsKey(e);
+    }
+
+
+    public int getE() {
+        if(i >= list.size()) {
+            return -1;
+        }
+        //swap among the un-generate area
+        int index = (int)(Math.random() * (list.size() - i));
+        //swap the result with the beg of list
+        //需要加上i来保证从【i，list.size()]中找到相应的array
+        int res = list.get(index + i);
+        int first = list.get(i);
+        list.set(index, first);
+        list.set(i,res);
+        i++;
+        return res;
+    }
+    private int swap(List<Integer> list, int index) {
+        int target = list.get(index);
+        int end = list.get(list.size()-1);
+        list.set(index, end);
+        list.set(list.size()-1,target);
+        return end;
+    }
