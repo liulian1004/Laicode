@@ -28,4 +28,19 @@ public class Solution {
         }
         return res;
   }
+  // T: O(n) S; O(1)
+    // res[i] = res[i](the product of right side) * R(the product of right side)
+    int[] res = new int[nums.length];
+    res[0] = 1;
+    for(int i = 1; i < nums.length; i++) {
+      res[i] = res[i-1]* nums[i-1];
+    }
+    // the product of right side
+    int right = 1;
+    for(int i = nums.length - 1; i >= 0; i--) {
+      res[i] = right * res[i];
+      //update right side value for the next loop
+      right *= nums[i];
+    }
+    return res;
 }

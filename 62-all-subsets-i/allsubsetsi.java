@@ -1,6 +1,6 @@
 public class Solution {
   public List<String> subSets(String set) {
-    // S: O(n)
+    // S: O(n) the path from top to bottom
     //T: 2^n + 2^n * n = 2^n *n
     //看最后一层的时间复杂度
     // 3层，每层加“a或者不加”， b或者不加“，”c或者不加“

@@ -20,6 +20,8 @@ public class Solution {
          //deep copy,后面cur再改变也没有关系了
         //res.add(cur),加入的是cur的地址，后面cur会变
         res.add(new ArrayList<Integer>(cur));
+        //和63题不同 这里return以后需要马上remove掉结果
+        //下一个分支是从头开始算
         cur.remove(cur.size()-1);
       }
         return;
