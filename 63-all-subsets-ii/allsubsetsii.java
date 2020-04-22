@@ -8,8 +8,8 @@ public class Solution {
     // /  |  \  / | \
     //""  b  bb a ab abb   ==> result
     //T：
-    //S: O(the amount of unique character) + O(the size of map)
-    // T: O(2^n)
+    //S: O(the amount of unique character) + O(the size of map) -->O(n)
+    // T: O(2^n) --->每一个index有2个选择--> 2^n
     List<String> list = new ArrayList<>();
     if(set == null) {
         return list;

@@ -15,6 +15,8 @@ public class Solution {
     // case 1 cur.key < root; root = root.left; stack.offer()
     // case 2 cur.key > root ==> find the largest root smaller than cur, root = root.right; stack,offer()
     //T: O(n) S: O(height)
+    //go to the bottom and return the root back
+    //int[i] won't change even it's return back
     if(pre == null || pre.length == 0) {
       return null;
     }
