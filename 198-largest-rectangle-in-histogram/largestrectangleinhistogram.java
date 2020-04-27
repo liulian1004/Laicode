@@ -1,6 +1,7 @@
 public class Solution {
   public int largest(int[] array) {
     //T： O(n); S:O(n)
+    //linear scan and look back
     //每一node只能进stack一次，出stack一次，时间复杂度是O(n)
     // one for loop + linear scan+回头看（stack）
     //每一次poll出计算的面积是index of stakc.pollFirst() 往left方向的最大rectangle 面积
@@ -8,7 +9,7 @@ public class Solution {
     //递减就poll出来stack算面积
     int size = 0;
     //stack里存的是index
-    //为里计算左边界
+    //为了计算左边界
     Deque<Integer> stack = new ArrayDeque<>();
     //需要循环到最后一位的多一位
     for(int i = 0; i <= array.length; i++){

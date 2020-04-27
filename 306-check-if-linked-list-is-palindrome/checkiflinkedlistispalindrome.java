@@ -38,4 +38,29 @@ public class Solution {
         }
         return pre;
   }
+  //recsurive way
+  //extra Space
+  public boolean isPalindrome(ListNode head) {
+    // T: O(n) S; O(n)
+   if (head == null || head.next == null) {
+       return true;
+    }
+    ListNode[] h1 = new ListNode[1];
+    h1[0] = head;
+    ListNode h2 = head;
+    return helper(h1, h2);
+  }
+  private boolean helper(ListNode[] h1, ListNode h2) {
+    if(h2 == null) {
+        return true;
+    }
+    //boolean flag = helper(h1,h2.next);
+    if(helper(h1,h2.next)) {
+      if(h1[0].value == h2.value) {
+        h1[0] = h1[0].next;
+       return true;
+      }
+    }
+    return false;
+  }
 }

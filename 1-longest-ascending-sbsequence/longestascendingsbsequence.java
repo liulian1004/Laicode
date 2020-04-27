@@ -7,12 +7,14 @@ public class Solution {
     //If it does exit, update the  m[i] of Math.max(m[i], m[i] + 1)
     // each loop,update the max of M[i]
 
-    //T: O(n^2); SO(1)
+    //T: O(n^2); SO(n)
+    //无法优化空间，因为m[j] 需要看i之前所有的所有的情况
     int result  = 0;
     if(array == null || array.length == 0) {
       return result;
     }
     int[] m = new int[array.length];
+    m[0] = 1;
     for(int i = 0; i < array.length; i++) {
       //base case
       m[i] = 1;

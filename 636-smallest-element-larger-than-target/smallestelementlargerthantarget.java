@@ -6,11 +6,12 @@ public class Solution {
         }
         int left = 0;
         int right = array.length - 1;
-        //similar to the last occurance
+        //similar to the first occurance
         while (left < right -1) {
             int midIndex = left + (right - left) / 2;
             if (array[midIndex] <= target) {
-                left = midIndex;
+                left = midIndex + 1;
+                //leftsub = midIndex ==》都可以
             } else {
               //这里不能right = midIndex - 1
               //因为midIndex可能是最小的大于target的数，所以不能排除
@@ -27,3 +28,21 @@ public class Solution {
         return -1;
   }
 }
+//follow up:
+// the largest unumber smaller than target
+while(left < right - 1) {
+ int m = left + (right-left)/2;
+ if(target <= array[m]) {
+     right = m -1;
+  }else{
+   left = m;
+  }
+}
+
+if(array[right] < target) {
+    return right;
+ }
+if(array[left] < target) {
+     return left;
+}
+return -1;

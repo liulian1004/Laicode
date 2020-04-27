@@ -1,7 +1,7 @@
 public class Solution {
   public boolean canJump(int[] array) {
     //Assumpt non-negative integer
-    // T: O(n) ;S O(n)
+    // T: O(n^2) ;S O(n)
     //jump from right to left, it's true if it can reach index 0
     //corner, null/empty does not exit
     if(array.length == 1) {

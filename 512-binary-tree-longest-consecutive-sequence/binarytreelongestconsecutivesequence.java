@@ -41,4 +41,27 @@ public class Solution {
     return consecutive;
 
   }
+  //Top to down: pre-order
+  public int longestConsecutive(TreeNode root) {
+    //T: O(n) S: O(height)
+    if(root == null) {
+      return 0;
+    }
+    int[] max = new int[]{0};
+    helper(root, root.key, max, 1);
+    return max[0];
+  }
+  private void helper(TreeNode root, int parent, int[] max, int path) {
+    if(root == null) {
+      return ;
+    }
+    if(root.key == parent+1 ) {
+      path ++;
+    }else {
+      path = 1;
+    }
+    helper(root.left, root.key, max, path);
+    helper(root.right, root.key, max,path);
+    max[0] = Math.max(max[0], path);
+  }
 }
