@@ -2,6 +2,7 @@ public class Solution {
   public int kthSum(int[] A, int[] B, int k) {
     // a, b are sorted
     // k >= 0 && k <= a.length * b.length
+    //either A++ or B++， check its sum in the minHeap
     //T: klogk S: O(k)
     PriorityQueue<List<Integer>> minHeap = new PriorityQueue<>(new Comparator<List<Integer>>(){
       @Override

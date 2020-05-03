@@ -1,7 +1,11 @@
 public class Solution {
   public int[] kClosest(int[] array, int target, int k) {
-    if(array.length == 0) {
-    return new int[]{-1,-1};
+    //if it's a tie, prefer the smaller one
+    if(array.length == null || array.length == 0 || k >= array.length) {
+    return array;
+  }
+  if(k <= 0) {
+    return new int[0];
   }
   int[] result = new int[k];
   int left = 0;

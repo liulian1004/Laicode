@@ -35,6 +35,7 @@ public class Solution {
       return nums[i];
     } else if(i - left + 1 < k) {
       k = k - (i-left+1);
+      //left/right bound必须减小，否则会overflow
       return helper(nums,k, i+1, right);
     }
     return helper(nums,k,left, i-1);

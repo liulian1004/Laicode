@@ -1,7 +1,7 @@
 public class Solution {
   public int longest(int[][] matrix) {
     // DFS
-    //T: O(n*m)^2 S: O(n *m)
+    //T: O 2^(n*m) S: O(n *m)
     if(matrix == null || matrix.length == 0) {
       return 0;
     }
@@ -46,7 +46,8 @@ public class Solution {
   }
 }
   // DFS + memorization
-  //T: O(n*m)^2 S: O(n *m)
+  //T: O(n*m) S: O(n *m) + call stack
+  //时间复杂度等于填memo的时间复杂度，
   if(matrix == null || matrix.length == 0) {
         return 0;
       }
@@ -90,4 +91,8 @@ public class Solution {
       }
 
     }
+    //DP
+    //T: O(m *n log(m*n)) S： O(m *n)
+    //先对matrix进行排序，从大到小的排序，然后从打到小的开始扫描matrix
+    //时间复杂读没有dfs + memo的soluton 好
   }

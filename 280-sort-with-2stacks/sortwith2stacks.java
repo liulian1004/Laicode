@@ -1,7 +1,7 @@
 public class Solution {
   public void sort(Deque<Integer> s1) {
     Deque<Integer> s2 = new ArrayDeque<Integer>();
-    // Write your solution here.
+    //select sort
     if(s1 == null || s1.size() <= 1) {
       return;
     }

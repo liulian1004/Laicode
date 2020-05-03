@@ -19,11 +19,18 @@ public class Solution {
     swap(array, pivot , right);
     // must check the last element
     //because [i,j] is the scope of comparing with right
+    //优化swap次数
+    //先判断不需要swap的情况
+    //剩余情况都要swap，两边都需要移动
     while (i <= j) {
-      if(array[i] < array[right]) {
+      if(array[i] <= array[right]) {
         i++;
-      } else {
+      } else if(array[j] > array[right]) {
+      j--;
+      }
+      else {
         swap(array,i,j);
+        i++;
         j--;
       }
     }

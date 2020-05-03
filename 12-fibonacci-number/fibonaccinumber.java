@@ -38,6 +38,9 @@ public class Solution {
     return b;
   }
   // recsurive
+  // k只是决定多少layer
+  //每一次layer的计算需要外部变量来帮忙
+  //如果没有返回只，只要在base case这边返回即可
   public long fibonacci(int k) {
     // T: O(k) S: O(k)
     if(k <= 0) {
