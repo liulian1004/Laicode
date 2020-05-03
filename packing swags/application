@@ -1,0 +1,18 @@
+//m[i]： the min # of  bags that can keep i swags
+//base m[1] = 1
+//T: O(n^1.5)
+//S: O(n)
+private int box(int k) {
+	if(k <= 0) {
+	return 0;
+}
+int[] m = new int[k+1];
+m[1] = 1;
+for(int i = 2; i <= k; i++) {
+	for(int j = 1; j * j <= i; j++) { //T: 0.5
+	m[i] = Math.min(m[i], m[i - j * j] + 1 );
+}
+}
+return m[k];
+
+}

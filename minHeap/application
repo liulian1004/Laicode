@@ -1,0 +1,92 @@
+public class MinHeap{
+	private int[] array;
+  private int size;
+
+
+private void percolateUp(int index) {
+    //Time: O(h) = logn
+    	int parentIndex = (index - 1)/ 2;
+    //走到root结束
+    	while(index > 0) {
+    		if(array[parentIndex] > array[index]) {
+        	swap(array, parentIndex, index);
+        } else {
+        	break;
+    }
+    index = parentIndex;
+    }
+}
+
+private void percolateDown(int index) {
+    //Time: O(h) = logn
+      while(index <= size / 2 - 1) {
+    	int leftIndex = n * 2 + 1;
+    	int rightIndex = n * 2 + 2;
+    	//默认先和左交换
+    	int swapIndex = leftIndex;
+    	//走到最后一个非叶子节点结束
+    	if(rightIndex <= size - 1; && array[leftIndex] > array[rightIndex]) {
+    	swapIndex = rightIndex;
+    }
+    if(array[index] > array[swapIndex]) {
+    swap(array, index, swapIndex);
+    } else{
+    	break;
+    }
+    Index = swapIndex;
+    }
+}
+
+private void heapify(){
+//从最后一个非叶子节点所在的三角形做percolateDown,先从局部开始heapify之后，再往上走继续heapify
+//T： 每一层元素向下看的层数 * 每一层元素的数列(k=层数)
+// T: 2^0 * (k-1) + 2^1 *(k-2) + 2^2 *(k-3)+...+2^(k-2) * 1 =2^k-k-1;(k=logn) = 2(logn) -logn-1 = n
+  for(int i = size / 2 - 1; i>=0 ; i--) {
+  	percolateDown(i);
+  }
+}
+
+	private void offer(int e) {
+		//如果空间不够，扩容
+		if(size == array.length) {
+  	int[] newArray = new int[array.length * 1.5]；
+  	copy(array, newArray);
+  	array = newArray;
+  }
+	array[size] = e;
+	//不要忘了把size index更新一下
+  size++;
+	//传入最后一个新加入的节点的index
+	percolatedUp(size - 1);
+}
+
+private int poll(){
+  if(size == 0) {
+  	throw new NoSuchElementException(“heap is empty”);
+  }
+  int res = array[0];
+  	array[0] = array[size -1];
+  	size--;
+  	percolatedDown(0);
+  	return res;
+}
+private int peek(){
+	if(size == 0) {
+	throw new NoSuchElementException(“heap is empty”);
+}
+	return array[0];
+}
+//return original value
+private int update(int index, int e) {
+  	if(index < 0 || index > size -1) {
+  	throw new NoSuchElementException(“invalid index”);
+  }
+  int res = array[index];
+  array[index] = e;
+  		if( e < res ) {
+  	percolatedUp(index)
+  } else {
+  	percolatedDown(index);
+  }
+  return res;
+}

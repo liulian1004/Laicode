@@ -1,0 +1,8 @@
+public class Solution {
+  public String concatenate(String x, String y) {
+    StringBuilder z = new StringBuilder();//时间复杂度比stirng好
+    z.append(x).append(',').append(y);
+    return z.toString();
+
+  }
+}

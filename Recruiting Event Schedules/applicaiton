@@ -1,0 +1,27 @@
+private List<String> schedule(char[] array) {
+        List<String> list = new ArrayList<>();
+        if(array == null || array.length == 0) {
+            return list;
+        }
+        StringBuilder sb = new StringBuilder();
+        helper(list, sb,0, array);
+        return list;
+    }
+    //每一层加多少个，要吐多少个
+    private void helper(List<String> list, StringBuilder sb, int k, char[] array) {
+        if(k == array.length - 1) {
+        //一加一吐
+            sb.append(array[k]);
+            list.add(sb.toString());
+            sb.deleteCharAt(sb.length()- 1);
+            return;
+        }
+        sb.append(array[k]);
+        sb.append('X');
+        helper(list, sb, k + 1,array);
+        //先吐一个
+        sb.deleteCharAt(sb.length()- 1);
+        helper(list,sb, k + 1, array);
+        //再吐一个
+        sb.deleteCharAt(sb.length()- 1);
+    }

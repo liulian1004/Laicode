@@ -1,0 +1,104 @@
+public class Solution {
+  public ListNode reorder(ListNode head) {
+   //Time: O(n), Space O(1)
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode mid = findMid(head);
+        ListNode newHead = reverse(mid.next);
+        mid.next = null;
+
+        return merge(head, newHead);
+    }
+
+
+    private ListNode reverse(ListNode head) {
+        //ListNode != null && ListNode.next != null
+        ListNode pre = null;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+
+    private ListNode findMid(ListNode head) {
+        //ListNode != null && ListNode.next != null
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    private ListNode merge(ListNode one, ListNode two) {
+        ListNode dummy = new ListNode(-1);
+        ListNode cur = dummy;
+        while( one != null && two != null) {
+            // cur.next = one;
+            // one = one.next;
+            // cur = cur.next;
+            // cur.next = two;
+            // two = two.next;
+            // cur = cur.next;
+            cur.next = one;
+            one = one.next;
+            cur.next.next = two ; //直接用指针移动，少写一遍 cur = cur.next;
+            two = two.next;
+            cur = cur.next.next;
+        }
+        //one, two 都需要判断是不是还有一个元素，因为不太确定传入的one， two哪一个长，用户调用可以随便设定
+        if(one != null) {
+            cur.next = one; }
+        } else {
+            cur.next = two;
+        }
+
+        return dummy.next;
+
+    }
+
+}
+solution 2: stack + ListNode
+public ListNode reorder2(ListNode head) {
+        //corner case
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Deque <Integer> stack = traverse(head);
+        return merge(head, stack);
+
+    }
+
+    private Deque<Integer> traverse(ListNode head) {
+        Deque<Integer> stack = new LinkedList<>();
+        while(head != null) {
+            stack.push(head.value);
+            head = head.next;
+        }
+        return stack;
+
+    }
+    private ListNode merge(ListNode head, Deque<Integer> stack) {
+    ListNode dummy = new ListNode(-1);
+    ListNode cur = dummy;
+    int size = stack.size();
+    while(stack.size() > (size + 1)  / 2 ) {
+            cur.next = head;
+            head = head.next;
+            cur.next.next = new ListNode(stack.pop());
+            cur = cur.next.next;
+
+    }
+    if (size % 2 == 1) {
+        cur.next = head;
+        cur.next.next = null;
+        return dummy.next;
+    }
+    return dummy.next;
+
+  }

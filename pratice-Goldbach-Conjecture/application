@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+      checkGold(1000);
+  }
+  //check n 以内的 偶数，从4开始
+  public static void checkGold(int n) {
+      for( int i = 4; i<= n;i += 2){
+          if(!divide(i)) {
+              System.out.println("\"Goldbach Conjecture:every even integer greater than two is the sum of two prime numbers\" is wrong");
+              return;
+          }
+      }
+      System.out.println("\"Goldbach Conjecture:every even integer greater than two is the sum of two prime numbers\" is correct");
+  }
+  //是否可以被两个质数相加
+  public static boolean divide(int n){
+      for(int i = 2;i<= n/2;i++) { //最小质数是2， i<= n/2 后面就不用重复减
+          if(prime(i) && prime(n-i)){
+              return true;
+          }
+      }
+      return false;
+  }
+  //判断是不是质数
+  public static  boolean prime(int n) {
+      for(int i = 2; i*i <=n; i++){//最小质数是2， i*i=n 后面就不用重复余
+          if(n%i == 0){
+              return false;
+          }
+      }
+      return true;
+  }
+}

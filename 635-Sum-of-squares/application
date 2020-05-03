@@ -1,0 +1,19 @@
+public class Solution {
+  public int sumOfSquare(List<Integer> list) {
+    // Write your solution here
+    if(list == null) {
+      return 0;
+    }
+    // if(list.size() == 0){ 包含在for loop里
+    //   return 0;
+    // }
+    int sum = 0;
+    // for(int i = 0; i < list.size(); i++){
+    //   sum += (list.get(i)*list.get(i));
+    // }
+    for (int i : list){
+      sum += i*i ;
+    }
+    return sum;
+  }
+}

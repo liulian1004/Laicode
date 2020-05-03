@@ -1,0 +1,15 @@
+public class Solution {
+  public int findElement(int[][] matrix, int k) {
+    // Write your solution here
+    if ( matrix == null || matrix.length == 0 || matrix[0].length == 0)
+    return -1;
+    int m = matrix.length;//row
+    int n = matrix[0].length;//column
+    if( k > m*n ) {
+      return -1;
+    }
+    int i = k/n;//transfer to row
+    int j = k%n;//transfer to column
+    return matrix[i][j];
+  }
+}

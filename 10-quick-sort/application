@@ -1,0 +1,48 @@
+public class Solution {
+  public int[] quickSort(int[] array) {
+    // T: O(nlogn) -worst O(n^2); S: O(logn) - worst O(n)
+    if (array == null || array.length <= 1) {
+      return array;
+    }
+    quickSort(array, 0, array.length - 1);
+    return array;
+  }
+  private void quickSort(int[] array, int left, int right) {
+  //当 partition到只有一个元素的时候，即在上一层，i，j都是指向一个element
+  //走到下一层的时候，i > p,所以考虑到这种情况要return
+    if(left >= right) {
+      return;
+    }
+    int pivot = left + (int)(Math.random() * (right - left + 1));
+    int i = left;
+    int j = right -1 ;
+    swap(array, pivot , right);
+    // must check the last element
+    //because [i,j] is the scope of comparing with right
+    //优化swap次数
+    //先判断不需要swap的情况
+    //剩余情况都要swap，两边都需要移动
+    while (i <= j) {
+      if(array[i] <= array[right]) {
+        i++;
+      } else if(array[j] > array[right]) {
+      j--;
+      }
+      else {
+        swap(array,i,j);
+        i++;
+        j--;
+      }
+    }
+    swap(array, i, right);
+    //这里pivot已经消失，所以要用i代替
+    quickSort(array, left, i-1);
+    quickSort(array, i + 1, right);
+  }
+
+  private void swap(int[] array, int i, int j) {
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}

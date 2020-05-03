@@ -1,0 +1,10 @@
+public boolean isPrime(int n) {
+    // Write your solution here
+    for(int i = 2; i*i<= n;i++){// i*i <= n 避免后续重复数
+      if(n%i == 0){
+        return false;
+      }
+    }
+    return true;
+  }
+}

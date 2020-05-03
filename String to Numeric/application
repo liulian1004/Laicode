@@ -1,0 +1,58 @@
+private boolean isNumeric(String s) {
+       if(s == null) {
+           return false;
+       }
+       s = s.trim();
+       if(s.length() == 0) {
+           return true;
+       }
+       boolean seenNumber = false; // number
+       boolean dotBeforeE = false; // .
+       boolean signBeforeNumber = false; // + ,-
+       boolean signAfterE = false;// + ,-
+       boolean eAfterNumber = false;// e/E
+       boolean numberAfterE = false; // number
+       for(int i = 0; i < s.length(); i++) {
+           char c = s.charAt(i);
+           if(c == '.' ) {
+               if(dotBeforeE  || eAfterNumber ) {
+                   return false;
+               } else {
+                  dotBeforeE = true;
+               }
+           } else if(c == '-' || c == '+') {
+               if(((seenNumber || dotBeforeE) && !signAfterE) // when it appears between the number and E
+                   || numberAfterE) {// appear after e+number ex: ee3+
+                       return false;
+               }
+               if(signAfterE || //1e-5+
+                       (!eAfterNumber && signBeforeNumber)) { // +123-
+                   return false;
+               } if(signBeforeNumber) {
+                   signAfterE = true;
+               } else {
+                   signBeforeNumber = true;
+               }
+           } else if(c == 'e' || c == 'E') {
+               if(!seenNumber || eAfterNumber) {
+                   return false;
+               } else {
+                   eAfterNumber = true;
+               }
+           } else if (c >= '0' && c <= '9') {
+               seenNumber = true;
+               if(eAfterNumber) {
+                   numberAfterE = true;
+               }
+           } else {
+               return false;
+           }
+       }
+       if(eAfterNumber && !numberAfterE) { // check whether e follow by number
+           return false;
+       }
+       return seenNumber;
+   }
+
+
+}

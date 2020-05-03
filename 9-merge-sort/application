@@ -1,0 +1,40 @@
+public class Solution {
+  public int[] mergeSort(int[] array) {
+    // Time: O(nlogn);Space: O(n) = O(n) + O(logn) * O(1)
+    if(array == null) {
+      return array;
+    }
+    int[] helper = new int[array.length];
+    mergeSortHelper(array, helper, 0, array.length - 1);
+    return array;
+  }
+  //Space O(logn)
+  private void mergeSortHelper(int[] array, int[] helper, int left, int right) {
+  //包含了 array.length <= 1
+  //当上一层只一个element的时候，到这里会 left > right
+    if(left >= right) {
+      return;
+    }
+    int mid = left + (right - left) / 2;
+    mergeSortHelper(array, helper, left, mid);
+    mergeSortHelper(array, helper, mid + 1, right);
+    merge(array, helper, left, mid, right);
+  }
+  private void merge(int[] array, int[] helper, int left, int mid, int right) {
+    for(int i = left; i <= right; i++) {
+      helper[i] = array[i];
+    }
+    int leftIndex = left;
+    int rightIndex = mid + 1;
+    while(leftIndex <= mid && rightIndex <= right) {
+      if(helper[leftIndex] <= helper [rightIndex]) {
+        array[left++] = helper[leftIndex++];
+      } else {
+        array[left++] = helper[rightIndex++];
+      }
+    }
+    while(leftIndex <= mid) {
+      array[left++] = helper[leftIndex++];
+    }
+  }
+}

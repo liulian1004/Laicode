@@ -1,0 +1,11 @@
+public class Singleton{
+  private final static Singleton instance = new Singleton();
+  private String name;
+  private Singleton() {
+    this.name = "John";
+  }
+  public static Singleton getInstance() {
+    return instance;
+  }
+
+}

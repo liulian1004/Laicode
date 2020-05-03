@@ -1,0 +1,18 @@
+public class Solution {
+  public int sum(int[][] array) {
+  public class Solution {
+  public int sumOfSquare(List<Integer> list) {
+    // Write your solution here
+    if(list == null || list.isEmpty()) {
+      return 0;
+    }
+    int sum = 0;
+    // for(int i = 0; i < list.size(); i++){
+    //   sum += (list.get(i)*list.get(i));
+    // }
+    for (int i : list){
+      sum += i*i ;
+    }
+    return sum;
+  }
+}

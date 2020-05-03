@@ -1,0 +1,9 @@
+public int power(int a, int b) {
+    // Write your solution here
+    int power = 1;
+    for(int i =1;i<=b;i++){
+      power = power*a;
+    }
+    return power;
+  }
+}

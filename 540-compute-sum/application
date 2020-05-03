@@ -1,0 +1,13 @@
+public class Solution {
+  public int sum(int[] array) {
+    // Write your solution here
+    if(array == null || array.length == 0){
+      return 0;
+    }
+    int sum =0;
+    for(int i: array){//遍历array里的每一个值,返回给int i
+      sum += i;
+    }
+    return sum;
+  }
+}

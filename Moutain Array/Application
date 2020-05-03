@@ -1,0 +1,52 @@
+give you a mountain array, which is must be three elements. find the first index of target element or return -1
+ex: 1 2 3 4 3 1, target 3 return 2
+T: O(logn) S: O(1)
+
+private int find(int[] array, int target) {
+        if(array == null || array.length == 0) {
+            return -1;
+        }
+        int peek = getPeek(array);
+        int res = getTarget(array, 0, peek, target);
+        if(res != -1) {
+            return res;
+        }
+        //不需要在判断，不符合会返回-1
+        return getTarget(array, peek+1, array.length - 1, target);
+    }
+    private int getPeek(int[] array) {
+
+        int i= 0;
+        int j = array.length - 1;
+        //at least three
+        while(i < j -1){
+            int m = i + (j - i)/ 2;
+            //只要之前的数字和现在的数字的大小，就能判断是ascending or descending
+            //移动i,j的时候要include mid，因为只查了前两个数
+            if(array[m] > array[m-1] ) {
+                return m;
+            }else if(array[m-1]< array[m]) {
+                i = m;
+            }else{
+                j = m;
+            }
+        }
+        if(array[i] > array[j]) {
+          return i;
+        }
+        return j;
+    }
+    private int getTarget(int[] array, int i, int j, int target) {
+        while( i <= j) {
+            int m = i + (j - i) / 2;
+            if(array[m] == target) {
+                return m;
+            }else if(array[m] > target) {
+                j = m -1;
+            }else{
+                i = m + 1;
+            }
+        }
+        return -1;
+
+    }

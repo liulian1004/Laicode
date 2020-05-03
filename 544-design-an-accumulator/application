@@ -1,0 +1,9 @@
+class Accumulator {
+  int s = 0;//instance variable
+	public void add(int x) {
+       s += x;
+	}
+	public int sum() {
+      return s;
+	}
+}

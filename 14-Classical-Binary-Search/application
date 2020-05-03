@@ -1,0 +1,24 @@
+public class Solution {
+  public int binarySearch(int[] array, int target) {
+  // T: logn S: O(1)
+    // Write your solution here
+    //corner case
+    if(array == null || array.length == 0){
+      return -1;
+    }
+    //setup pointers
+    int l = 0;
+    int r = array.length -1;
+    while(l <= r){
+      int m = l +(r - l) / 2; //mid值每次都需要重制
+      if(array[m]== target) {
+        return m;
+      } else if (target < array[m]){
+        r = m-1;
+      } else {//最后一次else不需要加codition
+        l = m +1;
+      }
+    }
+    return -1;
+  }
+}

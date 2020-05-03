@@ -1,0 +1,28 @@
+class Solution {
+	public void partition(int[] array, int pivotIndex) {
+    if (array.length == 1) {
+      return;
+    }
+    int left = 0;
+    int right = array.length - 1;
+    int i = left;
+    int j = right - 1;
+    swap(array, pivotIndex, right);
+    while (i <= j) {
+      if (array[i] < array[right]) {
+        i++;
+      } else {
+        swap(array, i, j);
+        j--;
+      }
+    }
+    swap (array, i, right);
+    return;
+  }
+
+  private void swap(int[] array, int i, int j) {
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}
