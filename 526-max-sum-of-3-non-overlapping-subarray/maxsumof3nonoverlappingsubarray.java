@@ -6,6 +6,7 @@ public class Solution {
     //dp : postRight[i] max subarray sum of size k that end at index i(strat from right)
     // traveral [n-k-1, n - 2 *k], find the max (left + i + right)
     int n = nums.length, maxsum = 0;
+     // the size of postLeft/postRight == n is the mapping of input
         int[] sum = new int[n+1], posLeft = new int[n], posRight = new int[n], ans = new int[3];
         for (int i = 0; i < n; i++) sum[i+1] = sum[i]+nums[i];
         // DP for starting index of the left max sum interval

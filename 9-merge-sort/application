@@ -1,6 +1,7 @@
 public class Solution {
   public int[] mergeSort(int[] array) {
     // Time: O(nlogn);Space: O(n) = O(n) + O(logn) * O(1)
+    // 这个方法和传统的方法时空间一样，是实际运行中的产生的额外空间开销/gc次数少
     if(array == null) {
       return array;
     }

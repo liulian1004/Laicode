@@ -10,9 +10,10 @@
  */
 public class Solution {
   public boolean existSumBST(TreeNode root, int target) {
-    //T: O(n); S: O(n)
+    //T: O(n); S: O(height)
     // 用pushLeft 和 pushright来模拟 leftbound and  rightbound
     //用stack.offerFirst/pollFirst来模拟left++， right++
+    //left++ pushleft(cur.right); right-- pushrigh(cur.left)
     if(root == null) {
       return false;
     }
@@ -32,10 +33,12 @@ public class Solution {
         return true;
       }
       //left++
+      //push left (cur.right)
       if(left + right < target) {
         TreeNode cur = leftBound.pollFirst();
         pushLeft(cur.right, leftBound);
         // right--;
+        //push left (cur.left)
       } else {
         TreeNode cur = rightBound.pollFirst();
         pushRight(cur.left, rightBound);
@@ -55,5 +58,29 @@ public class Solution {
       root = root.right;
     }
   }
+  public boolean existSumBST(TreeNode root, int target) {
+      // T: O(n) S: O(n)
+      //所有的tree都可以用这个方法
+      if(root == null) {
+        return false;
+      }
+      Set<Integer> set = new HashSet<>();
+      return helper(root, target, set);
+    }
+    private boolean helper(TreeNode root, int target, Set<Integer> set) {
+        if(root == null) {
+        return false;
+      }
+      if(set.contains(root.key)) {
+        return true;
+      }
+      set.add(target - root.key);
+      boolean left = helper(root.left, target, set);
+      boolean right = helper(root. right, target,set);
+      if(left || right) {
+        return true;
+      }
+      return false;
 
+    }
 }
