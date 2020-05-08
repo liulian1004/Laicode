@@ -34,4 +34,20 @@ public class Solution {
     }
     return list;
   }
+  //two pointer
+  public List<List<Integer>> allPairs(int[] array, int target) {
+    // T: O(n^2) S: O(1)
+    List<List<Integer>> list = new ArrayList<>();
+    if(array == null || array.length <= 1) {
+        return list;
+    }
+    for(int i = 0; i < array.length - 1; i++) {
+      for(int j = i+1; j < array.length; j++) {
+        if(array[i] + array[j] == target) {
+          list.add(Arrays.asList(i,j));
+        }
+      }
+    }
+    return list;
+  }
 }

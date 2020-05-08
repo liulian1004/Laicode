@@ -22,3 +22,22 @@ public class Solution {
       return newHead;
   }
 }
+//interative
+public ListNode reverseInPairs(ListNode head) {
+    // Write your solution here
+    if(head == null || head.next == null) {
+      return head;
+    }
+    ListNode dummy = new ListNode(-1);
+    dummy.next = head;
+    ListNode pre = dummy;
+    while(head != null && head.next != null) {
+      ListNode next = head.next.next;
+      pre.next = head.next;
+      head.next.next = head;
+      head.next = next;
+      head = next;
+      pre = pre.next.next;
+    }
+    return dummy.next;
+  }
