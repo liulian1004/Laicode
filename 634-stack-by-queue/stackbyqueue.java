@@ -34,6 +34,8 @@ class Solution {
     }
 
     /** Get the top element. */
+    //要先倒回去，在把pop出来的数字加回去
+    //注意npe
     public Integer top() {
         Integer res = pop();
         //这里必须要先判断res是不是null,如果是null,执行以下statment会报错

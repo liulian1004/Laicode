@@ -1,4 +1,4 @@
-`1``public class Solution {
+public class Solution {
   public Solution() {
     // write your solution here
   }
@@ -41,7 +41,7 @@
   public class Solution {
   Deque<Integer> stack;
   Deque<Integer> min;
-  //map<cur min element, the size of stack>
+  //map<cur min element, stack size when put in to the minStack>
   //优化min的空间，用一个map代替重复的元素
   //适用于有很多重复的元素
   Map<Integer, Integer> map;
@@ -85,3 +85,4 @@
     return min.peekFirst();
   }
 }
+//

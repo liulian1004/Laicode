@@ -1,6 +1,8 @@
 public class Solution {
   public boolean isBST(TreeNode root) {
-    //Time: O(n) ->n: #of node Space O(height)
+    //Time: max(height, #of node beween k1 and k2)
+    //Space O(height)
+    // assumpiton : no duplicated node and no value eaquals to min/max
     if (root == null) {
         return true;
       }

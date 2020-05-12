@@ -10,7 +10,10 @@
  */
 public class Solution {
   public TreeNode insert(TreeNode root, int key) {
-    // interative
+    // T：O(n) S: O(1)
+    //look one step down
+    //if 在循环外写成 cur = new TreeNode（key）；
+    //cur没有挂上树
     if(root == null) {
       return new TreeNode(key);
     }
@@ -32,7 +35,8 @@ public class Solution {
     }
     return root;
   }
-  //  recursion
+  //  T: O(h) S: O(h)
+  //recursion
   //为了维护BST的特殊属性， insert的元素一定是挂在null那一层
   //如果有重复元素在里面，直接返回
     if(root == null) {
