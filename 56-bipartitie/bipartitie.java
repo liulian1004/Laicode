@@ -10,8 +10,8 @@
  */
 public class Solution {
   public boolean isBipartite(List<GraphNode> graph) {
-    // T: O(n) -> the number of graph
-    //S: O(n) -> the max number of the neighor of graph
+    // T: O(vertex + edge * 2) -> no direction so each edge visited twice
+    //S: O(vertex) -> the max number of the neighor of graph
     //Map两个作用： 查重 + set group
     Map<GraphNode, Integer> visited = new HashMap<>();
     //把list中的每一个节点拿出了

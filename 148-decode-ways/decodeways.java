@@ -43,6 +43,7 @@ public class Solution {
 }
 //follow up
 // print all permuatation
+//T: O(n*n) S: O(n)
 private List<String> replace(String input) {
         List<String> list = new ArrayList<>();
         if(input.charAt(0) == '0') {
