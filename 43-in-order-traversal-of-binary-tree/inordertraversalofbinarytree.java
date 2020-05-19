@@ -18,9 +18,11 @@ public class Solution {
     Deque<TreeNode> stack = new ArrayDeque<>();
     TreeNode cur = root;
     while(cur !=null || !stack.isEmpty()) {
+      //一路往左走
         if(cur != null) {
           stack.offerFirst(cur);
           cur = cur.left;
+      //碰到null, poll出stack的peek, 然后走cur的right tree
         } else {
           //cur == null
           cur = stack.pollFirst();
