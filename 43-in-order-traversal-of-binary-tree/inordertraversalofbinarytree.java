@@ -33,3 +33,27 @@ public class Solution {
     return res;
   }
 }
+// my Solution
+public List<Integer> inOrder(TreeNode root) {
+    // T： O（n) S: O(1)
+    List<Integer> list = new ArrayList<>();
+    if(root == null) {
+      return list;
+    }
+    Deque<TreeNode> stack =new ArrayDeque<>();
+    stack.offerFirst(root);
+    while(!stack.isEmpty()) {
+        if(root.left != null) {
+        stack.offerFirst(root.left);
+        root = root.left;
+      }else {
+        TreeNode cur = stack.pollFirst();
+        list.add(cur.key);
+        if(cur.right != null) {
+          stack.offerFirst(cur.right);
+          root = cur.right;
+        }
+      }
+    }
+    return list;
+  }
