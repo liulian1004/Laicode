@@ -1,7 +1,7 @@
 public class Solution {
   public List<String> permutations(String input) {
     // 3层 3个叉，2个叉，1个叉（remaining unused letters)
-    // node:  1+n + n *(n-1) + n*(n-1)*(n-2) + ... n!
+    // node:  n*(n-1)*(n-2)*(n-3)*...*1 * n
     //T:n!*n(n个字母排列是n！可能性，每个可能性遍历打印)
     //S：O(n)
     //如果input 是 空，res 是 n{" "}, 不是null
