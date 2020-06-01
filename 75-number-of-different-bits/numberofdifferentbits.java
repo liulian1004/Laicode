@@ -22,3 +22,5 @@ public class Solution {
 return count;
   }
 }
+// another solution
+//这个方法负数不行。

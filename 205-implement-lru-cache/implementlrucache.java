@@ -1,6 +1,6 @@
 public class Solution<K, V> {
   // limit is the max capacity of the cache
-  // linkHashMap + hasmap<k, node<k,v>>
+  // linkHashMap + hashmap<k, node<k,v>>
   // latest recently used
   static class Node<K,V> {
     Node<K,V> next;
@@ -28,23 +28,25 @@ public class Solution<K, V> {
   }
   //跟新node + 更新node在linkedlist中的position
   public void set(K key, V value) {
+    //初始化node
     Node<K,V> node = null;
     //如果存在，update node
     if(map.containsKey(key)) {
         node = map.get(key);
         node.value = value;
+        //删除在linkedlist中的position
         remove(node);
     //node不存在且size没有超界，直接创建node
     //用map.size() O(1)时间查到size
     } else if(map.size() < limit){
         node = new Node<K,V>(key,value);
-    //node不存在且size已满，删掉一个tail node,更新tail node的值，把这个node变成一个最小的node
+    //node不存在且size已满，删掉一个tail node,更新tail node的值，把这个node变成tail
     } else {
       node = tail;
       remove(node);
       node.update(key, value);
     }
-    //把node加回去
+    //把node放到头回去
     append(node);
   }
   //读取node值 + 更新node在linkedlist中的position
@@ -53,7 +55,9 @@ public class Solution<K, V> {
     if(node == null) {
       return null;
     }
+    //在 linkedlist 删除原来的node
     remove(node);
+    //添加到linked list的head
     append(node);
     return node.value;
 
