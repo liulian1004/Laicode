@@ -14,4 +14,20 @@ public class Solution {
     return res*res*a;
   }
 }
-//如果b 是负数，返回类型是double
+//other cases
+a == 0 b == 0 ==> return 0
+a == 0, b < 0 == > not valid
+b < 0 a^b => 1.0 / ans
+在外面用一个多加一个主函数
+public double power(int a, int b) {
+  if(a == 0) {
+      if(b < 0) {
+      return error;
+      }
+      return 0;
+  }
+  if(b >= 0) {
+  return power(a, b);
+  }
+  return 1.0 / power(a,b);
+}

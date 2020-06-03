@@ -26,6 +26,7 @@ public class Solution {
     ListNode subHead = reverse(head.next);
     // reversed linked list 和 head 链接
     head.next.next = head;
+    //cur head points to null， incase cur head is the last node
     head.next = null;
     return subHead;
 

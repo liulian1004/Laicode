@@ -1,0 +1,46 @@
+private List<Integer> split(int[] array, int k) {
+T: O(n^2*k) S: O(k)
+// k 层，每一次从index开始往后遍历 找到满足要求的subarray sum后，走到一下层继续遍历
+//base case level == k || index out of bound
+        List<Integer> list = new ArrayList<>();
+        if(array == null || array.length == 0 || k <= 0){
+            return list;
+        }
+        int sum = 0;
+        for(int i: array){
+            sum += i;
+        }
+        if(sum % k != 0) {
+            return list;
+        }
+        int target = sum/k;
+        List<Integer> res = new ArrayList<>();
+        if(helper(array, k, target, 0,list,0)){
+            return list;
+        }
+        return null;
+
+    }
+    private boolean helper(int[] array, int k, int target, int startIndex, List<Integer> list, int level){
+        if(level== k || startIndex == array.length) {
+            if(list.size() == k && startIndex == array.length) {
+            //只要返回一种组合即可
+                return true;
+            }
+            return false;
+        }
+        int curSum = 0;
+        for(int i = startIndex; i <array.length; i++) {
+            curSum += array[i];
+            if(curSum == target) {
+                list.add(i);
+                if(helper(array,k,target, i+1,list, level+1 )) {
+                    return true;
+                }
+                //如果是有效答案，不会走到list 吐这一层
+                //所以list不会为空
+                list.remove(list.size()-1);
+            }
+        }
+        return false;
+    }

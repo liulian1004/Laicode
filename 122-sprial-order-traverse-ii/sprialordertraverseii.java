@@ -89,4 +89,52 @@ public class Solution {
     helper(matrix, left + 1, right - 1, up + 1, down - 1, res);
     }
 
+    // my soution
+    public List<Integer> spiral(int[][] matrix) {
+    // T: O(n) S: O(n)
+    List<Integer> list = new ArrayList<>();
+    if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return list;
+    }
+    int row = matrix.length;
+    int col = matrix[0].length;
+    helper(matrix,list, 0, row, col);
+    return list;
+  }
+  private void helper(int[][] matrix, List<Integer> list, int offset, int row, int col) {
+    if(offset == row / 2) {
+      if(row % 2 == 1) {
+        for(int i = offset; i < col - offset; i++ ) {
+          list.add(matrix[offset][i]);
+        }
+      }
+      return;
+    }
+    if(offset == col/2) {
+      if(col %2 == 1) {
+        for(int i = offset; i < row-offset; i++) {
+          list.add(matrix[i][offset]);
+        }
+      }
+      return;
+    }
+    for(int i = offset; i < col- 1-offset; i++) {
+      list.add(matrix[offset][i]);
+    }
+    for(int i = offset; i < row- 1-offset; i++) {
+      list.add(matrix[i][col-1-offset]);
+    }
+    for(int i = col - 1- offset; i > offset; i--) {
+      list.add(matrix[row-1-offset][i]);
+    }
+    for(int i =row - 1- offset; i> offset; i--) {
+      list.add(matrix[i][offset]);
+    }
+    helper(matrix,list,offset+1,row, col);
+  }
+
+}
+
+
+
 }
