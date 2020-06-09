@@ -1,0 +1,23 @@
+static class Iterator {
+        Deque<TreeNode> stack;
+        public Iterator(TreeNode root) {
+            stack = new ArrayDeque<>();
+            this.pushLeft(root);
+        }
+
+         private void pushLeft(TreeNode root) {
+            while(root != null) {
+                stack.offerFirst(root);
+                root = root.left;
+            }
+        }
+        public int next(){
+             TreeNode cur = stack.pollFirst();
+            if(cur.right != null) {
+                this.pushLeft(cur.right);
+            }
+            return cur.val;
+        }
+    }
+
+}

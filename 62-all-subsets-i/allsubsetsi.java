@@ -11,7 +11,7 @@ public class Solution {
     }
     StringBuilder sb = new StringBuilder();
     int index = 0;
-    subSets(res, sb, 0, set;
+    subSets(res, sb, 0, set);
     return res;
 
   }

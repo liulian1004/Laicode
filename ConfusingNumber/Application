@@ -1,0 +1,51 @@
+Some of the digits can be rotated by 180 degrees to form new digits.
+e.g. When 0, 1, 6, 8, 9 are rotated 180 degrees,
+they become 0, 1, 9, 8, 6 respectively.
+When 2, 3, 4, 5 and 7 are rotated 180 degrees, they become invalid.
+
+
+A confusing number is a number that when rotated 180 degrees becomes
+a different number with each digit valid.
+(Note that the rotated number can be greater than the original number.)   10 → 01
+
+Given a positive integer N, return all the confusing numbers between 1 and N inclusive.
+
+private List<Integer> findConfusingNumber(int n) {
+        //T: O(n) S: O(1)
+        List<Integer> list = new ArrayList<>();
+        Map<Integer, Integer> map = buildMap();
+        for(int i = 1; i <= n; i++) {
+            if(confusingNum(map, i)) {
+                list.add(i);
+            }
+        }
+        return list;
+    }
+    private static Map<Integer, Integer>  buildMap() {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0,0);
+        map.put(1,1);
+        map.put(6,9);
+        map.put(8,8);
+        map.put(9,6);
+        return map;
+    }
+
+    private boolean confusingNum(Map<Integer, Integer> map, int i) {
+        int rev = 0;
+        int orig = i;
+        while( i >= 1) {
+            int digit = i %10;
+            // single digit is not in the map, don't check whether it's valid confusing number
+            if(map.get(digit) == null) {
+                return false;
+            }else {
+                digit = map.get(digit);
+            }
+            // reverse the num ex: 109 ==> 601 vs 101 ==> 101
+            i /= 10;
+            rev *= 10;
+            rev += digit;
+        }
+        return rev != orig;
+    }

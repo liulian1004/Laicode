@@ -1,5 +1,6 @@
 public class Solution {
   public void sort(Deque<Integer> s1) {
+     // T: O(n^2) S: O(n)
     Deque<Integer> s2 = new ArrayDeque<Integer>();
     //select sort
     if(s1 == null || s1.size() <= 1) {
@@ -11,6 +12,7 @@ public class Solution {
   // private void sort(Deque<Integer> input, Deque<Integer> buffer) {
   //   while(!input.isEmpty()) {
   //     int min = Integer.MAX_VALUE;
+  // count has to be initial to 0 here otherwise count will be accumlated
   //     int count = 0;
   //     // input -> buffer, mark min & count
   //     while(!input.isEmpty()) {

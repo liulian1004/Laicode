@@ -26,4 +26,16 @@ public class Solution {
     odd.next= evenHead;
     return head;
   }
+  //my soltuion
+  ListNode cur = head;
+    ListNode next = cur.next;
+    ListNode h2 = head.next;
+    while(next != null && next.next != null) {
+        cur.next = next.next;
+        next.next = next.next.next;
+        cur = cur.next;
+        cur.next = h2;
+        next = next.next;
+    }
+    return head;
 }

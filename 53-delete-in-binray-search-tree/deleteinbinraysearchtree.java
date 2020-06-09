@@ -11,6 +11,7 @@
 public class Solution {
   public TreeNode deleteTree(TreeNode root, int key) {
     // T: 找到key之前的部分 + findSmallest的while部分 => max： O(h); S: O(h);
+    //need to declare: always replace by the smallest element that is larager than target
     if(root == null) {
       return root;
     }

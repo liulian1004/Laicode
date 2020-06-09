@@ -1,4 +1,6 @@
 private List<String> schedule(char[] array) {
+//T: O(2^n) S: O(n)
+// ad"letter" or "letterX", the last index don't need add"letterX"
         List<String> list = new ArrayList<>();
         if(array == null || array.length == 0) {
             return list;
@@ -7,21 +9,19 @@ private List<String> schedule(char[] array) {
         helper(list, sb,0, array);
         return list;
     }
-    //每一层加多少个，要吐多少个
-    private void helper(List<String> list, StringBuilder sb, int k, char[] array) {
-        if(k == array.length - 1) {
-        //一加一吐
-            sb.append(array[k]);
+    private void helper(StringBuilder sb, List<String> list, int index, String s) {
+        if(index == s.length()) {
             list.add(sb.toString());
-            sb.deleteCharAt(sb.length()- 1);
             return;
         }
-        sb.append(array[k]);
-        sb.append('X');
-        helper(list, sb, k + 1,array);
-        //先吐一个
-        sb.deleteCharAt(sb.length()- 1);
-        helper(list,sb, k + 1, array);
-        //再吐一个
-        sb.deleteCharAt(sb.length()- 1);
+        sb.append(s.charAt(index));
+        helper(sb,list, index + 1, s);
+       sb.deleteCharAt(sb.length() - 1);
+
+        if(index < s.length() - 1) {
+            sb.append(s.charAt(index)).append('x');
+            helper(sb, list, index+1,s);
+            sb.delete(sb.length() - 2,sb.length());
+        }
+
     }

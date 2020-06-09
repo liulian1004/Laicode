@@ -53,4 +53,38 @@ public class Solution {
       }
       return res;
   }
+  //mysolution
+  public List<Integer> allAnagrams(String sh, String lo) {
+    // Write your solution here
+    List<Integer> list = new ArrayList<>();
+    if(sh == null || sh.length () == 0 || lo == null || sh.length() == 0) {
+      return list;
+    }
+    int[] map =  new int[26];
+    for(char c : sh.toCharArray()) {
+      map[c-'a']++;
+    }
+    int i = 0;
+    int j = 0;
+    int count = 0;
+    while(j < lo.length()) {
+      if(map[lo.charAt(j)- 'a'] > 0) {
+        count++;
+      }
+      map[lo.charAt(j)- 'a']--;
+      j++;
+            while(count == sh.length()) {
+            if(count == sh.length() && (j - i) == sh.length()) {
+                list.add(i);
+            }
+            if(map[lo.charAt(i)- 'a'] == 0) {
+              count--;
+            }
+            map[lo.charAt(i)- 'a']++;
+            i++;
+          }
+      }
+
+    return list;
+  }
 }

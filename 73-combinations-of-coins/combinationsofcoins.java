@@ -6,6 +6,7 @@ public class Solution {
     //4层 动态分支
     //
     //T= 99^4 --> [taget/min(coins)] ^n
+    // 4 power of 99
     //每一个node最多分出多少叉^层数（算up bound）
     //S: O(n)
     List<List<Integer>> res = new ArrayList<>();
@@ -26,8 +27,7 @@ public class Solution {
       }
         return;
       }
-      int max = moneyLeft / coins[index];
-      for(int i = 0; i<= max; i++) {
+      for(int i = 0; i<= moneyLeft / coins[index]; i++) {
         //cur.add(i);
         // moneyLeft如果再helper里面更改，不需要吐因为value不传
         //这里不能在helper外面先更改moneyLeft，因为每一次for loop是moneyleft的值都不变

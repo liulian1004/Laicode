@@ -3,6 +3,7 @@ public class Solution {
     // 皇后不冲突的三个条件
     // 1. 不在一行 2. 不在一列 3. 不在对角线上
     // T: n! * n S: O(n)
+    //dfs： 层高 n， 每一个branch代表这个piece可以放在哪一个位置
    List<List<Integer>> res = new ArrayList<>();
    List<Integer> cur = new ArrayList<>();// worse case: SO(n)
     helper(res, cur, n);

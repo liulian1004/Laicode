@@ -34,4 +34,36 @@ public class Solution {
       helper(matrix, res, offset + 1, size - 2);
 
   }
+
+  // my Solution
+  public List<Integer> spiral(int[][] matrix) {
+    // T: O(n) S: O(n)
+    List<Integer> list = new ArrayList<>();
+    if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return list;
+    }
+    helper(matrix, matrix.length, 0, list);
+    return list;
+  }
+  private void helper(int[][] matrix, int n, int offset, List<Integer> list) {
+    if(offset == n/2) {
+      if(n%2 == 1) {
+        list.add(matrix[offset][offset]);
+      }
+      return;
+    }
+    for(int i = offset; i < n -1 - offset; i++) {
+      list.add(matrix[offset][i]);
+    }
+    for(int i = offset; i < n -1- offset; i++) {
+      list.add(matrix[i][n-1-offset]);
+    }
+    for(int i = n-1-offset; i > offset ; i--) {
+      list.add(matrix[n-1-offset][i]);
+    }
+    for(int i = n-1-offset; i > offset; i--) {
+      list.add(matrix[i][offset]);
+    }
+    helper(matrix, n, offset+1,list);
+  }
 }

@@ -1,5 +1,8 @@
 public class Solution {
   public List<Integer> majority(int[] array) {
+    // find 2 winers
+  // go through again to check the count of 2 winers
+  // export the qualified one
     // 1 vs 2
     // pick up the first two candidiate, start to compare
     // after literation find the two candidate, one of it must be the answer
