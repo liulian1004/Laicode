@@ -1,5 +1,16 @@
 public class Solution {
   public int missing(int[] array) {
+    //my Solution
+    //T: O(n)
+    int sum = 0;
+    for(int i = 1; i <= array.length + 1; i++){
+      sum += i;
+    }
+    for(int i :array){
+      sum -= i;
+    }
+
+    return sum;
     //希望寻找到n的范围
     int n = array.length + 1;
     //Solution 1 T: O^2, S: O(n)
