@@ -43,4 +43,45 @@ public class Solution {
     // 长变短，需要强制转换
     return (int)sum;
   }
+  // my Solution
+  public class Solution {
+  public int atoi(String str) {
+    // T: O(n)
+    if(str == null || str.length() == 0) {
+      return 0;
+    }
+    str = str.trim();
+    boolean negative = false;
+    int i = 0;
+    if(str.charAt(0) == '-') {
+      negative = true;
+      i++;
+    }else if(str.charAt(0) == '+'){
+      i++;
+    }
+    long res = 0;
+    while(i <= str.length() -1) {
+      char c = str.charAt(i);
+      if(c < '0' || c > '9') {
+        break;
+      }else {
+        res  *= 10;
+        res += (c -'0');
+        i++;
+      }
+      if(res >= Integer.MAX_VALUE + 1l) {
+        res = Integer.MAX_VALUE + 1l;
+        break;
+      }
+    }
+    if(res == Integer.MAX_VALUE + 1l) {
+      if(negative == true) {
+        return Integer.MIN_VALUE;
+      }
+      return Integer.MAX_VALUE;
+    }
+    return negative == true? (int)(res *(-1)) : (int)(res);
+  }
+}
+
 }

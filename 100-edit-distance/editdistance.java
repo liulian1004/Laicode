@@ -33,4 +33,26 @@ public int editDistance(String one, String two) {
     }
     return m[one.length()][two.length()];
   }
+  //优化空间
+  public int editDistance(String one, String two) {
+    // T： O(n^m) S: O(m)
+    if(one == null || two == null) {
+      return -1;
+    }
+    int[][] dp = new int[2][two.length()+ 1];
+    for(int i = 0; i <= one.length(); i++) {
+      for(int j = 0; j <= two.length(); j++) {
+        if(i == 0) {
+          dp[i%2][j] = j;
+        }else if(j == 0) {
+          dp[i%2][j] = i;
+        }else if(one.charAt(i-1) == two.charAt(j-1)) {
+          dp[i%2][j] = dp[(i-1)%2][j-1];
+        }else {
+          dp[i%2][j] = Math.min(dp[(i-1)%2][j-1], Math.min(dp[i%2][j-1],dp[(i-1)%2][j]))+1;
+        }
+      }
+    }
+    return dp[one.length() % 2][two.length()];
+  }
 }

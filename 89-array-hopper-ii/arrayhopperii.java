@@ -27,3 +27,26 @@ public class Solution {
   }
   return m[n-1];
 }
+//my solution jump back the last step
+public int minJump(int[] array) {
+    // Write your solution here
+    if(array == null || array.length <= 1) {
+      return 0;
+    }
+    int[] dp = new int[array.length];
+    dp[array.length - 1] = 0;
+    for(int i = array.length -2; i >= 0; i--) {
+      int min = Integer.MAX_VALUE;
+      for(int j = i+1; j <= (i + array[i]) && j <=(array.length - 1); j++) {
+        if(dp[j] != -1) {
+           min = Math.min(min, dp[j]);
+        }
+      }
+      if(min != Integer.MAX_VALUE) {
+        dp[i] = min + 1; // 2
+      }else {
+        dp[i] = -1;
+      }
+    }
+    return dp[0];
+  }
