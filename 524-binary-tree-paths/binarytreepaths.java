@@ -17,32 +17,24 @@ public class Solution {
     }
       StringBuilder cur = new StringBuilder();
       helper(root, list, cur);
-    return list.toArray(new String[0]);
+    return list.toArray(new String[list.size()]);
   }
-  private void helper(TreeNode root, List<String> list, StringBuilder cur) {
-    //在最后一层加入list
-    if(root == null) {
-      return;
-    }
-    //没进一层如果cur不是空就加符号
-    if (cur.length()>0) {
-      cur.append("->");
-    }
-    //吃
-    cur.append(root.key);
-    int len = cur.length();
-    if(root.left == null && root.right == null) {
-        list.add(cur.toString());
-        return;
+  private void helper(TreeNode root, List<String> list, StringBuilder sb) {
+      if(root == null) {
+          return;
       }
-    // helper(root.left, list, new StringBuilder(cur));
-    // helper(root.right, list, new StringBuilder(cur));
-    //len是append之前的len
-    helper(root.left, list, cur);
-    //吐
-    cur.delete(len, cur.length());
-    helper(root.right, list, cur);
-    cur.delete(len, cur.length());
+      if(root != null && root.left == null && root.right == null){
+          sb.append(root.key);
+          list.add(sb.toString());
+          //sb.deleteCharAt(sb.length()-1);
+          return;
+      }
+      sb.append(root.key);
+      sb.append("->");
+      int len = sb.length();
+      helper(root.left, list, sb);
+      sb.delete(len, sb.length());
+      helper(root.right, list,sb);
   }
 }
 

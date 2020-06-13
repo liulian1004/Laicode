@@ -11,6 +11,13 @@
 public class Solution {
   public List<Integer> zigZag(TreeNode root) {
     // cur layer alwasy store the nodes from left to right
+//    deque    first            last
+//
+// 0		          3                     pollLast(), offerFirst(right，left)
+// 1             2 3                   pollFirst(), offerLast(left, right)
+// 2   	         4  5 0                   pollLast(), offerFirst(right，left)
+// 3             7  8 5 3              pollFirst(), offerLast(left,right)
+
     //T： O(n); S: O(n)
     List<Integer> result = new ArrayList<>();
     if(root == null) {
