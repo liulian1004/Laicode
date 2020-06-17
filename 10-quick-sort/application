@@ -24,16 +24,15 @@ public class Solution {
     //先判断不需要swap的情况
     //剩余情况都要swap，两边都需要移动
     while (i <= j) {
-      if(array[i] <= array[right]) {
+      if(array[i]<= array[right]) {
         i++;
-      } else if(array[j] > array[right]) {
-      j--;
+        continue;
       }
-      else {
-        swap(array,i,j);
-        i++;
+        if(array[j] > array[right]){
         j--;
+        continue;
       }
+        swap(array, i, j--);
     }
     swap(array, i, right);
     //这里pivot已经消失，所以要用i代替
