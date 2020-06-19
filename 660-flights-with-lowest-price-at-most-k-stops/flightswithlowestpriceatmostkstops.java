@@ -42,4 +42,55 @@ public class Solution {
     }
     return cost != Integer.MAX_VALUE? cost : -1;
   }
+  //dfs my solution time out T: O(n^k) S: O(k) + O(map)
+  //因为图可能有环，所以T不是v+E，只能按worse case 每一次branch为n-1
+  if(flights == null || flights.length == 0 || flights[0].length == 0) {
+            return -1;
+        }
+        if(dst == src) {
+            return 0;
+        }
+        Map<Integer, List<Pair>> map = builder(flights);
+        int res = Integer.MAX_VALUE;
+        helper(map, res, 0, k+1,src,dst);
+        return res == 0 ?-1 : res;
+
+    }
+    private void helper(Map<Integer, List<Pair>> map, int res, int cur, int level,int src, int dst) {
+        if(level < 0){
+            return;
+        }
+        if(src == dst) {
+            res = Math.min(res,cur);
+            return;
+        }
+        List<Pair> list = map.get(src);
+        if(list == null) {
+            return;
+        }
+        for(int i = 0; i < list.size(); i++) {
+            if((cur + list.get(i).cost) < res) {
+                helper(map, res, cur + list.get(i).cost, level-1,list.get(i).city, dst);
+            }
+        }
+    }
+    private Map<Integer, List<Pair>> builder(int[][] flights) {
+       Map<Integer, List<Pair>> map = new HashMap<>();
+        for(int[] group: flights) {
+            if(!map.containsKey(group[0])) {
+                map.put(group[0], new ArrayList<>());
+            }
+        map.get(group[0]).add(new Pair(group[1],group[2]));
+        }
+        return map;
+    }
+
+    static class Pair{
+        int city;
+        int cost;
+        public Pair(int city, int cost) {
+            this.city = city;
+            this.cost = cost;
+        }
+    }
 }
