@@ -1,0 +1,35 @@
+//Given an array of numbers
+//find the maximum product formed by multiplying numbers of an increasing subsequence of that array.
+
+min[i]/max[i] represents the min/max products that end at index i
+
+induction rule:
+if(array[i] > array[j]) ==> max[i] = max(dp[i]*array[i],min[j]*array[i], array[i])
+//base case:
+dp[i] = array[i] ==>some element won't be initailized in the induction if array[i] >= array[j]
+
+//T: O(n^2) S: O(n)
+
+private int maxProduct(int[] array) {
+      if(array == null || array.length <= 0) {
+          throw new IllegalArgumentException("Illegal input");
+      }
+      int res = array[0];
+      int[] min = new int[array.length];
+       int[] max = new int[array.length];
+       for(int i = 0; i<array.length; i++) {
+           min[i] = array[i];
+           max[i] = array[i];
+       }
+       for(int i = 1; i < array.length; i++) {
+           for(int j = i-1; j >= 0; j--) {
+               if(array[i] > array[j]) {
+                   min[i] = Math.min(array[i], Math.min(min[j]*array[i],max[j]*array[i]));
+                   max[i] = Math.max(array[i], Math.max(min[j]*array[i], max[j]*array[i]));
+                   res = Math.max(res, max[i]);
+                   break;
+               }
+           }
+       }
+       return res;
+   }
