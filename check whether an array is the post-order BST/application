@@ -1,0 +1,28 @@
+//check whether an array is a valid post-order BST
+
+public boolean isValid(int[] array) {
+        if(array == null || array.length <= 1) {
+            return true;
+        }
+        return recru(array,0,array.length -1);
+
+   }
+   private boolean recru(int[] array,int left, int right) {
+        if(left >= right) {
+            return true;
+        }
+        int root = array[right];
+        int i = right -1;
+        while(i >= left && array[i] > root ) {
+            i--;
+        }
+        int split = i;
+        while(i >= left) {
+            if(array[i] >= root) {
+                return false;
+            }
+            i--;
+        }
+        return recru(array, left, split) && recru(array,split+1,right-1);
+
+   }

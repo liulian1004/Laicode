@@ -1,0 +1,39 @@
+//give a binary tree, get a random node in the binary tree
+// solution : reservoir sampling
+//读进steam中第N个element，以1/n的概率将sample替换新进入的element
+
+//T: O(n) S: O(h)
+private TreeNode getRandom(TreeNode root) {
+    if(root == null) {
+    return root;
+    }
+    TreeNode[] res = new TreeNode[1];
+    int[] h = new int[1];
+    helper(root, res, h);
+    return res[0];
+}
+private void helper(TreeNode root, TreeNode[] res, int[] h) {
+  if(root == null) {
+    return;
+  }
+  h[0]++;
+  int random = (int)(Math.random() * h);
+  if(random == 0) {
+  res[0] = root;
+  }
+  helper(root.left, res, h);
+  helper(root.right, res,h);
+}
+//follow up:
+if the tree can't be stored in the memory
+bottleneck is read the node because if want to get the random treenode, we have to read the node one by one
+solution:
+process in parallel.
+split the big tree into small tree, and combine the results into one tree to do weight reservoir sampling calculation
+for example
+
+                5
+      /                     \
+   6(res: 20, size 4)      7(res: 15, size 5)
+
+  root 5的random结果是 size  4 + 1 + 5 ==》do the weigth sample if res = 3, random res = 20, if res = 8 random res = 15
