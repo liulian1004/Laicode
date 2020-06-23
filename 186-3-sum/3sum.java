@@ -32,6 +32,10 @@ public class Solution {
             while(left < right && array[left] == array[left-1]) {
               left++;
             }
+            //对left，right去重效果是一样的
+            // while(j < k && array[k] == array[k+1]) {
+          //   k--;
+          // }
         }
         else if(tmp < sum) {
           left++;

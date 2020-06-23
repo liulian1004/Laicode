@@ -9,15 +9,15 @@ private TreeNode getRandom(TreeNode root) {
     }
     TreeNode[] res = new TreeNode[1];
     int[] h = new int[1];
-    helper(root, res, h);
+    helper(root, res, count);
     return res[0];
 }
-private void helper(TreeNode root, TreeNode[] res, int[] h) {
+private void helper(TreeNode root, TreeNode[] res, int[] count) {
   if(root == null) {
     return;
   }
-  h[0]++;
-  int random = (int)(Math.random() * h);
+  count[0]++;
+  int random = (int)(Math.random() * count[0]);
   if(random == 0) {
   res[0] = root;
   }

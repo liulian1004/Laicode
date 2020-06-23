@@ -75,12 +75,6 @@ public class Solution {
         return true;
       }
       set.add(target - root.key);
-      boolean left = helper(root.left, target, set);
-      boolean right = helper(root. right, target,set);
-      if(left || right) {
-        return true;
-      }
-      return false;
-
+      return helper(root.left, set, target) || helper(root.right, set, target);
     }
 }
