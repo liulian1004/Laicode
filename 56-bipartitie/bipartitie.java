@@ -50,5 +50,35 @@ public class Solution {
     }
     return true;
   }
-
+// my solution
+public boolean isBipartite(List<GraphNode> graph) {
+    // T: O(Vertex * edge)
+    //S: O(vertex)
+    Map<GraphNode, Integer> visited = new HashMap<>();
+    for(GraphNode node: graph) {
+      if(!visited.containsKey(node)) {
+          visited.put(node, 1);
+          if(!helper(node, visited, 1)) {
+            return false;
+          }
+      }
+    }
+    return true;
+  }
+  private boolean helper(GraphNode node, Map<GraphNode, Integer> map,int group) {
+    group = 1 - group;
+    for(GraphNode nei: node.neighbors) {
+        if(!map.containsKey(nei)) {
+          map.put(nei, group);
+          if(!helper(nei, map, group)){
+            return false;
+          }
+        }else {
+          if (map.get(nei) != group) {
+            return false;
+          }
+        }
+    }
+    return true;
+  }
 }

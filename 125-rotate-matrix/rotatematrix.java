@@ -1,21 +1,34 @@
 public class Solution {
   public void rotate(int[][] matrix) {
     // T: O(n * n) S: O(1)
+    //clockwise 90 main diagonal+ y axle
+    // ant-closkwise 90 second diagonal + x axle
+    // 180  y axle + x axle
     if(matrix.length == 0 || matrix[0].length == 0) {
       return;
     }
     int n = matrix.length;
-    for(int level = 0; level < n/2; level++) {
-      int left = level;
-      //end before the last element
-      int right = n-1-level-1;
-      for(int i = left; i <= right; i++) {
-        int tmp = matrix[left][i];
-        matrix[left][i] = matrix[n-1-i][left];
-        matrix[n-1-i][left] = matrix[n-1-left][n-1-i];
-        matrix[n-1-left][n-1-i] = matrix[i][n-1-left];
-        matrix[i][n-1-left] = tmp;
+    flipDigonal(matrix,n);
+    flipY(matrix,n);
+
+  }
+  private void flipDigonal(int[][] matrix, int n) {
+   for(int i =0; i < n; i++) {
+     for(int j = i+1; j < n; j++) {
+       swap(matrix, i, j, j, i);
+     }
+   }
+  }
+  private void flipY(int[][] matrix, int n) {
+    for(int i = 0; i < n; i++) {
+      for(int j = 0; j < n/2; j++) {
+        swap(matrix, i, j, i, n-1-j);
       }
     }
+  }
+  private void swap(int[][] matrix, int x1, int y1, int x2, int y2) {
+    int temp = matrix[x1][y1];
+    matrix[x1][y1] = matrix[x2][y2];
+    matrix[x2][y2] = temp;
   }
 }

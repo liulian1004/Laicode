@@ -1,7 +1,7 @@
 public class Solution {
   public boolean isHappy(int n) {
-    // fast/slow + linkedlist ==》loop查重
-    //T: O(n) --> the length of linkedlist
+    //// case 1 : fast will be 1
+    // case2: fast == slow, but they are not 1
     if(n <= 0){
         return false;
     }

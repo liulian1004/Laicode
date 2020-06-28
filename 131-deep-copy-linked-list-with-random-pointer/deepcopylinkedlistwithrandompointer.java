@@ -11,7 +11,7 @@
 public class Solution {
   public RandomListNode copy(RandomListNode head) {
     // T: O(n) S: O(n)
-    // map<head, head.value>
+    // map<head, head'>
     if(head == null) {
       return null;
     }

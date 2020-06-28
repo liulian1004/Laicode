@@ -8,8 +8,9 @@ public class Solution {
     return array;
   }
   private void quickSort(int[] array, int left, int right) {
-  //当 partition到只有一个元素的时候，即在上一层，i，j都是指向一个element
-  //走到下一层的时候，i > p,所以考虑到这种情况要return
+  //if input size = 2
+  //recusrion 会变成【‘’】 和 【一个元素】
+  //left > right是代表[" "]的情况
     if(left >= right) {
       return;
     }
