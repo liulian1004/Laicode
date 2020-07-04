@@ -18,50 +18,29 @@ public class Solution {
   int[][] right = new int[row+2][col + 2];
   int[][] up = new int[row+2][col + 2];
   int[][] down = new int[row+2][col + 2];
-  int[][] leftUp = leftupbuilder(matrix, left, up);
-  int[][] rightDown = rightdownbuilder(matrix, right, down);
-  return merge(leftUp, rightDown);
-  }
-
-  private int[][] leftupbuilder(int[][] matrix, int[][] left, int[][] up) {
-    for(int i = 0; i < matrix.length; i++) {
-      for(int j = 0; j < matrix[0].length; j++) {
+  for(int i = row - 1; i>= 0; i--) {
+      for(int j = col-1; j >= 0; j--) {
         if(matrix[i][j] == 1) {
-        left[i+1][j+1] = left[i+1][j] + 1 ;
-        up[i+1][j+1] = up[i][j+1] + 1;
-      }
-    }
-  }
-  merge(left, up);
-  return left;
-}
-
-  private int[][] rightdownbuilder(int[][] matrix, int[][] right, int[][] down) {
-    for(int i = matrix.length - 1; i >= 0; i--) {
-      for(int j = matrix[0].length - 1 ; j >= 0; j--) {
-        if(matrix[i][j] == 1) {
-        right[i+1][j+1] = right[i+1][j +2] + 1;
-      down[i+1][j+1] = down[i+ 2][j+1] + 1;
+          right[i+1][j+1] = right[i+1][j+2] + 1;
+          down[i+1][j+1] = down[i+2][j+1] + 1;
         }
       }
     }
-  merge(right, down);
-  return right;
-}
-
-  private int merge(int[][] a, int[][] b){
-    int result = 0;
-    for(int i = 0; i < a.length; i++) {
-      for(int j = 0; j < a[0].length; j++) {
-      int cur = Math.min(a[i][j], b[i][j]);
-      //更新a[i][j]的值用于return
-      a[i][j] = cur;
-      result = Math.max(cur, result);
+    int length = 0;
+    for(int i = 0; i< row; i++) {
+      for(int j = 0; j < col; j++) {
+        if(matrix[i][j] == 1) {
+          left[i+1][j+1] = left[i+1][j] +1;
+          up[i+1][j+1] = up[i][j+1] + 1;
+          int t1 = Math.min(left[i+1][j+1], up[i+1][j+1]);
+          int t2 = Math.min(right[i+1][j+1], down[i+1][j+1]);
+          length = Math.max(length, Math.min(t1,t2));
+        }
       }
     }
-  return result;
-
+    return length;
   }
+}
 
     // T: O(n * n) S: O(m *n)
     int row = matrix.length;

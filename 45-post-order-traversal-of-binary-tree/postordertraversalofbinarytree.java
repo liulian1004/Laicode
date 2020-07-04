@@ -41,4 +41,26 @@ public class Solution {
     }
     return res;
   }
+  //my Solution
+  //revsese : root rightSubTree ,leftSubTree
+  public List<Integer> postOrder(TreeNode root) {
+    List<Integer> list = new ArrayList<>();
+    if(root == null ) {
+      return list;
+    }
+    Deque<TreeNode> stack = new ArrayDeque<>();
+    stack.offerFirst(root);
+    while(!stack.isEmpty()) {
+      TreeNode cur = stack.pollFirst();
+      list.add(cur.key);
+      if(cur.left != null) {
+        stack.offerFirst(cur.left);
+      }
+      if(cur.right != null ) {
+        stack.offerFirst(cur.right);
+      }
+    }
+    Collections.reverse(list);
+    return list;
+  }
 }

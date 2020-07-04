@@ -13,6 +13,8 @@ public class Solution {
     if(col == 0) {
       return res;
     }
+    //left: 从左到右
+    //up： 从上到下
     int[][] left = new int[row + 1][col + 1];
     int[][] up = new int[row + 1][col + 1];
     for(int i = 0; i < row; i++) {
@@ -24,7 +26,8 @@ public class Solution {
         //for loop:先查两边的最短距离，然后在查另外两边的具体是不是大于或者等于最短距离
         //left[i+1][j+1]/up[i+1[j+1]在mtrix为同一个位置（左下角）
         for(int maxLength = Math.min(left[i+1][j+1], up[i+1][j+1]); maxLength >= 1; maxLength-- ){
-          //i+1- maxLength +1/j+1-maxLength +1 是找到下一个顶点的左边
+          //left:i+1- maxLength +1 找到 右上的顶点
+          //up: j+1-maxLength +1 找到左下的顶点
           if(left[i+1-maxLength + 1][j+1] >= maxLength && up[i+1][j+1-maxLength +1] >= maxLength) {
             res = Math.max(res, maxLength);
             break;

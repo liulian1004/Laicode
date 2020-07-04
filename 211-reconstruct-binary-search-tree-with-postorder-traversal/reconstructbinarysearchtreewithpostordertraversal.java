@@ -31,3 +31,47 @@ public class Solution {
     return root;
   }
 }
+// my solution:
+// create a in-order array, do in-order + postorder reconstruct
+public TreeNode reconstruct(int[] post) {
+    // Write your solution here
+    if(post == null || post.length == 0) {
+      return null;
+    }
+    int[] inOrder = new int[post.length];
+    for(int i = 0 ; i < inOrder.length; i++) {
+      inOrder[i] = post[i];
+    }
+    Arrays.sort(inOrder);
+    return recon(inOrder, post);
+  }
+  private TreeNode recon(int[] inOrder, int[] postOrder) {
+    // T: O(n) S: O(n)
+    if(inOrder == null || postOrder == null || inOrder.length == 0 || postOrder.length == 0) {
+      return null;
+    }
+    Map<Integer, Integer> map = buildMap(inOrder);
+    return helper(0,inOrder.length -1, 0, postOrder.length - 1, postOrder, map);
+  }
+  private TreeNode helper(int inLeft, int inRight, int postLeft, int postRight, int[] postOrder, Map<Integer, Integer> map) {
+    if(inLeft > inRight) {
+      return null;
+    }
+    TreeNode root = new TreeNode(postOrder[postRight]);
+    int index = map.get(postOrder[postRight]);
+    int leftSubTree = index - inLeft;
+    int rightSubTree = inRight - index;
+    TreeNode left = helper(inLeft, index - 1, postLeft, postLeft + leftSubTree - 1, postOrder, map);
+    TreeNode right = helper(index + 1, inRight, postLeft+leftSubTree,postRight-1,postOrder, map);
+    root.left = left;
+    root.right = right;
+    return root;
+  }
+  private Map<Integer, Integer> buildMap(int[] inOrder) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for(int i = 0; i < inOrder.length; i++) {
+      map.put(inOrder[i], i);
+    }
+    return map;
+  }
+}

@@ -3,6 +3,33 @@ public class Solution {
     if(array == null | array.length <= 3) {
       return false
     }
+    // my solution T: O(n^2) S: O(n)
+    // the qualified pair.right < next pair.left
+   if(array == null || array.length < 4) {
+     return false;
+   }
+   Map<Integer, Pair> map = new HashMap<>();
+   for(int i = 1; i < array.length; i++) {
+     for(int j = 0; j < i; j++) {
+       int temp = array[i] + array[j];
+       if(map.containsKey(target - temp) && map.get(target - temp).right < j) {
+         return true;
+       }
+       if(!map.containsKey(temp)) {
+          map.put(temp, new Pair(j,i));
+       }
+     }
+   }
+   return false;
+ }
+ static class Pair{
+     int left;
+     int right;
+     Pair(int left, int right) {
+       this.left = left;
+       this.right = right;
+     }
+ }
     //Solution 1: 2 for loop + 2 sum
     //T: O(n^3); S: O(1)
     Arrays.sort(array);

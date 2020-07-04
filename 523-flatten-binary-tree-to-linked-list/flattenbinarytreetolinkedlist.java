@@ -11,7 +11,8 @@
 public class Solution {
   public TreeNode flatten(TreeNode root) {
     //T: O(n), S:O(h)
-
+    // reverse pre-order
+     //先右后左
     //from down to up
     TreeNode[] preRoot = new TreeNode[1];
     helper(root, preRoot);

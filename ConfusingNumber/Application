@@ -13,7 +13,8 @@ Given a positive integer N, return all the confusing numbers between 1 and N inc
 private List<Integer> findConfusingNumber(int n) {
         //T: O(n) S: O(1)
         List<Integer> list = new ArrayList<>();
-        Map<Integer, Integer> map = buildMap();
+        Set<Integer> inValid = buildInvalid();
+        Set<Integer> valid = buildValid();
         for(int i = 1; i <= n; i++) {
             if(confusingNum(map, i)) {
                 list.add(i);
@@ -21,31 +22,32 @@ private List<Integer> findConfusingNumber(int n) {
         }
         return list;
     }
-    private static Map<Integer, Integer>  buildMap() {
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(0,0);
-        map.put(1,1);
-        map.put(6,9);
-        map.put(8,8);
-        map.put(9,6);
-        return map;
+    private static Set<Integer>  buildInvalid() {
+        Set<Integer> set = new HashSet<>();
+        set.add(2);
+        set.add(3);
+        set.add(4);
+        set.add(5);
+        return set;
+    }
+    private static Set<Integer>  buildInvalid() {
+        Set<Integer> set = new HashSet<>();
+        set.add(6);
+        set.add(9);
+        return set;
     }
 
     private boolean confusingNum(Map<Integer, Integer> map, int i) {
-        int rev = 0;
-        int orig = i;
+        boolean valid = false;
         while( i >= 1) {
             int digit = i %10;
             // single digit is not in the map, don't check whether it's valid confusing number
-            if(map.get(digit) == null) {
+            if(inValid.contains(digit)) {
                 return false;
-            }else {
-                digit = map.get(digit);
             }
-            // reverse the num ex: 109 ==> 601 vs 101 ==> 101
-            i /= 10;
-            rev *= 10;
-            rev += digit;
+            if(valid.contains(digit)) {
+            valid = true;
+            }
         }
-        return rev != orig;
+        return valid == true;
     }

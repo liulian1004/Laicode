@@ -3,6 +3,9 @@ public class Solution {
     // T: N^3; S: N^2
     // creat the modle: 2D matrix
     // every point is a 2bit(ab) ==> a == 1 has down; b == 1 has right
+    //0，无下无右，1右，2下，3，下+ 右
+    // left + down, 查右下角只有在顶点的情况
+    //和surrounding 1相反，从左上角开始找起
     int res = 0;
     int row = matrix.length;
     if(row == 0) {
@@ -38,15 +41,14 @@ public class Solution {
     }
      return res;
   }
-//只要保证有right即可，会包含有down的情况
-  private boolean hasRight(int value) {
-      return (value & 0b1) != 0;
-      }
-  private boolean hasDown(int value) {
-    return (value & 0b10) != 0;
-  }
-  private boolean rightDown(int value) {
-    return value == 0b11;
-  }
+  private boolean hasRight(int val) {
+      return val == 1 || val == 3;
+    }
+    private boolean hasDown(int val) {
+      return val == 2 || val == 3;
+    }
+    private boolean rightDown(int val) {
+      return val == 3;
+    }
 
 }

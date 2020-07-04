@@ -1,8 +1,9 @@
 public class Solution {
   public int maxTrapped(int[] array) {
-    //greedy,面试是需要证明
+    //这个solution是greedy，要证明
     //T: O(n); S: O(1)
     //蓄水能力 = Math.min(leftBound, rightBound) - 柱子的高度 或 0(如果之前的值是负数)
+    //最旁边的两边柱子都蓄不了水
     if(array == null || array.length <= 2) {
       return 0;
     }

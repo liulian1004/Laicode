@@ -31,7 +31,6 @@ public ListNode reverseInPairs(ListNode head) {
       return head;
     }
     ListNode dummy = new ListNode(-1);
-    dummy.next = head;
     ListNode pre = dummy;
     while(head != null && head.next != null) {
       ListNode next = head.next.next;

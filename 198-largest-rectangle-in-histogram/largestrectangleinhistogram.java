@@ -3,10 +3,12 @@ public class Solution {
     //T： O(n); S:O(n)
     //linear scan and look back
     //每一node只能进stack一次，出stack一次，时间复杂度是O(n)
-    // one for loop + linear scan+回头看（stack）
+    // one for loop + linear scan to find the right bound and look back to find the left bound from stack
+    // stack： keep the possible left bound
     //每一次poll出计算的面积是index of stakc.pollFirst() 往left方向的最大rectangle 面积
     //递增就把high放到stack里
     //递减就poll出来stack算面积
+    //
     int size = 0;
     //stack里存的是index
     //为了计算左边界
@@ -30,6 +32,24 @@ public class Solution {
         size = Math.max(size, height * (i - left));
       }
       //无论是否之前poll出，都将这一轮index放入stack
+      stack.offerFirst(i);
+    }
+    return size;
+  }
+  // my code
+  int size = 0;
+    if(array == null || array.length == 0) {
+      return size;
+    }
+    Deque<Integer> stack = new ArrayDeque<>();
+    for(int i = 0; i <= array.length; i++) {
+      int rightBoundHeight = i < array.length? array[i] : 0;
+      while(!stack.isEmpty() && rightBoundHeight <= array[stack.peekFirst()] ) {
+        int height = array[stack.pollFirst()];
+        int right = i;
+        int left = stack.isEmpty()? 0 :stack.peekFirst() + 1;
+        size = Math.max(size, height * (right - left));
+      }
       stack.offerFirst(i);
     }
     return size;

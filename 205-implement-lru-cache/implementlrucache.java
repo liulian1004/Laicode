@@ -2,6 +2,7 @@ public class Solution<K, V> {
   // limit is the max capacity of the cache
   // linkHashMap + hashmap<k, node<k,v>>
   // latest recently used
+  //node is the input data structure, map is the index to findout the node in the doulbe node structure
   static class Node<K,V> {
     Node<K,V> next;
     Node<K,V> prev;

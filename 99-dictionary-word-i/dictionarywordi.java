@@ -20,7 +20,7 @@ public class Solution {
             // no cut + one cut at different position of subString[j,i)
             //input.substring 是O(n), set.contains shi O(n)
             //这两个API不是同一时间操作，所有时间复杂度是n+n
-            //i,j mapping to array is j-1， i-1 ==> the scope of substring is (i,j) 
+            //i,j mapping to array is j-1， i-1 ==> the scope of substring is (i,j)
             if(set.contains(input.substring(j, i)) && m[j]) {
               m[i] = true;
               //如果已经确认里一个substring里有一个位置能分割成在字典里面的单词，就不需要在往下判断了
@@ -38,4 +38,30 @@ public class Solution {
     }
     return set;
   }
+}
+// my Solution
+boolean[] dp = new boolean[input.length()];
+   for(int i = 0; i < input.length(); i++) {
+      if(isValid(0, i, input, dict)) {
+      dp[i] = true;
+      continue;
+    }
+	  for(int j = 0; j < i; j++) {
+        if(isValid(j+1,i,input, dict) && dp[j]) {
+        dp[i] = true;
+        break;
+      }
+    }
+  }
+  return dp[input.length()-1];
+}
+
+private boolean isValid(int left, int right, String input, String[] dict) {
+	String cur = input.substring(left, right+1);
+	for(String s: dict) {
+      if (s.equals(cur)) {
+      return true;
+    }
+  }
+  return false;
 }
