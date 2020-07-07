@@ -1,6 +1,7 @@
 public class Solution {
   public int ladderLength(String beginWord, String endWord, List<String> wordList) {
     // S; O(n) T: num of word Length +  wordList length
+    //Asumption: end word must be in the wordList
     Set<String> visited = new HashSet<>();
     Set<String> dic = new HashSet<>();
     for(String s: wordList){
@@ -48,3 +49,5 @@ public class Solution {
     return list;
   }
 }
+//follow up: how print a shortest ladder
+//记录一个pre[node]: hashMap records a predecessor of the given node during the bfs

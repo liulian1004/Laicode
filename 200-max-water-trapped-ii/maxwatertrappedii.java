@@ -12,6 +12,7 @@ public class Solution {
     if(row < 3 || col < 3) {
       return res;
     }
+    //gnerate矮的，是相当于在2d 书库里，已经比较了左右边界，选一个比较矮的那一边
     PriorityQueue<Pair> minHeap = new PriorityQueue<>(new MyCompare());
     boolean[][] visited = new boolean[row][col];
     buildQueue(matrix, minHeap, visited, row, col);
@@ -19,13 +20,14 @@ public class Solution {
       Pair cur = minHeap.poll();
       List<Pair> list = getNei(cur, matrix, row,col);
       for(Pair nei: list) {
+        //第一次走这边，相当于把整个水库的外围都排除掉，因为水库的外围是不蓄水的
         if(visited[nei.row][nei.col] == true){
           continue;
         }
         visited[nei.row][nei.col] = true;
         //cur相当于从0index开始，这里计算的是nei的蓄水量
         res += Math.max(cur.height - nei.height,0);
-        //跟新left bound的max
+        //跟新较矮的那一边的的max bound
         nei.height = Math.max(cur.height, nei.height);
         minHeap.offer(nei);
       }

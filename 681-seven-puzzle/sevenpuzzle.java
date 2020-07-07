@@ -1,13 +1,18 @@
 public final static int R = 2;
    public final static int C = 4;
-
+   // overide equals 和 hashcod一起
    public static void main(String[] args) {
+     //T： O(8!) --> O(v+E) --> O(1)
+     //S: O(1)
        BFS result = new BFS();
        int[] values = new int[]{1,0,5,2,4,3,6,7};
        System.out.println(result.numOfSteps(values));
 
    }
-
+   //bfs1
+//每一个棋盘的status, 把起始状态放入queue
+// expand from queue. and general its neigh(4个方向)，注意去重
+//
    private int numOfSteps(int[] values) {
        if (values == null || values.length < R * C) {
            return -1;
@@ -179,3 +184,8 @@ public final static int R = 2;
        board.y +=1;
        return board;
    }
+
+// follow up : only one final board, but input has different
+// preprocessing : do a single bfs from final status, and keep the status and its steps in the HashMap
+//time: O(1)
+//follow up : mutlie ending borads? 终点有几个，做几个不同的map

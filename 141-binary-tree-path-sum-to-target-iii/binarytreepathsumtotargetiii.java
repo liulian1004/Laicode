@@ -46,6 +46,62 @@ public class Solution {
    if(needRemove) {
      prefixSums.remove(sum);
    }
-    return leftTree == true? leftTree : rightTree;;
+    return leftTree || rightTree;
   }
 }
+//follow up
+// how about node to node?
+// post -order
+//create the class with set and boolean
+// case 1: root == null == > return Result
+//recusion rule
+//case1 : if root + prefixsum of left tree/right tree == target == > return res.true;
+//case2: if root + prefixsum of lefttree + prefixsum of right tree == tareget == > return res.true
+//case3: not qualified, prefixsum of left tree+ prefixsum of right tree + root.val
+
+private boolean solution(TreeNode node, final int target) {
+        return Ptp(node, target).res;
+   }
+   private Result Ptp(TreeNode node, final int target) {
+        Result result = new Result();
+        if (node == null) {
+            return result;
+        }
+        Result left = Ptp(node.left, target);
+        if (left.res) {
+            return left;
+        }
+        Result right = Ptp(node.right, target);
+        if (right.res) {
+            return right;
+        }
+        int curTarget = target - node.key;
+        // Check one side
+        if (left.set.contains(curTarget) || right.set.contains(curTarget)) {
+            result.res = true;
+            return result;
+        }
+        Set<Integer> set1 = left.set.size() > right.set.size() ? right.set : left.set;
+        Set<Integer> set2 = left.set.size() > right.set.size() ? left.set : right.set;
+        for (Integer i : set1) {
+            int cur = curTarget - i;
+            if (set2.contains(cur)) {
+                result.res = true;
+                return result;
+            }
+        }
+        // no candidate up to here.
+       result.set.add(node.key);
+        for (Integer i : left.set) {
+            result.set.add(node.key + i);
+        }
+       for (Integer i : right.set) {
+           result.set.add(node.key + i);
+       }
+       return result;
+   }
+
+   private static class Result {
+        final Set<Integer> set = new HashSet<>();
+        boolean res = false;
+   }

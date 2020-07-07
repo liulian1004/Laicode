@@ -7,6 +7,7 @@ public class Solution {
   //queue is Empty, check wether the value is nono
   // invaild example: 有环 1 <-> 0
   //题目变形： 有没有环，用toplogy算法
+  //qualified grad: DAG： Directed Acyclic Graph
     if(numCourses == 0 || prerequisites == null || prerequisites.length == 0
     || prerequisites[0].length == 0) {
       return true;

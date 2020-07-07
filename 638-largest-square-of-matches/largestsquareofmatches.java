@@ -4,8 +4,7 @@ public class Solution {
     // creat the modle: 2D matrix
     // every point is a 2bit(ab) ==> a == 1 has down; b == 1 has right
     //0，无下无右，1右，2下，3，下+ 右
-    // left + down, 查右下角只有在顶点的情况
-    //和surrounding 1相反，从左上角开始找起
+    //从左上角开始找起
     int res = 0;
     int row = matrix.length;
     if(row == 0) {

@@ -10,50 +10,39 @@
 */
 public class Solution {
   public int most(Point[] points) {
-    //Assumption： Point is not null and it the length is at least two
-    //slope k : y1-y2 / x1 - x2
-    //T：
-    int result = 0;
+    //T： O(n^2) S: O(n)
+    // for loop i, j
+    //把i 和除他以外的其他点比较
+    //case1: 和i点重复 same++
+    //case2 和i点在同一个 x axle
+    //case 3: 同一个斜率, 用map<double scope, integer, count>
+    // 每一轮 max(case2, case3) + case1
+    // update global max
+    if(points.length == 1) {
+      return 1;
+    }
+    int res = 0;
     for(int i = 0; i < points.length; i++) {
-      //已point[i]做为benchmarking的点
-      //因为需要与其他点比较，自己不算进去，所以这里需要起始值为1
-      int same = 1;
-      //record the special case that all the same line
-      int sameX = 0;
-      Point benchmark = points[i];
-      //max是每一次for loop都要跟新的值
-      // 跟新slope的值，更新每次for loop的值
-      int max = 0;
-      //Map<scope, how many times the scope is the same>
+      int cur = 0;
+      int same = 0;
+      int xAxle = 0;
+      int scope = 0;
       Map<Double, Integer> map = new HashMap<>();
       for(int j = 0; j < points.length; j++) {
-        //no need to compare the same point
-        if(i == j) {
-          continue;
-        }
-        Point tmp = points[j];
-        // different point, but the value is the same
-        if(tmp.x == benchmark.x && tmp.y == benchmark.y) {
+        if(i == j || (points[i].x == points[j].x && points[i].y == points[j].y)) {
           same++;
-          // on the same line
-        } else if(tmp.x == benchmark.x) {
-          sameX++;
-        } else {
-          double slope = (tmp.y - benchmark.y - 0.0) / (tmp.x - benchmark.x);
-          if(!map.containsKey(slope)) {
-            map.put(slope, 1);
-          } else {
-            map.put(slope, map.get(slope) + 1);
-          }
-          max = Math.max(max, map.get(slope));
+        }else if(points[i].x == points[j].x) {
+          xAxle++;
+        }else {
+          //这里要手动减去一个0.0,in case 这里的结果是整数
+          double rate = (points[i].y - points[j].y- 0.0) / (points[i].x - points[j].x) ;
+          map.put(rate, map.getOrDefault(rate,0)+1);
+          scope = Math.max(scope, map.get(rate));
         }
       }
-      //一轮j循环结束
-      //需要跟新max,并且加上point[i]本身或者和它一样的点数
-      max = Math.max(max, sameX) + same;
-      // result 每次靠max跟新值
-      result = Math.max(result, max);
+      cur = Math.max(xAxle, scope) + same;
+      res = Math.max(res, cur);
     }
-    return result;
+    return res;
   }
 }

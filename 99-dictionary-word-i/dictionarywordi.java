@@ -65,3 +65,34 @@ private boolean isValid(int left, int right, String input, String[] dict) {
   }
   return false;
 }
+
+// follow up
+Find the number of ways that you can cut the input into partitions and each partition is in the dictionary.
+private int dic(String s, String[] dic) {
+        if(s == null|| s.length() == 0 || dic == null || dic.length == 0) {
+            return 0;
+        }
+        int[] dp = new int[s.length()];
+        for(int i = 0; i < s.length(); i++) {
+            if(isValid(0,i,s,dic)) {
+                dp[i]++;
+            }
+            for(int j = 0 ; j < i; j++) {
+                if (isValid(j + 1, i, s, dic)) {
+                    dp[i] += dp[j];
+                }
+            }
+        }
+        return dp[s.length()-1];
+    }
+
+    private boolean isValid(int left, int right, String s,String[] dic) {
+        String cur  = s.substring(left, right+1);
+        for(String word: dic) {
+            if(word.equals(cur)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
