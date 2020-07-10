@@ -12,7 +12,7 @@ public class Solution {
     if(row < 3 || col < 3) {
       return res;
     }
-    //gnerate矮的，是相当于在2d 书库里，已经比较了左右边界，选一个比较矮的那一边
+    //gnerate矮的，是相当于在2d 水库里，已经比较了左右边界，选一个比较矮的那一边
     PriorityQueue<Pair> minHeap = new PriorityQueue<>(new MyCompare());
     boolean[][] visited = new boolean[row][col];
     buildQueue(matrix, minHeap, visited, row, col);

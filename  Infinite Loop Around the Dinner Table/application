@@ -7,7 +7,7 @@ private boolean isLoop(String[] input) {
         return helper(input, 1);
   }
   private boolean helper(String[] input, int index) {
-      if (index == input.length ) {
+      if (index == input.length -1 ) {
           return match(input[index-1], input[0]);
           }
           for (int i = index; i < input.length; i++) {

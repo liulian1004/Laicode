@@ -34,4 +34,52 @@ public class Solution {
    return a > b? -1 : 1;
    }
   }
+  // partition sort
+  public int[] kSmallest(int[] array, int k) {
+    // T: klogk + h.logk S: o(h)
+    if(array == null || array.length == 0) {
+      return array;
+    }
+    if(k <= 0) {
+      return new int[]{};
+    }
+    int[] res = new int[k];
+    helper(array, 0 , array.length- 1, k, res);
+    Arrays.sort(res);
+    return res;
+  }
+  private void helper(int[] array, int left, int right, int k, int[] res) {
+    int pivot = left + (int)(Math.random()*(right-left+1));
+    swap(array, right, pivot);
+    int i = left;
+    int j = right - 1;
+    while(i <= j){
+      if(array[i] <= array[right]) {
+        i++;
+      }else if (array[j] > array[right]) {
+        j--;
+      }else {
+        swap(array, i++, j--);
+      }
+    }
+    swap(array, i, right);
+    if(i-left+1 == k) {
+      for(int p = left; p <= i; p++) {
+        res[p] = array[p];
+      }
+      return;
+    }else if(i-left+1 > k) {
+      helper(array, left, i-1, k, res);
+    }else {
+      for(int p = left; p <= i; p++) {
+        res[p] = array[p];
+      }
+      helper(array, i+1,right, k-(i-left+1),res);
+    }
+  }
+  private void swap(int[] array, int i, int j) {
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
 }

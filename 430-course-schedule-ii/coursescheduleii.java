@@ -3,6 +3,7 @@ public class Solution {
     // Topological sort
     //有向无环图-Directed Acyclic Graph (DAG)
     //T: O(n) S: O(indegress + queue) --> O(n)
+    //把queue里面的所有course打印出来，如果在同一层里面，打印顺序无所谓
     List<Integer> list = new ArrayList<>();
     if(numCourses == 0 || prerequisites == null || prerequisites.length == 0
     || prerequisites[0].length == 0) {
@@ -75,9 +76,12 @@ public class Solution {
         queue.offer(i);
       }
     }
+    int[] res = new int[numCourses];
+     int index = 0;
     while(!queue.isEmpty()) {
       int cur = queue.poll();
-      list.add(cur);
+      res[index] = course;
+      index++;
       for(int[] edge : prerequisites) {
         if(edge[1] == cur) {
           map.put(edge[0], map.get(edge[0])-1);
@@ -87,13 +91,9 @@ public class Solution {
         }
       }
     }
-    int[] result = new int[numCourses];
-    if(list.size() != numCourses) {
+    if(index < numCourses) {
       return new int[]{};
     }
-    for(int i = 0; i <numCourses; i++) {
-      result[i] = list.get(i);
-    }
-    return result;
+    return res
   }
 }
