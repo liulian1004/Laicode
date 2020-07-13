@@ -1,7 +1,7 @@
 public class Solution {
   public int majority(int[] array) {
     // voting algorthim
-    // A > 50&
+    // A 一定是50% ， A <= 50% 答案不一定work
     //count present one number's number
     //if count == 0 , change the candidiate
     //T O(n) S O(1)
@@ -13,10 +13,12 @@ public class Solution {
     for(int i = 0; i<array.length; i++) {
         if(array[i] == candidate) {
           count++;
-        } else if(array[i] != candidate & count > 0) {
+        } else if(array[i] != candidate) {
           count--;
-        } else if(count == 0) {
-            candidate = array[i];
+          if(count == 0) {
+           candidate = array[i];
+           count++;
+         }
         }
     }
     return candidate;

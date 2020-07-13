@@ -2,6 +2,7 @@ public class Solution {
   public boolean isHappy(int n) {
     //// case 1 : fast will be 1
     // case2: fast == slow, but they are not 1
+    // happy number 永远不会超过n
     if(n <= 0){
         return false;
     }
@@ -9,8 +10,8 @@ public class Solution {
       return true;
     }
     // fast go two steps, slow go one step
-    int slow = getNum(n);
-    int fast = getNum(getNum(n));
+    int slow = n;
+    int fast = getNum(n);
     while(slow != fast){
       slow = getNum(slow);
       fast = getNum(getNum(fast));
@@ -22,6 +23,7 @@ public class Solution {
   private int getNum(int n){
         int res = 0;
         while(n > 0){
+          //单位数也可以%10
             int temp = n % 10;
             res += temp*temp;
             n = n /10;

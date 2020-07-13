@@ -2,6 +2,7 @@ public class Solution {
   static final int[][] dirt = {{-1,0},{1,0},{0,1},{0,-1}};
   public List<String> findWords(char[][] board, String[] words) {
     // T: O(word(Length * number of word) + m*n* 4^L(word of length)(dfs))
+    //trie：前缀数，每一个节点代表一个pre
     List<String> list = new ArrayList<>();
     if(board == null || board.length == 0 || board[0].length == 0 || words == null || words.length == 0) {
       return new ArrayList<>();
@@ -20,9 +21,18 @@ public class Solution {
     return new ArrayList<>(set);
   }
   class TrieNode{
+  //S: O(n*l), 如果tree比较密集型，这个总的空间比下面一种方法好，因为array的overhead比map少
+  //children,存放下一层的节点
       TrieNode[] children = new TrieNode[26];
       boolean isWord = false;
   }
+  //另一种常规的trie node接口
+  //S: O(n*l)，用于比较稀疏的tree
+  // class TrieNode{
+  //     Map<Character, TrieNode> children;
+  //     boolean isWord = false;
+  //    int value; //option : 代表完整的值或者string
+  // }
   private void helper(char[][] board, boolean[][] visited, int i, int j, TrieNode root, Set<String> set, StringBuilder sb) {
     if(i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[i][j] == true) {
       return;
