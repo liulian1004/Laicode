@@ -27,3 +27,21 @@ if(b < 0) {
 }
 // b > 0 && a < 0 || a > 0
 return helper(a,b);
+//iteration 
+
+public long power(int a, int b) {
+    // Write your solution here
+    long res = 1l;
+    if(b == 0) {
+      return res;
+    }
+    long accum = a*1l;
+    while(b > 0) {
+      if(b% 2 == 1) {
+        res *= accum;
+      }
+      accum = accum*accum;
+      b /= 2;
+    }
+    return res;
+  }

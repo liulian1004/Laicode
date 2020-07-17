@@ -105,3 +105,88 @@ public class Solution<K, V> {
   }
 
 }
+// my soution Map<Key, Node<V>> + double linkedList<Node>
+public static class Solution<K, V> {
+      // limit is the max capacity of the cache
+      // linkHashMap + hashmap<k, node<k,v>>
+      // node<k,v> --> node of doubly linkedlist
+      static class Node<V> {
+          Node<V> next;
+          Node<V> prev;
+          V value;
+
+          Node(V value) {
+              this.value = value;
+          }
+      }
+      private final int limit;
+      private Node<V> head;
+      private Node<V> tail;
+      private Map<K, Node<V>> map;
+
+      public Solution(int limit) {
+          this.limit = limit;
+          this.map = new HashMap<>(); //?
+      }
+      //跟新node + 更新node在linkedlist中的position
+      //每一次在head存新的node,tail node就是最旧的node
+      public void set(K key, V value) {
+          Node<V> node = new Node<>(value);
+          //如果存在，update node,把这个node移动到最新的位置
+          if(map.containsKey(key)) {
+              remove(map.get(key));
+          } else if(map.size() == limit) {
+              K k = null;
+                  for(Map.Entry<K,Node<V>> entry : map.entrySet()) {
+                          if(entry.getValue() == tail) {
+                              k = entry.getKey();
+                      }
+                  }
+              map.remove(k);
+              remove(tail);
+          }
+          //把node加回去
+          map.put(key, node);
+          append(node,key);
+
+      }
+      //读取node值 + 更新node在linkedlist中的position
+      public V get(K key) {
+          Node<V> node = map.get(key);
+          if(node == null) {
+              return null;
+          }
+          remove(node);
+          append(node, key);
+          return node.value;
+
+      }
+      //对现有的node进行移除
+      private void remove(Node<V> node) {
+          if(node == head) {
+              head  = node.next;
+          }else if(node == tail) {
+              tail = tail.prev;
+          } else{
+              Node pre = node.prev;
+              Node next = node.next;
+              pre.next = next;
+              next.prev = pre;
+          }
+
+      }
+      private void append(Node<V> node, K key) {
+          //在map中加入node
+          map.put(key, node);
+          //不存在linkedlist
+          if(head == null){
+              head = tail = node;
+              //存在，跟新node在linkedlist中的位置
+          } else{
+              node.next = head;
+              head.prev = node;
+              head = node;
+          }
+      }
+
+  }
