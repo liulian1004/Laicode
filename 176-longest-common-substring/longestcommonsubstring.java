@@ -6,7 +6,7 @@ public class Solution {
     //  S1[i-1] != s2[j-1] m[i][j] = 0;
    //T: O(m*n) S: O(m*n)
     int longest = 0;
-    int start = 0;
+    int end = 0;
     int[][] m = new int[source.length() ][target.length() + 1];
     String result = new String();
     if(source == null || target == null) {
@@ -23,10 +23,10 @@ public class Solution {
                 }
                 if(m[i][j] > longest) {
                     longest = m[i][j];
-                    start = i - longest + 1;
+                    end = j;
                 }
             }
         }
-  return source.substring(start, start + longest);
+  return target.substring(end - longest+1, end+1);
   }
 }

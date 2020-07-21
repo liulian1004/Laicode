@@ -49,5 +49,56 @@ public class Solution {
     return list;
   }
 }
-//follow up: how print a shortest ladder
-//记录一个pre[node]: hashMap records a predecessor of the given node during the bfs
+//DFS
+public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+    // Assume: end and begin word is in the wordList
+    //T: O(n!) S: O(n)
+    int[] res = new int[]{Integer.MAX_VALUE};
+    //如果list是有Arrays.asList组成的，
+    //实际上的list == array
+    //那么list.add/list.remove都不work
+    // if(!wordList.contains(endWord)) {
+    //   wordList.add(endWord);
+    // }
+    for(int i = 0 ; i < wordList.size(); i++){
+      if(wordList.get(i) == beginWord) {
+        swap(wordList, i, 0);
+      }
+    }
+    dfs(beginWord, endWord,wordList, 1, res);
+    return res[0] == Integer.MAX_VALUE? 0: res[0];
+  }
+  private void dfs(String begin, String end, List<String> list, int index, int[] res) {
+    if(list.get(index-1) == end) {
+      res[0]= Math.min(res[0], index);
+      return;
+    }
+    if(index == list.size()) {
+      return;
+    }
+    for(int i = index; i < list.size(); i++) {
+      if(valid(begin, list.get(i))) {
+        swap(list,index, i);
+        dfs(list.get(index), end, list, index+1, res);
+        swap(list, index, i);
+      }
+    }
+  }
+  private boolean valid(String begin, String target) {
+    for(int i = 0; i < begin.length(); i++) {
+      char[] cur = begin.toCharArray();
+      for(int j = 0; j < 26; j++) {
+        cur[i] = (char)('a'+j);
+        if(target.equals(new String(cur))) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  private void swap(List<String> list, int a, int b) {
+    String temp = list.get(a);
+    list.set(a,list.get(b));
+    list.set(b,temp);
+  }
+}

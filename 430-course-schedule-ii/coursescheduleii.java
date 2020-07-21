@@ -53,7 +53,8 @@ public class Solution {
     return new int[]{};
   }
   //Standard solution --> use map to check indegress
-  //S: O(v+e) T: O(n)
+  //S: O(v+e) vertreix: the size of queue; edge: the size of map
+  //T: O(n*m) : n : number of cousese; m: the length of prerequisites
   public int[] findOrder(int numCourses, int[][] prerequisites) {
     // Write your solution here
     List<Integer> list = new ArrayList<>();

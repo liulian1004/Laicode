@@ -22,3 +22,30 @@ public class Solution {
     return m[source.length()%2][target.length()];
   }
 }
+//int[][] dp = new int[source.length()][target.length()]
+int[][] dp = new int[source.length()][target.length()];
+    for(int i = 0; i < source.length(); i++) {
+      for(int j = 0; j < target.length(); j++) {
+        char t1 = source.charAt(i);
+        char t2 = target.charAt(j);
+        if(t1 == t2) {
+          if(i == 0 || j == 0) {
+            dp[i][j] = 1;
+          }else {
+            dp[i][j] = dp[i-1][j-1] + 1;
+          }
+        }else {
+          if(i == 0 && j == 0) {
+            dp[i][j] = 0;
+          }else if(i == 0) {
+            dp[i][j] = dp[i][j-1];
+          }else if(j == 0) {
+            dp[i][j] = dp[i-1][j];
+          }else {
+            dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+          }
+        }
+      }
+    }
+    return dp[source.length()-1][target.length()-1];
+  }

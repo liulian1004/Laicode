@@ -69,27 +69,19 @@ public class Solution {
       return ans;
     }
     private void dfs(int[][] matrix, int i, int j, int[] path, int cur, int[][] dp) {
-
-      if(dp[i][j] != 0) {
-        cur += dp[i][j];
-        path[0] = Math.max(cur, path[0]);
+      if(x < 0 || x >= row || y<0 || y >= col ||  pre >= matrix[x][y]) {
+        path[0] = Math.max(path[0],level);
         return;
       }
-      cur++;
-      path[0] = Math.max(cur, path[0]);
-      if(i+1 < matrix.length && matrix[i][j] < matrix[i+1][j]) {
-        dfs(matrix, i+1,j,path, cur, dp);
+      if(dp[x][y] != 0 && pre < matrix[x][y]) {
+        path[0] = Math.max(path[0],level + dp[x][y]);
+        return;
       }
-      if(i-1 >= 0 && matrix[i][j] < matrix[i-1][j]) {
-        dfs(matrix, i-1,j,path, cur,dp);
-      }
-      if(j+1 < matrix[0].length && matrix[i][j] < matrix[i][j+1]) {
-        dfs(matrix, i,j+1,path, cur, dp);
-      }
-      if(j-1>= 0 && matrix[i][j] < matrix[i][j-1]) {
-        dfs(matrix, i,j-1,path, cur, dp);
-      }
-
+      pre = matrix[x][y];
+      dfs(matrix, row, col,  x, y+1, level+1, pre, path, dp);
+      dfs(matrix, row, col,  x+1, y, level+1,pre, path, dp);
+      dfs(matrix, row, col, x, y-1, level+1, pre, path, dp);
+      dfs(matrix, row, col, x-1, y, level+1, pre, path, dp);
     }
     //DP
     //T: O(m *n log(m*n)) S： O(m *n)

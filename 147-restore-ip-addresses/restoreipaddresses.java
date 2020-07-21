@@ -58,4 +58,55 @@ public class Solution {
       }
     }
   }
+// mysolution
+public List<String> Restore(String s) {
+    // Write your solution here
+    if(s == null || s.length() == 0) {
+      return new ArrayList<>();
+    }
+    List<String> list = new ArrayList<>();
+	  StringBuilder sb = new StringBuilder();
+	  dfs(s,sb, 0, 0, list);
+	  return list;
+  }
+  private void dfs(String s, StringBuilder sb,  int index, int level, List<String> list) {
+	if(level == 4){
+	  if(index == s.length()) {
+	    list.add(sb.toString());
+    }
+    return;
+  }
+  if(level > 0) {
+      sb.append(".");
+  }
+  for(int i = index; i < index+3; i++) {
+	  if(i >= s.length()) {
+		    return;
+    }
+    int length = sb.length();
+ 		String tmp = s.substring(index,i+1);
+    if(valid(tmp)) {
+      sb.append(tmp);
+	    dfs(s,sb, i+1, level+1, list);
+       sb.setLength(length);
+    }
+	}
+  if(level > 0) {
+      sb.deleteCharAt(sb.length()-1);
+  }
+
+}
+private boolean valid(String temp) {
+	if(temp.length() == 1) {
+	return true;
+}
+if(temp.length() == 2) {
+	return temp.charAt(0) != '0';
+}
+//length ==3
+if(temp.charAt(0) == '0') {
+	return false;
+}
+return Integer.valueOf(temp) <= 255;
+}
 }
