@@ -34,3 +34,27 @@ public class Solution {
     helper(root.right, root.key, max, path);
   }
 }
+//my solution
+public int longest(TreeNode root) {
+    // Write your solution here
+    if(root == null) {
+      return 0;
+    }
+    int[] res = new int[]{1};
+    helper(root, res, 1);
+    return res[0];
+  }
+  private void helper(TreeNode root, int[] res, int length) {
+    // if(root == null) {
+    //   return;
+    // }
+    res[0] = Math.max(res[0],length);
+    if(root.left != null) {
+       helper(root.left, res, root.key >= root.left.key? 1 : length+1);
+    }
+    if(root.right != null) {
+      helper(root.right, res, root.key >= root.right.key? 1 : length+1);
+    }
+
+  }
+}

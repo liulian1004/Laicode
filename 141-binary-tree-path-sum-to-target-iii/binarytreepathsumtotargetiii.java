@@ -81,8 +81,8 @@ private boolean solution(TreeNode node, final int target) {
             result.res = true;
             return result;
         }
-        Set<Integer> set1 = left.set.size() > right.set.size() ? right.set : left.set;
-        Set<Integer> set2 = left.set.size() > right.set.size() ? left.set : right.set;
+        Set<Integer> set1 = left.set.size() > right.set.size() ? right.set : left.set; //短的set
+        Set<Integer> set2 = left.set.size() > right.set.size() ? left.set : right.set;//长的set
         for (Integer i : set1) {
             int cur = curTarget - i;
             if (set2.contains(cur)) {
@@ -104,4 +104,39 @@ private boolean solution(TreeNode node, final int target) {
    private static class Result {
         final Set<Integer> set = new HashSet<>();
         boolean res = false;
+   }
+//follow up : print all valid path
+private List<List<Integer>> target(TreeNode root, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> cur = new ArrayList<>();
+        List<int[]> prefixSum = new ArrayList<>();
+        prefixSum.add(new int[]{0,-1});
+        tra(root,res, cur, 0, 0,prefixSum, target);
+        return res;
+   }
+   private void  tra(TreeNode root, List<List<Integer>> list, List<Integer> cur, int level, int sum,List<int[]> prefixSum, int target) {
+        if(root == null) {
+            return;
+        }
+        sum += root.key;
+        for(int[] pair: prefixSum) {
+            if(pair[0] == (sum - target)) {
+                //index要多加一位，因为这里查的时候list还没有放入目前的root，所有cur list少一位
+                list.add(getList(cur, pair[1]+1, root.key));
+            }
+        }
+        prefixSum.add(new int[]{sum,level});
+        cur.add(root.key);
+        tra(root.left, list, cur, level+1,sum,prefixSum,target);
+       tra(root.right, list, cur, level+1,sum,prefixSum,target);
+        prefixSum.remove(prefixSum.size()-1);
+        cur.remove(cur.size()-1);
+   }
+   private List<Integer> getList(List<Integer> list,int start, int cur) {
+        List<Integer> res = new ArrayList<>();
+        for(int i = start; i < list.size(); i++) {
+            res.add(list.get(i));
+        }
+       res.add(cur);
+       return res;
    }

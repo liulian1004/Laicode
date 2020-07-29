@@ -8,7 +8,7 @@ public class Solution {
     }
     int left = 0;
     int right = array.length - 1;
-    while(left < right - 1) {
+    while(left <= right) {
       int mid = left + (right - left) / 2;
       if(array[mid] == target) {
         return mid;
@@ -21,14 +21,6 @@ public class Solution {
       }else {
         left = mid + 1;
       }
-    }
-    //left = right -1；
-    //post - processing
-    if(array[left] == target) {
-      return left;
-    }
-    if(array[right] == target) {
-      return right;
     }
     return -1;
   }

@@ -11,13 +11,12 @@
 public class Solution {
   public TreeNode reconstruct(int[] inOrder, int[] postOrder) {
     // T: O(n) S: O(n)
-    if(inOrder == null || postOrder == null || inOrder.length == 0 || postOrder.length == 0) {
-      return null;
-    }
     Map<Integer, Integer> map = buildMap(inOrder);
     return helper(0,inOrder.length -1, 0, postOrder.length - 1, postOrder, map);
   }
   private TreeNode helper(int inLeft, int inRight, int postLeft, int postRight, int[] postOrder, Map<Integer, Integer> map) {
+    //多走一层，null也可以包括进去
+    //走到里root == null的情况
     if(inLeft > inRight) {
       return null;
     }
@@ -26,7 +25,7 @@ public class Solution {
     int leftSubTree = index - inLeft;
     int rightSubTree = inRight - index;
     TreeNode left = helper(inLeft, index - 1, postLeft, postLeft + leftSubTree - 1, postOrder, map);
-    TreeNode right = helper(index + 1, inRight, postLeft+leftSubTree,postRight-1,postOrder, map);
+    TreeNode right = helper(index + 1, inRight, postRight-rightSubTree,postRight-1,postOrder, map);
     root.left = left;
     root.right = right;
     return root;

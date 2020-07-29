@@ -1,7 +1,8 @@
 public class Solution {
   static final int[][] dirt = {{-1,0},{1,0},{0,1},{0,-1}};
   public List<String> findWords(char[][] board, String[] words) {
-    // T: O(word(Length * number of word) + m*n* 4^L(word of length)(dfs))
+    // T: O(word(Length * number of word) + m*n* 4^L(the longest  length of word)(dfs))
+  //S: O(row*col + the longest  length of word)
     //trie：前缀数，每一个节点代表一个pre
     List<String> list = new ArrayList<>();
     if(board == null || board.length == 0 || board[0].length == 0 || words == null || words.length == 0) {

@@ -10,6 +10,8 @@
  */
 public class Solution {
   //T: O(n); S: O(height)
+  //in order顺序的时候加left and leaf
+  // post order的时候加right
   public List<Integer> borderView(TreeNode root) {
     List<Integer> result = new ArrayList<>();
 	if(root == null){
@@ -29,11 +31,13 @@ private void dfsTraverse(TreeNode root, boolean leftMost, boolean rightMost, Lis
 	if(leftMost || root.left == null && root.right == null){
 		result.add(root.key);
 	}
+  //if root有right node， 对root.left来说，root.left不是最左边的节点，为false
 	dfsTraverse(root.left, leftMost, (root.right == null? rightMost:false), result);
 	dfsTraverse(root.right, (root.left == null ? leftMost : false), rightMost, result);
   //right, not leftMost, and not leaves
   //这个条件需要上面的条件绝对相反
-	if(rightMost && !leftMost && (root.left != null || root.right != null)){
+  //最左边且非叶子节点
+	if(rightMost && （!leftMost && (root.left != null || root.right != null))）{
 		result.add(root.key);
 	}
 }
