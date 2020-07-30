@@ -91,7 +91,7 @@ public class Solution {
 
     // my soution
     public List<Integer> spiral(int[][] matrix) {
-    // T: O(n) S: O(n)
+    // T: O(n^2) S: O(n)
     List<Integer> list = new ArrayList<>();
     if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
       return list;

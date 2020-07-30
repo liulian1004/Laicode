@@ -58,3 +58,24 @@ public boolean isBST(TreeNode root) {
       root = root.left;
     }
   }
+//another Solution
+public boolean isBST(TreeNode root) {
+    // Write your solution here
+    boolean[] res = new boolean[]{true};
+    int[] pre = new int[]{Integer.MIN_VALUE};
+    helper(root, pre, res);
+    return res[0];
+  }
+  private void helper(TreeNode root, int[] pre, boolean[] res) {
+    if(root == null) {
+      return;
+    }
+    helper(root.left, pre, res);
+    if(root.key <= pre[0]) {
+      res[0] = false;
+      return;
+    }else {
+      pre[0] = root.key;
+    }
+    helper(root.right, pre, res);
+  }
