@@ -33,5 +33,44 @@ public class Solution {
     }
     return list;
   }
+  //HashMap
+  if(input.size()== 1) {
+    	return input.get(0);
+    }
+    int short = 0;
+    int shortLength = input.get(0).size();
+    for(int i = 1; i < input.size(); i++) {
+    	if(input.get(i).size() < shortLength) {
+    	short = i;
+    	shortLength = input.get(i).size();
+    }
+    }
+    Map<Integer, Integer> map = new HashMap<>();
+    for(int temp : input.get(short)) {
+    	map.put(temp, map.getOrDefault(temp,0) + 1);
+    }
+    for(int i = 0; i < input.size(); i++) {
+    	if(i == short) {
+    	continue;
+    }
+    	Map<Integer, Integer> temp = new HashMap<>();
+    	for(int cur: input.get(i)) {
+    		if (map.getOrDefault(cur,0) > 0  ) {
+    	temp.put(cur, temp.getOrDefault(cur, 0) + 1);
+    	map.put(cur, map.get(cur)-1);
+    }
+    }
+    map = temp;
+    }
+    List<Integer> list = new ArrayList<>();
+    for(Map.Entry<Integer, Integer> pair: map.getEntry()) {
+    	int value = pair.getValue();
+    	int key = pair.getKey();
+    	for(int i = value; i > 0; i--){
+    	list.add(key);
+    }
+    }
+    Collections.sort(list);//return的结果要有序
+	return  list;
 
 }

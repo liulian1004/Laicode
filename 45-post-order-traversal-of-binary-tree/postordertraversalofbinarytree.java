@@ -64,3 +64,29 @@ public class Solution {
     return list;
   }
 }
+// my solution
+public List<Integer> postOrder(TreeNode root) {
+   List<Integer> list = new ArrayList<>();
+ if(root == null) {
+   return list;
+ }
+ Deque<TreeNode> temp = new ArrayDeque<>();
+ TreeNode cur = root;
+ while(cur != null) {
+   while(cur != null) {
+     list.add(cur.key);
+     temp.offerFirst(cur);
+     cur = cur.right;
+   }
+   while(cur == null && !temp.isEmpty()) {
+   cur = temp.pollFirst();
+   cur = cur.left;
+   }
+ }
+ List<Integer> res = new ArrayList<>();
+ for(int i = list.size()-1; i>=0; i--) {
+   res.add(list.get(i));
+ }
+ return res;
+
+}

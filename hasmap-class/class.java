@@ -172,12 +172,20 @@ public class MyHashMap<K,V> {
         public V remove(K key) {
             int index = getIndex(key);
             Node<K, V> head = array[index];
-            V value = head.value;
-            //delete the key;
-            head = head.next;
-            array[index] = head;
-            size--;
-            return value;
+            Node<K,V> pre = null;
+            while(head != null) {
+              if(equalsKey(head.value, key)) {
+                if(pre == null) {
+                  array[index] = head.next;
+                }else{
+                  pre.next = head.next;
+                }
+                head.next = null;
+                size--;
+              }
+              pre = head;
+              head = head.next;
+            }
 
         }
 

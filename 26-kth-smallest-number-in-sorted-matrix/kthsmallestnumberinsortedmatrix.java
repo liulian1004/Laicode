@@ -50,3 +50,76 @@ public class Solution {
   }
 }
 }
+// my solution : row + k*logk
+//S: O(1)
+public int kthSmallest(int[][] matrix, int k) {
+    // Write your solution here
+    if(matrix == null || matrix.length == 0) {
+      return -1;
+    }
+    PriorityQueue<Node> min = new PriorityQueue<>(new MyCompare());
+    for(int i = 0; i < matrix.length; i++) {
+        min.offer(new Node(i,0,matrix[i][0]));
+    }
+    Node node = null;
+    while(k > 0) {
+      node = min.poll();
+      if(node.y + 1 <  matrix[0].length) {
+        min.offer(new Node(node.x, node.y+1, matrix[node.x][node.y+1]));
+      }
+      k--;
+    }
+    return node.value;
+  }
+  static class Node{
+    int x;
+    int y;
+    int value;
+    Node(int x, int y, int value) {
+      this.x = x;
+      this.y = y;
+      this.value = value;
+    }
+  }
+  static class MyCompare implements Comparator<Node> {
+    @Override
+    public int compare(Node n1, Node n2) {
+      if(n1.value == n2.value){
+        return 0;
+      }
+      return n1.value < n2.value? -1 : 1;
+    }
+  }
+//follow up : kth min products in two sorted Array
+private int kthProduct(int[] a1, int[] a2, k){
+  int[][] matrix = buildMatrix(a1,a2);
+  PriorityQueue<Node > min = new PriorityQueue<>();
+  min.offer(new Node(0,0,matrix[0][0]));
+  int res = 0;
+  boolean[][] visited = new boolean[matrix.length][matrix[0].length];
+  while(k > 0) {
+    Node cur  = min.poll();
+    res = cur.value;
+    if(cur.x+1 < matrix.length && !visited[cur.x+1][cur.y]){
+      cur.offer(new Node(cur.x+1,cur.y, matrix[cur.x+1][cur.y]));
+      visited[cur.x+1][cur.y] = true;
+    }
+    if(cur.y+1 < matrix[0].length && !visited[cur.x][cur.y+1]){
+      cur.offer(new Node(cur.x,cur.y+1, matrix[cur.x][cur.y+1]));
+      visited[cur.x][cur.y+1] = true;
+    }
+    k--;
+  }
+  return res;
+
+  }
+  private int[][] buildMatrix(int[]a1, int[] a2) {
+    int[][] matrix = new int[a1.length][a2.length];
+    for(int i = 0; i <a1.length; i++){
+      for(int j = 0; j < a2.length; j++) {
+        matrixx[i][j] = a1[i]*a2[j];
+      }
+    }
+    return matrix;
+  }
+}

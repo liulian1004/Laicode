@@ -17,50 +17,40 @@ public class Solution {
     if(root == null) {
       return list;
     }
-    Deque<Ele> deque = new ArrayDeque<>();
-    deque.offerLast(new Ele(0,root));
+    Queue<Node> queue = new ArrayDeque<>();
+    queue.offer(new Node(0,root));
     Map<Integer, List<Integer>> map = new HashMap<>();
-    map.put(0, new ArrayList<>());
-    map.get(0).add(root.key);
     int min = 0;
     int max = 0;
-    while(!deque.isEmpty()) {
-      int size = deque.size();
-      while(size > 0) {
-        int index = deque.peekFirst().col;
-        TreeNode cur = deque.pollFirst().node;
-        if(cur.left != null) {
-          int col = index - 1;
-          min = Math.min(min, col);
-          if(!map.containsKey(col)) {
-            map.put(col, new ArrayList<Integer>());
-          }
-          map.get(col).add(cur.left.key);
-          deque.offerLast(new Ele(col, cur.left));
-        }
-        if(cur.right != null) {
-          int col = index + 1;
-          max = Math.max(max, col);
-          if(!map.containsKey(col)) {
-            map.put(col, new ArrayList<Integer>());
-          }
-          map.get(col).add(cur.right.key);
-          deque.offerLast(new Ele(col, cur.right));
-        }
-        size--;
+    while(!queue.isEmpty()) {
+      Node node = queue.poll();
+      TreeNode cur = node.value;
+      int position = node.position;
+      if(!map.containsKey(position)) {
+        map.put(position, new ArrayList<>());
+      }
+      map.get(position).add(cur.key);
+      if(cur.left != null){
+        queue.offer(new Node(position-1,cur.left));
+        min = Math.min(min, position-1);
+      }
+      if(cur.right != null) {
+        queue.offer(new Node(position+1, cur.right));
+        max = Math.max(max, position+1);
       }
     }
-     for(int i = min; i <= max; i++) {
-        list.add(map.get(i));
-      }
-      return list;
+    for(int i = min; i<=max; i++) {
+      list.add(map.get(i));
+    }
+    return list;
+
   }
-  static class Ele{
-    int col;
-    TreeNode node;
-    Ele(int col, TreeNode node) {
-      this.col = col;
-      this.node = node;
+  static class Node{
+    TreeNode value;
+    int position;
+    Node(int position, TreeNode value){
+      this.position = position;
+      this.value = value;
     }
   }
 }

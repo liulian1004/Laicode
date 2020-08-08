@@ -9,7 +9,8 @@ public class Solution {
     //""  b  bb a ab abb   ==> result
     //T：
     //S: O(the amount of unique character) + O(the size of map) -->O(n)
-    // T: O(n^n) --->worsecase ： 每一个index有n个选择--> 
+    // T: O(n^n) --->worsecase ： 每一个index有n个选择-->
+    //each level has n+1 branch
     List<String> list = new ArrayList<>();
     if(set == null) {
         return list;

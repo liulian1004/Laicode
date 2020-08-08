@@ -18,6 +18,7 @@ public class Solution {
   private void subSets(List<String> res, StringBuilder sb, int index, String set) {
     //这里index已经+1 所以要多加一才能出来
     // T：2^n * n 最后一层print每个node时间复杂度是n，因为sb.toString
+
     if(index == sb.length()) {
       res.add(sb.toString()); // O(n)
       return;

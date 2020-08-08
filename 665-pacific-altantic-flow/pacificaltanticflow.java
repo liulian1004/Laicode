@@ -2,7 +2,7 @@ public class Solution {
   public List<List<Integer>> pacificAtlantic(int[][] matrix) {
     // find all the reachable nodes of p and a
     // start from 0，0 && （length - 1， length-1）
-    //T: O(m+n) + m*n
+    //T: O(m+n)*m*n
     List<List<Integer>> list = new ArrayList<>();
     if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
       return list;

@@ -29,3 +29,8 @@ public boolean isPowerOfThree(int n) {
   int maxPower3= (int)(Math.pow(3, maxLog3));
   return maxPower3% n == 0;
 }
+// call API
+if(n <= 0) {
+       return false;
+    }
+return (Math.log10(n)/Math.log10(3)) % 1 == 0;
