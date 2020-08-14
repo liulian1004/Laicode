@@ -15,6 +15,8 @@ public class Solution {
     return true;
   }
   // my Solution
+  //boolean[] array 比 int【】 array所占面积更加小
+  //用boolean[] 比较好
   boolean[] flag = new boolean[256];
     for(char c: word.toCharArray()) {
       // char change to Ascii

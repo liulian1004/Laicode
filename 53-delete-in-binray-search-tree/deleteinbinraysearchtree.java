@@ -15,7 +15,11 @@ public class Solution {
     if(root == null) {
       return root;
     }
-    //find the key,有4种情况考虑
+    //find the key
+    // no child
+    // only one child
+    // two children root.right.left == null(替代的节点即为root.right,右子树的最小值，不需要在往下找了)
+    // two children  find the 右子树的最小值
     if(root.key == key) {
       if(root.left == null) {
           return root.right;
