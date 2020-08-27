@@ -102,3 +102,41 @@ public ListNode reorder2(ListNode head) {
     return dummy.next;
 
   }
+//my Solution
+if(head == null || head.next == null) {
+            return;
+        }
+        ListNode first = head;
+        ListNode sec = findMid(first);
+        while(sec != null) {
+            ListNode next = first.next;
+            ListNode temp = sec.next;
+            first.next = sec;
+            sec.next = next;
+            first = first.next.next;
+            sec = temp;
+        }
+    }
+    private ListNode findMid(ListNode first){
+        ListNode f = first;
+        ListNode s = first;
+        while(f.next != null && f.next.next != null) {
+            s = s.next;
+            f = f.next.next;
+        }
+        ListNode sec = s.next;
+        s.next = null;
+        sec = reverse(sec);
+        return sec;
+    }
+    private ListNode reverse(ListNode sec) {
+        ListNode pre = null;
+        while(sec != null){
+            ListNode next =sec.next;
+            //next.next = sec;
+            sec.next = pre;
+            pre = sec;
+            sec = next;
+        }
+        return pre;
+    }

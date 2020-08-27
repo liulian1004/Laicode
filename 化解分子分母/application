@@ -1,0 +1,24 @@
+// 4/8 ==> 1/2 , 找最大公约数
+class X{
+int n; //分子
+int m;//分母
+  x(n, m){
+  this.n = n;
+  this.m = ml
+  }
+}
+
+ nom(X input) {
+  int a = Math.abs(input.n);
+  int b = Math.abs(input.m);
+  int temp = a;
+  while(temp != 0){
+    temp = a%b;
+    a = b;
+    b = temp;
+  }
+  //最大公约数是 a；
+  input.n /= a;
+  input.m /= a;
+
+}
