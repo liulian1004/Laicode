@@ -60,3 +60,32 @@ public class Solution {
       return cur;
   }
 }
+//easy Solution
+//T： logn S: logn
+// left == null, return right
+// right == null, return left
+// 找到root的右子树的最小数，把root的值替换掉，然后在通过recursion方法把那个最小的数删除
+public TreeNode deleteTree(TreeNode root, int key) {
+    if (root == null) return root;
+        if (root.key > key) { // key < root.val check in left sub-tree
+            root.left = deleteTree(root.left, key);
+        } else if (root.key < key) { // key > then root.val check in right sub-tree
+            root.right = deleteTree(root.right, key);
+        } else { // key == root.val we found nodes need to delete
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+            root.key = findLeft(root.right);
+            root.right = deleteTree(root.right, root.key);
+        }
+        return root;
+    }
+
+    private int findLeft(TreeNode node) {
+      while(node.left != null){
+        node = node.left;
+      }
+      return node.key;
+    }

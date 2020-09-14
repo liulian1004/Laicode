@@ -1,6 +1,6 @@
 public class Solution {
   public int findKthLargest(int[] nums, int k) {
-    // S： O(height) T: (n* height) ==> worse: T:O(n^2) T: O
+    // S： O(height) T worse: T:O(n^2) average T: O
     //partion and swap
     if(nums == null || nums.length == 0 || k<= 0 || k > nums.length) {
       return -1;

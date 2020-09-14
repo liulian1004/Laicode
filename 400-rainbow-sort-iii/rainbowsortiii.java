@@ -33,3 +33,25 @@ public class Solution {
     array[b] = temp;
   }
 }
+//give your 26 chars, sort in place
+//swap one by one until in the right position
+//T: n^2
+private void sort (String[] array) {
+  for(int i = 0; i < array.length; i++) {
+    char letter = array[i].indexAt(0);
+    if(i - 1 >= 0 && array[i-1].indexAt(0) > letter) {
+      swap(array, index,letter);
+    }
+  }
+}
+private void swap(String[] array, int index, char letter ) {
+       while (index - 1 >= 0) {
+           char temp = array[index - 1].charAt(0);
+           if (temp > letter) {
+               String t = array[index];
+               array[index] = array[index - 1];
+               array[index - 1] = t;
+           }
+           index--;
+       }
+   }

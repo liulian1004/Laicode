@@ -2,11 +2,14 @@ public class Solution {
   public void sort(LinkedList<Integer> s1) {
     //T: nlogn(same as classical merge sort)
     //s : O(n) -- > the upper bound of  s3
+    //s1: input
+    //s2: buffer, 放另外一半
+    //s3: merge的时候放部分结果级
     LinkedList<Integer> s2 = new LinkedList<Integer>();
     LinkedList<Integer> s3 = new LinkedList<Integer>();
     helper(s1, s2,s3, s1.size());
   }
-  private void helper(Deque<Integer> s1, Deque<Integer> s2, Deque<Integer> s3, int length ) {
+  private void helper(LinkedList<Integer> s1, LinkedList<Integer> s2, LinkedList<Integer> s3, int length ) {
         if(length <= 1) {
             return;
         }
@@ -20,7 +23,7 @@ public class Solution {
    }
    // s1.length = length - mid because s1 ==> previous s2
     //s2.length = mid because s2 ===> previous s3
-   private void merge(Deque<Integer> s1, Deque<Integer> s2, Deque<Integer> s3, int l1, int l2, int length){
+   private void merge(LinkedList<Integer> s1, LinkedList<Integer> s2, LinkedList<Integer> s3, int l1, int l2, int length){
         int i = 0; // i points to s2;
         int j = 0; // j points to s1
        //compare two elements and move the smaller one
