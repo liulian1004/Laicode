@@ -18,6 +18,7 @@ public class Solution {
     }
     //newRoot一旦赋值不能变，就像reverseLinkedList
     TreeNode newRoot = reverse(root.left);
+    //root链接到下一个node
     root.left.right = root.right;
     root.left.left = root;
     //断开链接

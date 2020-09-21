@@ -36,3 +36,21 @@ public class Solution {
     preRoot[0] = root;
   }
 }
+//preorder, from top to down
+ private void helper(TreeNode root, TreeNode[] pre) {
+   if(root == null) {
+     return;
+   }
+   //这里要把left,right node先存下来
+   //因为这里reconstrue之后，node.left会指向null, 丢失了原来的指向
+   TreeNode left = root.left;
+   TreeNode right = root.right;
+   if(pre[0] != null){
+     pre[0].right = root;
+   }
+   pre[0] = root;
+   pre[0].left = null;
+   helper(left, pre);
+   helper(right, pre);
+
+ }
