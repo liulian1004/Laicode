@@ -10,7 +10,7 @@ public class Solution {
     //base case,0 米和1 米情况
     // 以下情况induction rule是不用，可以不用写
     //m[0] = 0;
-    m[2] = q;
+    m[2] =1;
     for(int i = 3; i <= length; i++) { // i米的情况
       //内层循环是第一道切在哪里，用于分割左大段和右小段
       //内层循环到i-1即可
@@ -30,7 +30,7 @@ public int cutRope(int n, int k) {
   if(n < 1 || k >= n) {
     return 0;
   }
-  int[] dp = new int[2][n+1];
+  int[][] dp = new int[2][n+1];
   //base case: at least 1 meter with 0 cuts
   dp[0][1] = 1;
   for(int i = 0; i <= k;i++) { // cut
