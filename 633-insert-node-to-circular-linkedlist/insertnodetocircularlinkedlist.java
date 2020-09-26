@@ -12,16 +12,13 @@ public class Solution {
   public ListNode insertCircularList(ListNode head, int newVal) {
     //T： O(n) S: O(1)
     //corner case : empty
+    //find the min and max node
+   //case1: insert between min and max, cover the case of one node
+   //case2: insert between the max and max
     ListNode node = new ListNode(newVal);
     if(head == null){
       node.next = node;
       return node;
-    }
-    //one node
-    if(head.next == head) {
-       head.next = node;
-       node.next = head;
-       return head;
     }
     //find the tail(biggest nodes)
     ListNode tail = findTail(head);
