@@ -2,14 +2,10 @@ public class Solution {
   public List<List<Integer>> combinationSum(int[] candidates, int target) {
     // T: n! S: o(h) --> the longest length of combination
 
-    Set<Integer> set = new HashSet<>();
-    for(int i : candidates){
-      set.add(i);
-    }
+    Set<Integer> set = new HashSet<>(candidates);
     Set<List<Integer>> ans = new HashSet<>();
     helper(set, target, ans, new ArrayList<>());
-      List<List<Integer>> list = new ArrayList<>(set);
-    return list;
+    return new ArrayList<>(combinationSum);
   }
   private void helper(Set<Integer> set, int target, Set<List<Integer>> ans, List<Integer> cur) {
     if(target == 0){
@@ -19,6 +15,7 @@ public class Solution {
      Collections.sort(temp);
       set.add(temp);
     }
+     //这里的base不需要判断index == array.length，因为这里可以无限用一个数字无数次
     if(target < 0){
       return;
     }
@@ -27,13 +24,5 @@ public class Solution {
       helper(set, target-i,ans, cur);
       cur.remove(cur.size()-1);
     }
-  }
-  private boolean has(List<Integer> list, Set<List<Integer>> ans){
-    for(List<Integer> a: ans){
-      if(list.equals(a)){
-        return true;
-      }
-    }
-    return false;
   }
 }

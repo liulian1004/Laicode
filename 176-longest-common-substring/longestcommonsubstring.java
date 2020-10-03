@@ -5,28 +5,30 @@ public class Solution {
     //induction rule : S1[i-1] == s2[j-1] m[i][j] == m[i-1][j-1] + 1
     //  S1[i-1] != s2[j-1] m[i][j] = 0;
    //T: O(m*n) S: O(m*n)
-    int longest = 0;
-    int end = 0;
-    int[][] m = new int[source.length() ][target.length() + 1];
-    String result = new String();
-    if(source == null || target == null) {
-      return result;
-    }
-    for(int i = 0; i < source.length(); i++) {
-            for(int j = 0; j < target.length(); j++) {
-                if(source.charAt(i) == target.charAt(j)) {
-                    if(i == 0 || j == 0) {
-                        m[i][j] = 1;
-                    } else {
-                        m[i][j] = m[i-1][j-1] + 1;
-                    }
-                }
-                if(m[i][j] > longest) {
-                    longest = m[i][j];
-                    end = j;
-                }
-            }
-        }
-  return target.substring(end - longest+1, end+1);
-  }
+   int[][] dp = new int[source.length()+1][target.length()+1];
+   int end = 0;
+   int max = 0;
+   for(int i = 0; i <= source.length(); i++ ){
+     for(int j =0 ; j<= target.length(); j++){
+       //base case
+       if(i == 0 || j == 0){
+         //可以不写
+         //dp[i][j] = 0;
+         continue;
+       }
+       if(source.charAt(i-1) == target.charAt(j-1)){
+         dp[i][j] = dp[i-1][j-1]+1;
+       }
+       if(dp[i][j] > max){
+         end = i-1;
+         max = dp[i][j];
+       }
+     }
+   }
+   //no common substring
+   if(max == 0){
+     return "";
+   }
+   return source.substring(end-max+1,end+1);
+ }
 }
