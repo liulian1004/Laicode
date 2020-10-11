@@ -32,3 +32,35 @@ public class Solution {
       return new String(array, 0 , j);
   }
 }
+//follow up revmove k adjacent Characters
+private String wordCompression(String s, int k){
+        Deque<Cell> stack = new ArrayDeque<>();
+        for(char cur: s.toCharArray()){
+            if(stack.isEmpty() || stack.peekFirst().ch != cur){
+                stack.offerFirst(new Cell(cur,1));
+            }else if(stack.peekFirst().ch == cur){
+                int time = stack.peekFirst().time;
+                stack.offerFirst(new Cell(cur,time+1));
+            }
+            if(stack.peekFirst().time == k){
+                int pollTime = k;
+                while(pollTime > 0){
+                    stack.pollFirst();
+                    pollTime--;
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()){
+            sb.append(stack.pollFirst().ch);
+        }
+        return sb.reverse().toString();
+    }
+    static class Cell{
+        Character ch;
+        int time;
+        Cell(Character ch,int time){
+            this.ch = ch;
+            this.time = time;
+        }
+    }

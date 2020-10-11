@@ -76,3 +76,46 @@ public int largest(int[][] matrix) {
     }
     return res;
   }
+//follow up
+//给定一个matrix，一个max subMatrix sum
+//找到size k， 使得在这个matrix中每一个submatrix 的sum <= 给定的sum
+private int largestSubGrid(int[][] matrix, int sum) {
+       if (matrix.length == 0 || matrix[0].length == 0) {
+           return 0;
+       }
+       int n = matrix.length;
+       int[][] dp = new int[n + 1][n + 1];
+       //build prefixSum
+       for (int i = 1; i <= n; i++) {
+           for (int j = 1; j <= n; j++) {
+               dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + matrix[i-1][j-1];
+           }
+       }
+       int left = 1;
+       int right = n;
+       int ans = 0;
+       while (left <= right) {
+           int mid = left + (right - left)/2;
+           int max = maxSub(dp, mid);
+           if (max == sum) {
+               return mid * mid;
+           } else if (max > sum) {
+               right = mid - 1;
+           } else {
+               ans = mid * mid;
+               left = mid + 1;
+           }
+       }
+       return ans;
+   }
+
+   private int maxSub(int[][] dp, int length) {
+       int max = Integer.MIN_VALUE;
+       for (int i = 1; i <= dp.length - length; i++) {
+           for (int j = 1; j <= dp.length - length; j++) {
+               int cur = dp[i + length - 1][j + length - 1] - dp[i - 1][j + length - 1] - dp[i + length - 1][j - 1] + dp[i - 1][j - 1];
+               max = Math.max(max, cur);
+           }
+       }
+       return  max;
+   }
