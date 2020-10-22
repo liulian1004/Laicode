@@ -13,6 +13,21 @@ public class Solution {
 
         }
         return dp[dp.length-1];
-
     }
 }
+//my Solution
+if(prices == null || prices.length <= 1){
+            return 0;
+        }
+        int profit = prices[1]-prices[0];
+        int min = Math.min(prices[0],prices[1]);
+        for(int i = 2 ; i < prices.length; i++){
+          if(prices[i] > prices[i-1]){
+            //如果目前的selling价格比昨天的高。就在今天卖
+            //但是要keep the max profit
+            profit = Math.max(profit, prices[i] - min);
+          }
+          min = Math.min(prices[i], min);
+        }
+        return profit > 0? profit: 0;
+      }

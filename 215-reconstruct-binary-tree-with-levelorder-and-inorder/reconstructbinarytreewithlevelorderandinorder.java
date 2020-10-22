@@ -26,7 +26,7 @@ public class Solution {
       return null;
     }
     //find root and remove from level list
-    TreeNode root = new TreeNode(levelList.remove(0));
+    TreeNode root = new TreeNode(level.get(0));
     int rootIndex = inMap.get(root.key);
     List<Integer> left = new ArrayList<>();
     List<Integer> right = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Solution {
       //if index smaller than root index, it's left tree
       if(inMap.get(num) < rootIndex) {
         left.add(num);
-      } else {
+      } else if(inMap.get(i) > rootIndex) {
         right.add(num);
       }
     }
