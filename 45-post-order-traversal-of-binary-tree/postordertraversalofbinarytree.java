@@ -20,15 +20,21 @@ public class Solution {
     TreeNode pre = null;
     while(!stack.isEmpty()) {
       TreeNode cur = stack.peekFirst();
+      //from top to down
       if(pre == null || cur == pre.left || cur == pre.right) {
+        //cur有left node
         if(cur.left != null) {
           stack.offerFirst(cur.left);
+          // cur有right node
         } else if(cur.right != null) {
           stack.offerFirst(cur.right);
+          //cur是node节点
         } else {
           stack.pollFirst();
           res.add(cur.key);
         }
+      //from down to top
+      //only has one branch
       } else if(pre == cur.right || pre == cur.left && cur.right == null) {
         stack.pollFirst();
         res.add(cur.key);
@@ -90,3 +96,37 @@ public List<Integer> postOrder(TreeNode root) {
  return res;
 
 }
+//other Solution
+public List<Integer> postOrder(TreeNode root) {
+   List<Integer> res = new ArrayList<>();
+       Stack<Pair> stack = new Stack<>();
+       stack.push(new Pair(root, false));
+       TreeNode node;
+       boolean visited;
+       while (!stack.empty()) {
+           node = stack.peek().node;
+           visited = stack.peek().visited;
+           stack.pop();
+           if (node == null) {
+               continue;
+           }
+           if (visited) {
+               res.add(node.key);
+           } else {
+               stack.push(new Pair(node, true));
+               stack.push(new Pair(node.right, false));
+               stack.push(new Pair(node.left, false));
+           }
+       }
+       return res;
+   }
+
+
+   private static class Pair {
+       public TreeNode node;
+       public boolean visited;
+       public Pair(TreeNode tn, boolean v) {
+           node = tn;
+           visited = v;
+       }
+   }

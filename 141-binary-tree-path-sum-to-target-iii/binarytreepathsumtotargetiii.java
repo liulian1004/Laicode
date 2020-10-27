@@ -11,7 +11,7 @@
 public class Solution {
   public boolean exist(TreeNode root, int target) {
     // total prefix sum = target - prefix_sum --> 在set里面
-    // set : keep histroiral prefix sum
+    // set : keep histroiral prefix sum,这里用set是去重用
     //T: O(n); S : O(1)
     if(root == null) {
       return false;

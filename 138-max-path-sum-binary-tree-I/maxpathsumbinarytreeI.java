@@ -31,6 +31,7 @@ public class Solution {
     int left = helper(root.left, max);
     int right = helper(root.right, max);
     //这里要确保和max比的结果是一个人字形
+    //here can update the global max
     if(root.left != null && root.right != null) {
       //update the global max
       // max[0] VS left+ right + root.key
