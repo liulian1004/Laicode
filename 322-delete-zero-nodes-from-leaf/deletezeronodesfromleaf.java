@@ -1,27 +1,44 @@
 public class Solution {
   public TreeNode deleteZero(TreeNode root) {
     // Write your solution here
-   while(root != null) {
-      boolean[] flag = new boolean[]{false};
-      root = hasZeroLeaf(root,flag);
-      if(!flag[0]){
-        return root;
-      }
-   }
-    return root;
-  }
-  private TreeNode hasZeroLeaf(TreeNode root, boolean[] flag) {
-    //只有subtree有一边的时候，需要用root == null bound一下
-    if(root.left == null && root.right == null && root.key == 0) {
-        flag[0] = true;
-        return null;
-    }
-    if(root.left != null) {
-      root.left = hasZeroLeaf(root.left,flag);
-    }
-    if(root.right != null) {
-       root.right = hasZeroLeaf(root.right,flag);
-    }
-    return root;
-  }
+    //三部曲：
+    //ask for the return treenode from left branches and right branches
+    // update the root and root.left, root. right in the current level
+    // return the cur root to the upper root
+    if(root == null){
+         return null;
+       }
+       TreeNode left = deleteZero(root.left);
+       TreeNode right = deleteZero(root.right);
+       if(root.key == 0 && left == null && right == null){
+         return null;
+       }
+       root.left = left;
+       root.right = right;
+       return root;
+     }
 }
+//follow up: delete the node if the node only has one child
+//ex:
+//        8                          8
+//     /     \                   /        \
+//    5      6        ==>       5          3
+//             \
+//              3
+public TreeNode deleteNode(TreeNode root){
+        if(root == null){
+            return null;
+        }
+        // left != null && right != null
+        TreeNode left = deleteNode(root.left);
+        TreeNode right = deleteNode(root.right);
+        //不符合条件，不删node
+        if(root.left == null && root.right == null
+        || root.left != null && root.right != null){
+            root.left = left;
+            root.right = right;
+            return root;
+        }
+        //只有一个child 的node，直接上传该node 的child
+        return left == null? right: left;
+    }
