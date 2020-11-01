@@ -12,7 +12,7 @@ public class Solution {
                  }
                  if(index >= 1){
                      int prev = (int)(s.charAt(index-1) - '0');
-                     if(prev == 1 && one >= 0 && one <= 9
+                     if(prev == 1
                   || prev == 2 && one >= 0 && one <= 6) {
                          dp[index+1] += dp[index-1];
                      }

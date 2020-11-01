@@ -1,0 +1,29 @@
+quest:
+in this month(has totalDays) you need to finish the project which tasks days
+you are not allowed to work in 5 consequence days, print the all posibility working schduel
+
+solution : subset
+two branched: 1 means work, 0 means not work
+base case : cur work days == tasks day ==> update res List
+cur workdays+ the rest of days in this month >= task ==> just return ,no way to finish the project
+
+private void schedule(int totalDays, List<Integer> cur, int total, int curDay, List<List<Integer>> list, int count, int tasks ) {
+        if(total == tasks) {
+            list.add(new ArrayList<>(cur));
+            return;
+        }
+        // 25+(10 - 1) > 30
+        if(curDay + (tasks-total) >= totalDays) {
+            return;
+        }
+//work
+        if(count < 5) {
+            cur.add(1);
+            schedule(totalDays, cur, total+1, curDay+1, list, count+1, tasks);
+            cur.remove(cur.size()-1);
+        }
+// not work
+        cur.add(0);
+        schedule(totalDays, cur, total, curDay+1, list, 0,tasks);
+        cur.remove(cur.size()-1);
+    }

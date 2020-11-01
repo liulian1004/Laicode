@@ -12,6 +12,7 @@ public class Solution {
     TrieNode root = build(words);
     //防止路径重复
     Set<String> set = new HashSet<>();
+    //这两个可以放在for loop外面，因为每一次吃吐都会清空
     StringBuilder sb = new StringBuilder();
     boolean[][] visited = new boolean[board.length][board[0].length];
     for(int i = 0; i < board.length; i++) {
@@ -39,16 +40,19 @@ public class Solution {
       return;
     }
     char c = board[i][j];
+    root = root.children[c-'a'];
+    //如果是null，直接返回，不需要update sb 和 visit
     if(root.children[c -'a'] == null){
       return;
     }
+    //吃
     sb.append(c);
+    visited[i][j] = true;
     root = root.children[c-'a'];
+    //这里找到word以后不用返回，继续找下一个word
     if(root.isWord) {
       set.add(sb.toString());
     }
-    //吃
-    visited[i][j] = true;
     for(int[] dir: dirt) {
       int nextI = dir[0] + i;
       int nextJ = dir[1] + j;
@@ -64,10 +68,8 @@ public class Solution {
     for(String s: words) {
       TrieNode cur = root;
       for(int i = 0; i < s.length(); i++) {
-        TrieNode next = cur.children[s.charAt(i) -  'a'];
-        if(next == null){
-          next = new TrieNode();
-          cur.children[s.charAt(i) - 'a'] = next;
+        if(cur.children[c-'a'] == null){
+           cur.children[c-'a'] = new TreeNode();
         }
         cur = next;
       }

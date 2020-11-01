@@ -41,13 +41,16 @@ public class Solution {
       for(int[] edge: prerequisites) {
         //check whether it have prerequisites in the map
         if(edge[1] == cur && map.get(edge[0]) != 0) {
+          // remove the pre from the map
               map.put(edge[0],map.get(edge[0])-1);
+              // it means that all the pre class have taken, can put in the queue
               if(map.get(edge[0]) == 0 ) {
                 queue.offer(edge[0]);
               }
         }
       }
     }
+    //check whether all the require pre courses have taken
     for(int i = 0; i < numCourses;i++) {
       if(map.get(i) != 0) {
         return false;

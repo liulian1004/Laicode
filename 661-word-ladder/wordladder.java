@@ -1,12 +1,8 @@
 public class Solution {
   public int ladderLength(String beginWord, String endWord, List<String> wordList) {
     // S; O(n) T: num of word Length +  wordList length
-    //Asumption: end word must be in the wordList
+    //Asumption: end word must be in the wordList， wordlist has no duplicates words
     Set<String> visited = new HashSet<>();
-    Set<String> dic = new HashSet<>();
-    for(String s: wordList){
-      dic.add(s);
-    }
     Queue<String> queue = new ArrayDeque<>();
     queue.offer(beginWord);
     visited.add(beginWord);
@@ -19,7 +15,7 @@ public class Solution {
             if(cur.equals(endWord)) {
               return level;
             }
-            List<String> neighbors = findNeighbors(cur,dic);
+            List<String> neighbors = findNeighbors(cur,wordList);
             for(String nei: neighbors) {
               if(visited.add(nei)){
                 queue.offer(nei);
@@ -35,11 +31,10 @@ public class Solution {
   //并且是要一位位转化
   private List<String> findNeighbors(String s, Set<String> dic) {
     List<String> list = new ArrayList<>();
-    char[] array = s.toCharArray();
     for(int i = 0; i < array.length; i++) {
       for(int j = 0; j < 26; j++) {
-        char[] cur = array.clone();
-        cur[i] = (char)('a' + j);
+        char[] array = s.toCharArray();
+        array[i] = (char)('a' + j);
         String str = new String(cur);
         if(dic.contains(str)){
           list.add(str);

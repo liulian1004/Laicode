@@ -29,7 +29,7 @@ public class Solution {
 
     private boolean isValid(int index, List<Integer> cur){
       int size = cur.size();
-      //遍历这个cur
+      //需要遍历整个cur 确保和每一个都不会产生冲突
       for(int i  = 0; i < size; i++) {
         // cur.get(j)查是否在竖线上重合
         // i是在这一层准备要插入的位置

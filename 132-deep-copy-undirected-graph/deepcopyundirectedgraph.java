@@ -47,4 +47,29 @@ public class Solution {
       }
 
   }
+  //my solution
+  public class Solution {
+  public List<GraphNode> copy(List<GraphNode> graph) {
+    // Write your solution here.
+    Map<GraphNode, GraphNode> map = new HashMap<>();
+    List<GraphNode> list = new ArrayList<>();
+    for(GraphNode node: graph){
+      list.add(helper(node, map));
+    }
+    return list;
+  }
+  private GraphNode helper(GraphNode node, Map<GraphNode, GraphNode> map) {
+    if(map.containsKey(node)){
+      return map.get(node);
+    }
+    GraphNode copy = new GraphNode(node.key);
+    //这里要先node 放入map中，否则对cycles类型的graph会有死循环
+    map.put(node, copy);
+    List<GraphNode> nei = copy.neighbors;
+    for(GraphNode n: node.neighbors){
+      nei.add(helper(n, map));
+    }
+
+    return copy;
+  }
 }
