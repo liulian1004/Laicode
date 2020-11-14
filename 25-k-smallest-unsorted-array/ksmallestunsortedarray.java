@@ -37,6 +37,7 @@ public class Solution {
   // partition sort
   public int[] kSmallest(int[] array, int k) {
     // T: klogk + h.logk S: o(h)
+    // for the recusion part the upper bound will be h.logn
     if(array == null || array.length == 0) {
       return array;
     }
@@ -45,7 +46,7 @@ public class Solution {
     }
     int[] res = new int[k];
     helper(array, 0 , array.length- 1, k, res);
-    Arrays.sort(res);
+    Arrays.sort(res); //k.logk
     return res;
   }
   private void helper(int[] array, int left, int right, int k, int[] res) {

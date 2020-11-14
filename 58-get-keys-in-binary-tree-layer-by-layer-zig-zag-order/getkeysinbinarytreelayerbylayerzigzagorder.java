@@ -11,6 +11,9 @@
 public class Solution {
   public List<Integer> zigZag(TreeNode root) {
     // cur layer alwasy store the nodes from left to right
+    //if pollFirst, offerlast(left, right)
+    // if pollLast, offerfirst(right, left)
+    //each level diff
 //    deque    first            last
 //
 // 0		          3                     pollLast(), offerFirst(right，left)

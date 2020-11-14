@@ -34,7 +34,7 @@ public class Solution {
     for(int i = 0; i < array.length; i++) {
       for(int j = 0; j < 26; j++) {
         char[] array = s.toCharArray();
-        array[i] = (char)('a' + j);
+        array[i] = ('a' + j);
         String str = new String(cur);
         if(dic.contains(str)){
           list.add(str);
@@ -45,6 +45,8 @@ public class Solution {
   }
 }
 //DFS
+//swap swap的时间复杂度比一个个字母general(h^n)好
+
 public int ladderLength(String beginWord, String endWord, List<String> wordList) {
     // Assume: end and begin word is in the wordList
     //T: O(n!) S: O(n)
@@ -79,6 +81,16 @@ public int ladderLength(String beginWord, String endWord, List<String> wordList)
       }
     }
   }
+  //my solution for valid
+  // private boolean valid(String begin, String target){
+  //   int diff = 0;
+  //   for(int i = 0; i < begin.length; i++){
+  //     if(begin.charAt(i) != target.charAt(i)){
+  //       diff++;
+  //     }
+  //   }
+  //   return diff == 1? true: false;
+  // }
   private boolean valid(String begin, String target) {
     for(int i = 0; i < begin.length(); i++) {
       char[] cur = begin.toCharArray();

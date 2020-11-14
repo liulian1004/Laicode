@@ -58,6 +58,9 @@ public class Solution {
   }
 //recursion
 // in order: go right, go left
+//如果现在的层高比之前的high/
+//这个就是新的level，把当前的root放在结构集里
+
 private void recursion(TreeNode root, int[] level, int high, List<Integer> list) {
       if(root == null) {
         return;

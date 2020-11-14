@@ -11,6 +11,7 @@ public class Solution {
     return array;
   }
   private void helper(int[] array, int min, int max, int left, int right) {
+    //if(min >= max) 也可
     if(left >= right || min >= max) {
       return;
     }
