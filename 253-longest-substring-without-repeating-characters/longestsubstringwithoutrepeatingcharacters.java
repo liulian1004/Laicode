@@ -28,3 +28,30 @@ public int longest(String input) {
   return distance;
 }
 }
+//mysolution
+//Map<Letter, Index>
+// if map not contains letter or index is out of scope of silding window ,update length
+// else update res and re-calcuate length
+public int lengthOfLongestSubstring(String s) {
+        char[] array = s.toCharArray();
+        Map<Character, Integer> map = new HashMap<>();
+        int i = 0;
+        int length = 0;
+        int res = 0;
+        while(i < array.length){
+            if(map.containsKey(array[i])){
+                int index = map.get(array[i]);
+                if(index+length >= i){
+                    res = Math.max(res, length);
+                    length = i-index-1;
+                }
+            }
+            length++;
+            //System.out.println("i: "+i+" length: "+length);
+            map.put(array[i],i);
+            i++;
+
+        }
+        res = Math.max(res, length);
+        return res;
+    }

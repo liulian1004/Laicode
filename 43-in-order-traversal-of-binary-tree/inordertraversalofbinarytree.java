@@ -57,3 +57,35 @@ public List<Integer> inOrder(TreeNode root) {
     }
     return list;
   }
+//other Solution
+List<Integer> list = new ArrayList<>();
+    if(root == null){
+      return list;
+    }
+    Deque<Element> stack = new ArrayDeque<>();
+    stack.offerFirst(new Element(root, false));
+    while(!stack.isEmpty()){
+        Element cur = stack.pollFirst();
+        TreeNode curNode = cur.root;
+        if(cur.visited){
+          list.add(curNode.key);
+        }else{
+          if(curNode.right != null){
+              stack.offerFirst(new Element(curNode.right, false));
+          }
+          stack.offerFirst(new Element(curNode, true));
+          if(curNode.left != null){
+            stack.offerFirst(new Element(curNode.left, false));
+          }
+        }
+    }
+    return list;
+  }
+  static class Element{
+    TreeNode root;
+    boolean visited;
+    Element(TreeNode root, boolean visited){
+      this.root = root;
+      this.visited = visited;
+    }
+  }

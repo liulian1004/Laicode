@@ -98,6 +98,7 @@ public List<Integer> postOrder(TreeNode root) {
 }
 //other Solution
 public List<Integer> postOrder(TreeNode root) {
+  //T:O(n) S: O(n)
    List<Integer> res = new ArrayList<>();
        Stack<Pair> stack = new Stack<>();
        stack.push(new Pair(root, false));
