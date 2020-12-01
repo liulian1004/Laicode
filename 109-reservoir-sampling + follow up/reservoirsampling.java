@@ -27,6 +27,35 @@ public class Solution {
 
   }
 }
+//my solution with extra space
+public class Solution {
+  List<Integer> list;
+  int count;
+  public Solution() {
+    // Write your constructor code here if necessary.
+    list = new ArrayList<>();
+    count = 0;
+  }
+
+  public void read(int value) {
+    // Write your implementation here.
+    list.add(value);
+  }
+
+  public Integer sample() {
+    // Write your implementation here.
+    if(list.size() == 0){
+      return null;
+    }
+    int index = (int)(Math.random()*(list.size()-count));
+    int res = list.get(index);
+    int temp = list.get(count);
+    list.add(count, res);
+    list.add(index, temp);
+    count++;
+    return (Integer)res;
+  }
+}
 // follow up , return a random largest number if there have the duplicated elements in streams
 //这里的虽然largest number的值是一样的，但是他们的地址，或者附带的其他内容是不一样
 //所以还需要等概率的返回不同的largest number

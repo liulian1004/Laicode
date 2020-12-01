@@ -1,6 +1,8 @@
 public class Solution {
   public long reverseBits(long n) {
     // T: O(1); S: O(1)
+    //这里用long的原因是如果负数swap之后还是希望是负数
+    //所以用long把第64位当成符号位
     long i = 0;
     long j = 31;
     while(i < j) {

@@ -24,3 +24,8 @@ return count;
 }
 // another solution
 //这个方法负数不行。
+int res = 0;
+   for(int i = 0; i < 31; i++){
+       res +=(number>>i&1);
+   }
+   return res == 1;

@@ -87,3 +87,68 @@ public class Solution {
   }
 
 }
+//my Solution
+//T：nlogn S: O(n)
+private List<List<Integer> getSkyline(int[][] buildings){
+       List<int[]> list = buildList(buildings);
+       List<List<Integer>> res = new ArrayList<>();
+      PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+       int prev = 0;
+       for(int[] pair: list){
+           if(pair[0] == 1){
+               maxHeap.offer(pair[2]);
+           }
+           if(pair[0] == -1){
+               maxHeap.remove(pair[2]);
+           }
+           if(maxHeap.isEmpty()){
+               List<Integer> l = new ArrayList<>();
+               l.add(pair[1]);
+               l.add(0);
+               res.add(l);
+               prev = 0;
+           }else if(maxHeap.peek()!= prev){
+               List<Integer> l = new ArrayList<>();
+               l.add(pair[1]);
+               l.add(maxHeap.peek());
+               res.add(l);
+               prev = maxHeap.peek();
+           }
+       }
+       return res;
+   }
+   private List<int[]> buildList(int[][] buildings){
+       List<int[]> list = new ArrayList<>();
+       for(int[] pair: buildings){
+           int[] t1 = new int[3];
+           t1[0] = 1;
+           t1[1] = pair[0];
+           t1[2] = pair[2];
+           list.add(t1);
+           int[] t2 = new int[3];
+           t2[0] = -1;
+           t2[1] = pair[1];
+           t2[2] = pair[2];
+           list.add(t2);
+       }
+       //先按x坐标sort，从小到大
+       //按1和-1sort，从1到-1（大到小）
+       //如果x坐标相同，且都是1，heigh从大到小排
+       //如果x坐标相同，且都是-1，heigh从小到大排
+       // case：[[1,2,1],[1,2,2],[1,2,3]]
+       Collections.sort(list, (a,b)->{
+                         int com = a[1]-b[1];
+                         if(com == 0){
+                             com = b[0] - a[0];
+                         }
+                         if(com == 0){
+                             if(a[0] == 1 && b[0] == 1){
+                                 com = b[2]-a[2];
+                             }else{
+                                 com = a[2]-b[2];
+                             }
+                         }
+                        return com;
+       });
+       return list;
+}

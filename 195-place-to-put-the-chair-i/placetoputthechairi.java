@@ -120,3 +120,86 @@ public class Solution {
       return nei;
     }
 }
+//mysoliton
+//start from each 'e' go bfs
+// in dfs, make sure each cell can be travsaled, if not return -1,-1
+// if the cell is 'c', update the min cost
+public List<Integer> putChair(char[][] gym) {
+
+    int row = gym.length;
+    int col = gym[0].length;
+    List<Integer> list = new ArrayList<>();
+    int x = -1;
+    int y = -1;
+    int[][] matrix = new int[row][col];
+    for(int i = 0; i < row; i++ ){
+      for(int j = 0; j < col; j++){
+        if(gym[i][j] == 'E'){
+          if(!bfs(gym,row, col,matrix,i,j)){
+                  list.add(x); list.add(y);
+                  return list;
+          }
+        }
+      }
+    }
+    int cost = Integer.MAX_VALUE;
+    for(int i = 0; i < row; i++){
+      for(int j = 0 ;j < col; j++){
+        if(gym[i][j] == 'C' && matrix[i][j] < cost){
+          cost = matrix[i][j];
+          x = i; y = j;
+        }
+      }
+    }
+    list.add(x); list.add(y);
+    return list;
+  }
+  private boolean bfs(char[][] gym, int row, int col, int[][] matrix, int x, int y){
+    boolean[][] visited = new boolean[row][col];
+    Queue<int[]> queue = new ArrayDeque<>();
+    int step = 0;
+    queue.offer(new int[]{x,y});
+    visited[x][y] = true;
+    for(int i = 0; i < row; i++){
+      for(int j = 0; j < col; j++){
+        if(gym[i][j] == 'O'){
+          visited[i][j] = true;
+        }
+      }
+    }
+    while(!queue.isEmpty()){
+      int size = queue.size();
+      for(int k = 0; k < size; k++){
+        int[] cur = queue.poll();
+        int i = cur[0];
+        int j = cur[1];
+        matrix[i][j] += step;
+        if(i+1 < row && !visited[i+1][j]){
+          queue.offer(new int[]{i+1,j});
+          visited[i+1][j] = true;
+        }
+        if(j+1 < col && !visited[i][j+1]){
+          queue.offer(new int[]{i,j+1});
+          visited[i][j+1] = true;
+        }
+        if(j-1 >= 0 && !visited[i][j-1]){
+          queue.offer(new int[]{i,j-1});
+          visited[i][j-1] = true;
+        }
+         if(i-1 >= 0 && !visited[i-1][j]){
+          queue.offer(new int[]{i-1,j});
+          visited[i-1][j] = true;
+        }
+      }
+      step++;
+    }
+    for(int i = 0; i< row; i++){
+      for(int j = 0; j < col; j++){
+        if(!visited[i][j]){
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+}

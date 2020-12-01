@@ -4,9 +4,10 @@ public class Solution {
     if(array.length == null || array.length == 0 || k >= array.length) {
     return array;
   }
-  if(k <= 0) {
-    return new int[0];
-  }
+  //这里后面for loop会考虑到
+  // if(k <= 0) {
+  //   return new int[0];
+  // }
   int[] result = new int[k];
   int left = 0;
   int right = array.length - 1;

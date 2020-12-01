@@ -6,8 +6,6 @@ public class Solution {
     //T: m + n + l.logl
     // S: O(m)
     List<Integer> list = new ArrayList<>();
-    // Arrays.sort(A); //nlogn
-    // Arrays.sort(B); //mlogm
     Map<Integer, Integer> map = new HashMap<>(); //S : m
     for(int i = 0; i < A.length;i++) {    //T: O(m)
       if(!map.containsKey(A[i])) {

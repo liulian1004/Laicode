@@ -51,7 +51,48 @@ public class Solution {
     return (max.peek() + min.peek()) / 2.0;
   }
 }
-//follow up 如果input的数字太多，要放一绝大部分饿数字在disk
+//mysolution
+public class Solution {
+  PriorityQueue<Integer> large;
+  PriorityQueue<Integer> small;
+  int count;
+  public Solution() {
+    // add new fields and complete the constructor if necessary.
+    large = new PriorityQueue<>();
+    small = new PriorityQueue<>(Collections.reverseOrder());
+    count = 0;
+  }
+
+  public void read(int value) {
+    // write your implementation here.
+    if(small.isEmpty() || small.peek() >= value){
+      small.offer(value);
+    }else{
+      large.offer(value);
+    }
+    if(small.size() - large.size() > 1){
+      large.offer(small.poll());
+    }else if(large.size() - small.size() > 1){
+      small.offer(large.poll());
+    }
+    count++;
+  }
+
+  public Double median() {
+    // write your implementation here.
+    if(count == 0){
+      return null;
+    }
+    if(count%2 == 0){
+      return (small.peek()+ large.peek())/2.0;
+    }
+    if(small.size() > large.size()){
+      return small.peek()*1.0;
+    }
+    return large.peek()*1.0;
+  }
+}
+//follow up 如果input的数字太多，要放一绝大部分的数字在disk
 // small array (disk) | maxHeap | minHeap | large array(disk)
 //方法同上题类似
 //不同的：

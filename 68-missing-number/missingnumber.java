@@ -60,7 +60,7 @@ public class Solution {
  for(int number : array) {
    xor ^= number;
  }
- for(int i = 1; i <= n; i++) {
+ for(int i = 1; i <= array.length+1; i++) {
    xor ^= i;
  }
  return xor;
