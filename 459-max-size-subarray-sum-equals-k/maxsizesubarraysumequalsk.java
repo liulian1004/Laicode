@@ -21,6 +21,7 @@ public int maxSubArrayLen(int[] nums, int k) {
   public int maxSubArrayLen(int[] nums, int k) {
    // T: O(n) S: O(n)
    //Map<sum(at end i), i>
+   //这题的算法类似于人字形找那一段node == target一样
    if(nums == null || nums.length == 0 ) {
      return 0;
    }

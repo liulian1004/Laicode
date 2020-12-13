@@ -101,12 +101,14 @@ private List<List<Integer> getSkyline(int[][] buildings){
            if(pair[0] == -1){
                maxHeap.remove(pair[2]);
            }
+           //最后都poll完的情况，就是结束的情况，高度是0，没有大楼
            if(maxHeap.isEmpty()){
                List<Integer> l = new ArrayList<>();
                l.add(pair[1]);
                l.add(0);
                res.add(l);
                prev = 0;
+              //一旦高度发生变化，就update list
            }else if(maxHeap.peek()!= prev){
                List<Integer> l = new ArrayList<>();
                l.add(pair[1]);

@@ -4,6 +4,7 @@ public class MinHeap{
 
 
 private void percolateUp(int index) {
+//和上一层的parent想比较。 如果小，swap
     //Time: O(h) = logn
     	int parentIndex = (index - 1)/ 2;
     //走到root结束
@@ -22,10 +23,11 @@ private void percolateDown(int index) {
       while(index <= size / 2 - 1) {
     	int leftIndex = n * 2 + 1;
     	int rightIndex = n * 2 + 2;
+			//与下一层较小的元素交换
     	//默认先和左交换
     	int swapIndex = leftIndex;
     	//走到最后一个非叶子节点结束
-    	if(rightIndex <= size - 1; && array[leftIndex] > array[rightIndex]) {
+    	if(rightIndex <= size - 1&& array[leftIndex] > array[rightIndex]) {
     	swapIndex = rightIndex;
     }
     if(array[index] > array[swapIndex]) {

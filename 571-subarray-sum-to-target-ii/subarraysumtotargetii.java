@@ -16,7 +16,8 @@ public class Solution {
     return ans;
   }
   //T：O(n) S: O(n)
-        //是2sum array的变体
+        //人字形 node sum类似的题目
+
         int ans = 0;
         if(nums == null || nums.length ==0) {
             return ans;

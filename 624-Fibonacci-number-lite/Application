@@ -1,0 +1,21 @@
+public class Solution {
+  public int fibonacci(int K) {
+    // T: O(k) S: O(k)
+    if(K <= 0){
+      return 0;
+    }
+    int[] a = new int[]{0};
+    int[] b = new int[]{1};
+    helper(K, a, b);
+    return b[0];
+  }
+  private void helper(int num, int[] a, int[] b){
+    if(num <= 1){
+      return;
+    }
+    int temp = a[0]+b[0];
+    a[0] = b[0];
+    b[0] = temp;
+    helper(num-1,a,b);
+  }
+}

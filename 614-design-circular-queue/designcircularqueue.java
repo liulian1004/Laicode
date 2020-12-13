@@ -1,6 +1,6 @@
 class MyCircularQueue {
   // a circular array
-  // head point to null. tail points to the buck that want to inserr the elemen
+  // head point to null. tail points to the buck that want to insert the elemen
     int[] array;
     int head;
     int tail;
