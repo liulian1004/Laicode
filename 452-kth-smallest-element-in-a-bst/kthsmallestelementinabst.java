@@ -11,7 +11,7 @@
 public class Solution {
   public int kthSmallest(TreeNode root, int k) {
     // T: O(k)
-    //S: O(1)
+    //S: O(k)
     // Assumptuion :  1<= k <= nodes
     //stack 存parent的值
     if(root == null) {
@@ -35,3 +35,11 @@ public class Solution {
     }
   }
 }
+//follow up:
+What if the BST is modified (insert/delete operations) often and
+you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?
+
+Use doubly linkedlist to maintain the order the node
+search/delete is O(h)
+find the kth smallest is O(k)
+S: O(n)

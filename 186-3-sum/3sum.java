@@ -16,6 +16,7 @@ public class Solution {
     Arrays.sort(array);  // n.lgon
     //i最多到最后第三位
     for(int i = 0; i < array.length -2; i++) {
+      //去重，因为返回的是值，不是index
       if(i > 0 && array[i] == array[i-1]) {
         continue;
       }
@@ -28,7 +29,7 @@ public class Solution {
             list.add(Arrays.asList(array[i], array[left], array[right])); //O(1)
             left++;
             right--;
-            //在相等的情况下去重
+            //在相等的情况下去重，同理
             while(left < right && array[left] == array[left-1]) {
               left++;
             }

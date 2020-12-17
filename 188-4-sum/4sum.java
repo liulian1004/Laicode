@@ -5,6 +5,7 @@ public class Solution {
     }
     // my solution T: O(n^2) S: O(n)
     // the qualified pair.right < next pair.left
+    //map<target-pairSum, [pairleftIndex, pairRightIndex])
    if(array == null || array.length < 4) {
      return false;
    }
@@ -15,6 +16,8 @@ public class Solution {
        if(map.containsKey(target - temp) && map.get(target - temp).right < j) {
          return true;
        }
+       //这里只需要存第一个pair就行，因为只是查是否存在，不需要返回所有的结果
+       //如果要求返回所有的pair，这里就需要放入一个list<pair>,然后forloop检查确保这些pair的index都不重复
        if(!map.containsKey(temp)) {
           map.put(temp, new Pair(j,i));
        }

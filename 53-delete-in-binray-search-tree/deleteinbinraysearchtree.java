@@ -61,7 +61,7 @@ public class Solution {
   }
 }
 //easy Solution
-//T： logn S: logn
+//T： logn/H S: logn/H
 // left == null, return right
 // right == null, return left
 // 找到root的右子树的最小数，把root的值替换掉，然后在通过recursion方法把那个最小的数删除

@@ -21,7 +21,7 @@ public class Solution {
 
 }
 //follow up if Integer.min 和 Intger.MAX_VALUE在tree中
-// 可以把input变成long
+// 可以把min/max变成long, 或者TreeNode min = null || TreeNode max = null
 或者
 
 //不用min,max性质做，用ascending的性质做
