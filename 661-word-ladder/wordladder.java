@@ -32,6 +32,7 @@ public class Solution {
   private List<String> findNeighbors(String s, Set<String> dic) {
     List<String> list = new ArrayList<>();
     for(int i = 0; i < array.length; i++) {
+      char cur = array[i];
       for(int j = 0; j < 26; j++) {
         char[] array = s.toCharArray();
         array[i] = ('a' + j);
@@ -40,6 +41,8 @@ public class Solution {
           list.add(str);
         }
       }
+      //每一次轮换完成以后，要换回原来的字母
+      array[i] = cur;
     }
     return list;
   }

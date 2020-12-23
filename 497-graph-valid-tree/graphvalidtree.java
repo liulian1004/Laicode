@@ -22,7 +22,7 @@ public class Solution {
           map.get(i).remove((Integer)(cur));
         }
       }
-      // corcase, there is two tree that not conected together, so finally check the size of set
+      // incase, there is two tree that not conected together, so finally check the size of set
       return set.size() == n;
   }
   private boolean search(int start, Set<Integer> set,Map<Integer, List<Integer>> map){
