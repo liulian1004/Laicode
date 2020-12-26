@@ -20,6 +20,33 @@ public class Solution {
             }
             return dp[s.length()];
       }
+      // my Solution
+      //dp[i]: how many decode way it will have at the end of index i
+      //base case i = 0 and i = 1
+      int[] dp = new int[s.length()];
+      for(int i = 0; i < s.length(); i++){
+          int num1 = s.charAt(i) - '0';
+          if(num1 != 0){
+              if(i >= 1){
+                dp[i] += dp[i-1];
+              }else{
+                  dp[i] += 1;
+              }
+          }
+          if(i >= 1){
+              int num2 = (s.charAt(i-1) - '0')*10 + (s.charAt(i) - '0');
+              if(num2 >= 10 && num2 <= 26 ){
+                  if(i >=2){
+                       dp[i] += dp[i-2];
+                  }else{
+                      dp[i] += 1;
+                  }
+
+              }
+          }
+      }
+      return dp[s.length()-1];
+      
 
   //follow up
   // if stirng contains * and * present 1 - 9

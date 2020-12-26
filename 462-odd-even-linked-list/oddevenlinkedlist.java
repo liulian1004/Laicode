@@ -11,7 +11,8 @@
 public class Solution {
   public ListNode oddEvenList(ListNode head) {
     // Write your solution here
-    if(head == null || head.next == null){
+    //这里必须要先判断head是不是，否则后面的evehead会npe
+    if(head == null){
       return head;
     }
     ListNode odd = head;

@@ -10,7 +10,7 @@
  */
 public class Solution {
   public TreeNode sortedArrayToBST(int[] num) {
-    // Write your solution here
+    //每一层从mid开始分左右两个sub tree
     return helper(num, 0, num.length-1);
   }
   private TreeNode helper(int[] num, int left, int right){
@@ -24,8 +24,8 @@ public class Solution {
     //   mid = mid+1;
     // }
     TreeNode leftTree = helper(num, left, mid-1);
-    TreeNode root = new TreeNode(num[mid]);
     TreeNode rightTree = helper(num, mid+1, right);
+    TreeNode root = new TreeNode(num[mid]);
     root.left = leftTree;
     root.right = rightTree;
     return root;

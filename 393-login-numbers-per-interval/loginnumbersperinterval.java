@@ -15,28 +15,28 @@ public class Solution {
       count += cur[1];
       prev = cur;
     }
-    // int[][] ret = new int[res.size()][3];
-    List<int[]> ret = new ArrayList<>();
+    //post-processing
     prev = res.get(0);
-    int[] cur = prev;
-    for(int j = 1; j < res.size(); j++){
-      cur = res.get(j);
-      if (prev[2] == cur[2] && prev[1] == cur[0]) {
-        prev = new int[]{prev[0], cur[1], prev[2]};
-        cur = prev;
-        continue;
-      }
-      if (prev[2]!=0) {
-        ret.add(prev);
-      }
-      prev = cur;
-    }
-    if (cur[2]!=0) {
-      ret.add(cur);
-    }
-    int[][] result = new int[ret.size()][];
-    result = ret.toArray(result);
-    return result;
+    List<int[]> result = new ArrayList<>();
+    result.add(prev);
+    for(int i = 1; i < res.size(); i++){
+          int[] cur = res.get(i);
+          //这里需要重新检查一样，确保没有1，2，1 和 2，4，1的情况出现
+          //如果有，需要删除前一次，重新update
+          if(cur[2] == prev[2] && prev[1] == cur[0]){
+            result.remove(result.size()-1);
+            prev = new int[]{prev[0],cur[1], prev[2]};
+            result.add(prev);
+          }else{
+            result.add(cur);
+            prev = cur;
+          }
+        }
+        //result.add(prev);
+        int[][] fina = new int[result.size()][];
+        fina = result.toArray(fina);
+        return fina;
+
   }
   private List<int[]> buildList(int[][] array){
     List<int[]> list = new ArrayList<>();
