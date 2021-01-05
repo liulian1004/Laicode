@@ -8,6 +8,10 @@
  *   }
  * }
  */
+ //insert: each interation, remove one elemnt in the corrected place
+ // ex: 231
+ // for 1, it need to compare 3, and 2 one by one, then insert before 2
+ //T: n^2
 public class Solution {
   public ListNode insertionSort(ListNode head) {
     if(head == null || head.next == null){

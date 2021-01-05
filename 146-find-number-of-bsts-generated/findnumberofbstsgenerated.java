@@ -1,6 +1,7 @@
 public class Solution {
   public int numOfTrees(int n) {
-    // dp[i]: represent the number of bst generated  on the n
+    // dp[i]: represent the number of bst generated  on the n，start from 0
+    // 0 means no node
     if(n <= 1){
       return 1;
     }

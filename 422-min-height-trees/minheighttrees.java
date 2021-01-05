@@ -16,7 +16,7 @@ public class Solution {
         }
         Map<Integer, List<Integer>> map = buildMap(edges, n);
         Queue<Integer> queue = new ArrayDeque<>();
-         //start from the node
+         //start from the node which only has one edge
         for(int i = 0; i < n; i++){
             if(map.get(i).size() == 1){
                 queue.offer(i);

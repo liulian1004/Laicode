@@ -3,7 +3,7 @@ public class Solution {
     // house robber follow up problem with duplicate num
     // tranfer the nums to int[10000], int[i] = n represent for the value i+1, there are n count
     //induction rule:
-    // case1 : choose i, then dp[i] = dp[i-1] + count*num i
+    // case1 : choose i, then dp[i] = dp[i-2] + count*num i
     // case 2: not choose i, then dp[i] = dp[i-1]
     // dp[i] = Math.max(case1, case2)
     if(nums.length == 1){
@@ -20,6 +20,5 @@ public class Solution {
       dp[i] = Math.max(dp[i-2] + base[i]*(i+1), dp[i-1]);
     }
     return dp[9999];
-
   }
 }

@@ -13,7 +13,7 @@ public class Solution {
     // 不能用level -order 做
     //因为可能同一层，只拿来左边branch，没有拿右边branch
     //用tree dp
-    //int[] dp represent dp[0]: root+ root.child.child， dp[1]: child
+    //int[] dp represent dp[0]: root+ root.child.child， dp[1]: root.child
     int[] res = helper(root);
     return Math.max(res[0], res[1]);
   }

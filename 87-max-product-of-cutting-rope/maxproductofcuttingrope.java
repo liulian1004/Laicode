@@ -26,7 +26,7 @@ public class Solution {
 }
 //follow up how about at least k cut
 public int cutRope(int n, int k) {
-  T: n*n*k S: O(n)
+//  T: n*n*k S: O(n)
   if(n < 1 || k >= n) {
     return 0;
   }

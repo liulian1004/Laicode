@@ -10,7 +10,8 @@
  */
 public class Solution {
   public TreeNode toDoubleLinkedList(TreeNode root) {
-    // Write your solution here.
+    //in-order travasel 找到head
+    //并标记第一个prev
     TreeNode[] pre = new TreeNode[1];
     TreeNode[] head = new TreeNode[1];
     helper(root, pre, head);
@@ -21,6 +22,7 @@ public class Solution {
       return;
     }
     helper(root.left, pre, head);
+    //这里prev必须是array，否则往回弹的时候prev一直是null
     if(pre[0] == null){
       head[0] = root;
     }else{

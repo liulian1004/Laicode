@@ -36,3 +36,31 @@ public class Solution {
     list.add(a1[i]);
   }
 }
+//my Solution
+public List<String> getCommonInterest(String[] array1, String[] array2) {
+    // T: O(n)orO(m) //S: O(n) ==> map size
+    List<String> list = new ArrayList<>();
+    if(array1 == null || array2 == null || array1.length == 0 || array2.length == 0) {
+      return list;
+    }
+    Map<String, Integer> map = new HashMap<>();
+    for(int i = 0; i< array1.length; i++){
+      map.put(array1[i],i);
+    }
+    int sum = Integer.MAX_VALUE;
+    for(int i = 0;i < array2.length;i++){
+      String cur = array2[i];
+       if(map.containsKey(cur)){
+         int temp = map.get(cur)+i;
+         if(sum > temp){
+           list.clear();
+           list.add(cur);
+           sum = temp;
+         }else if(sum == temp){
+           list.add(cur);
+         }
+       }
+    }
+    Collections.sort(list);
+    return list;
+  }
