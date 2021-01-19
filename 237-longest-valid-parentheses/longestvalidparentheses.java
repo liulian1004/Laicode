@@ -1,22 +1,28 @@
 public class Solution {
   public int longestValidParentheses(String input) {
     // T： O(n) s:o(1)
-    // only update the length when find the valid pair
-    //stack record the index of before the pair
+    // put index into stack
+    // case 1 cur = (
+    // case 2 cur = ) && no match ( in the stack
+    //After poll , if stack is empty, reset the start to -1
+    // ex: ()()
     if(input == null || input.length() <= 1) {
       return 0;
     }
     Deque<Integer> stack = new ArrayDeque<>();
     int i = 0;
     int res = 0;
-    //initial stack
-    stack.offerFirst(-1);
     while(i < input.length()) {
-      if(input.charAt(i) == '(') {
-          stack.offerFirst(i);
-      }else if(input.charAt(i) == ')' && stack.size() > 1 && input.charAt(stack.peekFirst()) == '(') {
+      char cur = input.charAt(i);
+      if(cur == '(' || (cur == ')' && (stack.isEmpty() || input.charAt(stack.peekFirst()) != '('))){
+        stack.offerFirst(i);
+      }else if(!stack.isEmpty() && input.charAt(stack.peekFirst()) == '('){
           stack.pollFirst();
-          res = Math.max(res, i - stack.peekFirst());
+          int start = -1;
+          if(!stack.isEmpty()){
+            start = stack.peekFirst();
+          }
+          res = Math.max(i - start, res);
       }
      i++;
     }

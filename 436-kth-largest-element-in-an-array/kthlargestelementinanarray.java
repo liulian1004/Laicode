@@ -38,6 +38,7 @@ public class Solution {
       //left/right bound必须减小，否则会overflow
       return helper(nums,k, i+1, right);
     }
+    //left/right bound必须减小，否则会overflow
     return helper(nums,k,left, i-1);
   }
 

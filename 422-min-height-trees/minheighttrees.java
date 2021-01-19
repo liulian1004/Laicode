@@ -4,6 +4,7 @@ public class Solution {
          //topology algorithm
          // start from node(degree ==1)
          // bfs, until find all the left node are degree == 1
+         //找到所有剩余的node degree是1 的node,最多有两个node剩余
          // the result will be max 2 nodes
          // case 1: 中心点只有一个node
          //case 2: 中心点有两个node

@@ -1,10 +1,5 @@
 public class Solution {
   public int[] countArray(int[] array) {
-    //T： nlogn
-    // merge sort + 维护每个element的count
-    // counter: 在排序过程中，有多少本来比我小且在右边的数被移到了左边
-    //case 1: left[i] < right[j] i's count += j           i++
-    //case 2: left[j] > right[j]  y's count doesn't chang j++
 
     //T: O(n^2); S O(1)
     int[] res = new int[array.length];
@@ -21,12 +16,20 @@ public class Solution {
     return res;
   }
 }
-// follow up
-// new interview question , see noon class - 2
-// there are two rows of nests, in the morning, birds fly to one side of nests randomly
-// in the evening, birds fly back to the nest of anohter sides, based on the order
-// how many intersections can birds trajectories generate when they back to nest at nigth
-// input: 4, 5, 1, 3,2 ==> output :3, 3, 0, 1, 0 ==> sum is 7
+
+//T： nlogn
+// merge sort + 维护每个element的count
+// counter: 在排序过程中，有多少本来比我小且在右边的数被移到了左边
+// ex:
+// left: 1 4
+// right: 2 3
+// merge的时候更新每一个元素有多少个比他小的元素
+// 把right的元素copy到solution集合的时候不需要更新count
+//把left元素copy到solution集合的时候需要count。count是count + index of j
+//case 1: left[i] < right[j] i's count += j           i++
+//case 2: left[j] > right[j]  y's count doesn't chang j++
+
+
 public int[] countArray(int[] array) {
     // check how many elements that are smaller than me on my right side
     // merge sort
@@ -65,6 +68,7 @@ public int[] countArray(int[] array) {
       if(j > right || array[helper[i]] <= array[helper[j]]) {
         //跟新右边的j已经挪动来多少位(从mid+1开始)，即这一轮有多少位数< element at index
         count[helper[i]] += (j - (mid+1));
+        //copyback the index of sorted elements
         index[cur++] = helper[i++];
       }else {
         index[cur++] = helper[j++];
@@ -78,3 +82,10 @@ public int[] countArray(int[] array) {
     }
     return res;
   }
+
+  // follow up
+  // new interview question , see noon class - 2
+  // there are two rows of nests, in the morning, birds fly to one side of nests randomly
+  // in the evening, birds fly back to the nest of anohter sides, based on the order
+  // how many intersections can birds trajectories generate when they back to nest at nigth
+  // input: 4, 5, 1, 3,2 ==> output :3, 3, 0, 1, 0 ==> sum is 7
