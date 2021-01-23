@@ -20,18 +20,20 @@ public class Solution {
             dp[i] = Math.min(dp[i], dp[j]+1);
           }
           if(array[j]+j >= array.length){
-            res= Math.min(res, dp[j]+1);
+              //在中间的时候，就发现一步能跳到 array的外面
+              res= Math.min(res, dp[j]+1);
+            }
           }
         }
       }
-    }
-   if(res == Integer.MAX_VALUE){
-        if(array[array.length-1] == 0 || dp[array.length-1] == -1){
-          return -1;
-        }else{
-        return dp[array.length-1]+1;
-        }
-   }
+      //在末尾的时候，查一下是否能从末尾跳到外面
+      if(array[array.length-1] != 0 && dp[array.length-1] != -1){
+        res = Math.min(res, dp[array.length-1]+1);
+      }
+      if(res == Integer.MAX_VALUE){
+        return -1;
+      }
+      return res;
     return res;
   }
 }
