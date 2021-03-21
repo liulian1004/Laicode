@@ -1,4 +1,4 @@
-ublic class Solution {
+public class Solution {
   public boolean isPowerOfTwo(int number) {
     // power of two: non negative number & only one 1 in the bits
     // number :    0.1000...00
