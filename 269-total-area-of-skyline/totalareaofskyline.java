@@ -26,7 +26,8 @@ public class Solution {
     for(int i = 1; i < buildings.size(); i++){
       Building temp = buildings.get(i);
       //calcualte the overlap sum
-      if(temp.start <= cur.end){
+      if(temp.start < cur.end){
+        //这里temp的end 可能在cur end之后，或者之后，所以要算距离离start最近的，即min end
         sum -=Math.min(temp.height, cur.height)*(Math.min(cur.end, temp.end)-temp.start);
       }
       //update cur building
