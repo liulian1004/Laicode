@@ -1,1 +1,1 @@
-Hi,this Lian Liu and I have been selected for the 2021 Google Summer SDE Intern. Does your team look for a summer intern?  I work as an IoT SDE intern now and I have experience on full-stack web and Android app. Thank you for the consideration and sorry for bothering you if you don't need an intern.
+
