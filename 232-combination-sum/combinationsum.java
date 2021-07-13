@@ -1,6 +1,6 @@
 public class Solution {
   public List<List<Integer>> combinationSum(int[] candidates, int target) {
-    // T: n! S: o(h) --> the longest length of combination
+    // T: length of candiates^h S: o(h) --> the longest length of combination
 
     Set<Integer> set = new HashSet<>(candidates);
     Set<List<Integer>> ans = new HashSet<>();
